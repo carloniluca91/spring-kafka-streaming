@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driverClassName: com.cloudera.impala.jdbc.Driver
+    url: jdbc:impala://quickstart.cloudera:21050/jdbi_test
+  flyway:
+    baseline-on-migrate: true
+    table: _flyway_schema_history
+  kafka:
+    producer:
+      bootstrap-servers:
+      - localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 1
+      properties:
+        delivery.timeout.ms: 10000
+        max.block.ms: 15000
+        request.timeout.ms: 5000
+        reconnect.backoff.ms: 10000
+        retry.backoff.ms: 10000
+topic:
+  bancll01: cedacri-bancll01-dev
+  bancll34: cedacri-bancll34-dev
