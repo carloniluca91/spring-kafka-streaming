@@ -10,10 +10,10 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>it.luca.cedacri</groupId>
-	<artifactId>kafka-cedacri</artifactId>
+	<groupId>it.luca.spring</groupId>
+	<artifactId>source-manager-ws</artifactId>
 	<version>0.1.0</version>
-	<description>Lake Cedacri - Spring Boot Application with Kafka Producer</description>
+	<description>Spring Boot Application with Kafka Producer</description>
 	<organization>
 		<name>it.luca</name>
 	</organization>
