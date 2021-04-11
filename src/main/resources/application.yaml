@@ -2,9 +2,6 @@ spring:
   datasource:
     driverClassName: com.cloudera.impala.jdbc.Driver
     url: jdbc:impala://quickstart.cloudera:21050/jdbi_test
-  flyway:
-    baseline-on-migrate: true
-    table: _flyway_schema_history
   kafka:
     producer:
       bootstrap-servers:

@@ -29,13 +29,13 @@ public class KafkaProducer {
 
             @Override
             public void onFailure(Throwable throwable) {
-                log.error("({}) Unable to send message due to: {}", dataSourceId.getId(), throwable.getMessage());
+                log.error("({}) Unable to send message due to: {}", dataSourceId, throwable.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, MsgWrapper<?>> stringTSendResult) {
                 log.info("({}) Sent message = [{}] with offset=[{}] to topic {}",
-                        dataSourceId.getId(), msgWrapper.getPayload(), stringTSendResult.getRecordMetadata().offset(), topicName);
+                        dataSourceId, msgWrapper.getPayload(), stringTSendResult.getRecordMetadata().offset(), topicName);
             }
         });
     }

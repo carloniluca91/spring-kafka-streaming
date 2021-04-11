@@ -1,6 +1,5 @@
-package it.luca.cedacri.json.beans;
+package it.luca.cedacri.json.bancll34;
 
-import it.luca.cedacri.json.core.MsgBody;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Bancll34 extends MsgBody {
+public class Bancll34 {
 
     private Integer id;
     private String name;

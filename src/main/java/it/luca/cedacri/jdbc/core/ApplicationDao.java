@@ -1,8 +1,6 @@
 package it.luca.cedacri.jdbc.core;
 
 import com.cloudera.impala.jdbc.DataSource;
-import it.luca.cedacri.json.core.MsgBody;
-import it.luca.cedacri.json.core.MsgWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -13,7 +11,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
-public class ImpalaDao {
+public class ApplicationDao {
 
     @Value("${spring.datasource.driverClassName}")
     private String driverClass;
@@ -24,7 +22,7 @@ public class ImpalaDao {
     private Jdbi jdbi;
 
     @PostConstruct
-    private void dataSource() throws ClassNotFoundException {
+    private void initJdbi() throws ClassNotFoundException {
 
         Class.forName(driverClass);
         DataSource dataSource = new DataSource();
@@ -36,10 +34,19 @@ public class ImpalaDao {
         log.info("Initialized {}", jdbiClass);
     }
 
-    public <T extends MsgBody> void save(MsgWrapper<T> object, Class<? extends SaveDao<T>> daoClass) {
+    public <T> void saveUnsentMessage(T object, Class<? extends DataSourceDao<T>> daoClass) {
 
         String rClassName = object.getClass().getSimpleName();
         String daoClassName = daoClass.getSimpleName();
+        String tableName = jdbi.withHandle(handle -> handle.attach(daoClass).getTableName());
+        if (jdbi.withHandle(handle -> handle.attach(UtilsDao.class).existTable(tableName))) {
+            log.info("Table {} already exists", tableName);
+        } else {
+            log.warn("Table {} does not exist yet. Creating it now", tableName);
+            jdbi.useHandle(handle -> handle.attach(daoClass).createTable());
+            log.info("Successfully created table {}", tableName);
+        }
+
         log.info("Saving instance of {} using {}", rClassName, daoClassName);
         jdbi.useHandle(handle -> handle.attach(daoClass).save(object));
         log.info("Saved instance of {} using {}", rClassName, daoClassName);

@@ -1,4 +1,4 @@
-package it.luca.cedacri.model.response;
+package it.luca.cedacri.service;
 
 import it.luca.cedacri.enumeration.DataSourceId;
 import it.luca.cedacri.enumeration.DatePattern;
