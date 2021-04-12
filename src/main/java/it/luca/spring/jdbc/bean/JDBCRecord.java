@@ -14,4 +14,5 @@ public class JDBCRecord<T> {
     private final T bean;
     private final LocalDateTime tsInsert = Utils.now();
     private final String dtInsert = Utils.now(DatePattern.DEFAULT_DATE);
+    private final String month = Utils.now(DatePattern.DEFAULT_MONTH);
 }

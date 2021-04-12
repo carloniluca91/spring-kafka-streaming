@@ -17,8 +17,8 @@ public class KafkaTopics {
 
         String topic;
         switch (dataSourceId) {
-            case BANCLL_01: topic = bancll01Topic; break;
-            case BANCLL_34: topic = bancll34Topic; break;
+            case CONDUZIONE: topic = bancll01Topic; break;
+            case JARVIS: topic = bancll34Topic; break;
             default: throw new IllegalStateException("Unexpected dataSource: " + dataSourceId);
         }
 

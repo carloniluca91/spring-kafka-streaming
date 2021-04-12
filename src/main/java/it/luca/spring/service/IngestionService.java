@@ -3,8 +3,10 @@ package it.luca.spring.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.enumeration.DataSourceId;
 import it.luca.spring.exception.EmptyInputException;
+import it.luca.spring.jdbc.bean.IngestionAlertRecord;
 import it.luca.spring.jdbc.core.ApplicationDao;
 import it.luca.spring.jdbc.core.GenericDao;
+import it.luca.spring.jdbc.dao.IngestionAlertDao;
 import it.luca.spring.json.core.JsonMapper;
 import it.luca.spring.json.core.MsgWrapper;
 import it.luca.spring.kafka.KafkaProducer;
@@ -25,7 +27,7 @@ public class IngestionService {
     @Autowired
     private ApplicationDao applicationDao;
 
-    public <T, D extends GenericDao<T>> SourceResponse processAndSend(String input, DataSourceId dataSourceId, Class<T> tClass, Class<D> dClass) {
+    public <T, D extends GenericDao<T>> SourceResponse save(String input, DataSourceId dataSourceId, Class<T> tClass, Class<D> dClass) {
 
         T payload = null;
         try {
@@ -40,15 +42,28 @@ public class IngestionService {
         } catch (JsonProcessingException | EmptyInputException exception) {
             log.error("({}) Caught exception while processing received data. Class: {}. Message: {}",
                     dataSourceId, exception.getClass().getName(), exception.getMessage());
+            insertAlertRecord(dataSourceId, exception);
             return new SourceResponse(dataSourceId, Optional.of(exception));
         } catch (KafkaException kafkaException) {
             log.error("({}) Caught exception while sending data. Class: {}. Message: {}",
                     dataSourceId, kafkaException.getClass(), kafkaException.getMessage());
-            return insertRecord(dataSourceId, payload, dClass);
+            insertAlertRecord(dataSourceId, kafkaException);
+            return insertDataRecord(dataSourceId, payload, dClass);
         }
     }
 
-    private <T, D extends GenericDao<T>> SourceResponse insertRecord(DataSourceId dataSourceId, T payload, Class<D> dClass) {
+    private void insertAlertRecord(DataSourceId dataSourceId, Exception exception) {
+
+        try {
+            IngestionAlertRecord ingestionAlertRecord = new IngestionAlertRecord(dataSourceId, exception);
+            applicationDao.insertRecord(ingestionAlertRecord, IngestionAlertDao.class);
+        } catch (Exception e) {
+            log.error("({}) Caught exception while saving alert record. Class: {}. Message: {}",
+            dataSourceId, exception.getClass().getName(), exception.getMessage());
+        }
+    }
+
+    private <T, D extends GenericDao<T>> SourceResponse insertDataRecord(DataSourceId dataSourceId, T payload, Class<D> dClass) {
 
         SourceResponse sourceResponse;
         try {
