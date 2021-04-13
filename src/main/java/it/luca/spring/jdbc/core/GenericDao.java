@@ -1,6 +1,6 @@
 package it.luca.spring.jdbc.core;
 
-import it.luca.spring.enumeration.DataSourceId;
+import it.luca.spring.utils.DataSourceId;
 import org.jdbi.v3.sqlobject.locator.UseClasspathSqlLocator;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 

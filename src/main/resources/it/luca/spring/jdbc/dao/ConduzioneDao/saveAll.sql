@@ -1,4 +1,4 @@
-INSERT INTO t_rw_conduzione_recover PARTITION(month)
+INSERT INTO t_rw_conduzione_recover PARTITION(mese)
 VALUES (
 :records.getBean.getVolumeStoccaggioCorrente,
 :records.getBean.getVolumeIniettato,
@@ -13,6 +13,6 @@ VALUES (
 :records.getBean.getVolumeConsumo,
 :records.getBean.getVolumeStoccaggioTotale,
 :records.getTsInsert,
-:records:getDtInsert,
+:records.getDtInsert,
 :records.getMonth
 )

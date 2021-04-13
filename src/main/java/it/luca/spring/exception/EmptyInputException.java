@@ -1,6 +1,6 @@
 package it.luca.spring.exception;
 
-import it.luca.spring.enumeration.DatePattern;
+import it.luca.spring.utils.DatePattern;
 
 import static it.luca.spring.utils.Utils.now;
 

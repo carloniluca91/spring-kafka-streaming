@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.cloudera.impala.jdbc.Driver
-    url: jdbc:impala://quickstart.cloudera:21050/disp_dev
+    url: jdbc:impala://quickstart.cloudera:21050/1357_disp_dev
   kafka:
     producer:
       bootstrap-servers:

@@ -1,10 +1,10 @@
 package it.luca.spring.jdbc.dao;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.jdbc.bean.JDBCRecord;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.model.jdbc.JDBCRecord;
 import it.luca.spring.jdbc.core.GenericDao;
-import it.luca.spring.json.jarvis.JarvisPayload;
-import it.luca.spring.json.jarvis.JarvisRecord;
+import it.luca.spring.model.json.jarvis.JarvisPayload;
+import it.luca.spring.model.json.jarvis.JarvisRecord;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindMethods;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -28,7 +28,6 @@ public interface JarvisDao extends GenericDao<JarvisPayload> {
 
         saveAll(object.getAmbitoFlusso(), object.getNomeFlusso(), object.getImpresaMittente(), object.getDataDiCreazione(),
                 object.getNumeroDati(), object.getDataProcedura(), object.getGiornoGas(), jdbcRecords);
-
     }
 
     @SqlUpdate

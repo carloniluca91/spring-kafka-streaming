@@ -1,14 +1,15 @@
 package it.luca.spring.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import it.luca.spring.enumeration.DataSourceId;
+import it.luca.spring.utils.DataSourceId;
 import it.luca.spring.exception.EmptyInputException;
-import it.luca.spring.jdbc.bean.IngestionAlertRecord;
+import it.luca.spring.model.jdbc.IngestionAlertRecord;
 import it.luca.spring.jdbc.core.ApplicationDao;
 import it.luca.spring.jdbc.core.GenericDao;
 import it.luca.spring.jdbc.dao.IngestionAlertDao;
-import it.luca.spring.json.core.JsonMapper;
-import it.luca.spring.json.core.MsgWrapper;
+import it.luca.spring.model.response.SourceResponse;
+import it.luca.spring.utils.JsonMapper;
+import it.luca.spring.model.json.core.MsgWrapper;
 import it.luca.spring.kafka.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,17 @@ public class IngestionService {
 
     @Autowired
     private ApplicationDao applicationDao;
+
+    /**
+     * Deserialize given input and writethe result on Kafka topic or Impala table
+     * @param input: request body
+     * @param dataSourceId: datasource Id
+     * @param tClass: deserialization class
+     * @param dClass: dao class (to be used for writing on Impala table)
+     * @param <T>: deserialization class type parameter
+     * @param <D>: dao class type parameter
+     * @return SourceResponse
+     */
 
     public <T, D extends GenericDao<T>> SourceResponse save(String input, DataSourceId dataSourceId, Class<T> tClass, Class<D> dClass) {
 
@@ -45,12 +57,18 @@ public class IngestionService {
             insertAlertRecord(dataSourceId, exception);
             return new SourceResponse(dataSourceId, Optional.of(exception));
         } catch (KafkaException kafkaException) {
-            log.error("({}) Caught exception while sending data. Class: {}. Message: {}",
+            log.error("({}) Caught exception while sending data to Kafka. Class: {}. Message: {}",
                     dataSourceId, kafkaException.getClass(), kafkaException.getMessage());
             insertAlertRecord(dataSourceId, kafkaException);
             return insertDataRecord(dataSourceId, payload, dClass);
         }
     }
+
+    /**
+     * Insert alert record related to given datasource
+     * @param dataSourceId: datasource that generated the exception
+     * @param exception: generated exception
+     */
 
     private void insertAlertRecord(DataSourceId dataSourceId, Exception exception) {
 
@@ -58,10 +76,20 @@ public class IngestionService {
             IngestionAlertRecord ingestionAlertRecord = new IngestionAlertRecord(dataSourceId, exception);
             applicationDao.insertRecord(ingestionAlertRecord, IngestionAlertDao.class);
         } catch (Exception e) {
-            log.error("({}) Caught exception while saving alert record. Class: {}. Message: {}",
-            dataSourceId, exception.getClass().getName(), exception.getMessage());
+            log.error("Caught exception while saving alert record. Class: {}. Message: {}",
+                    e.getClass().getName(), e.getMessage());
         }
     }
+
+    /**
+     * Insert deserialized data on Impala table
+     * @param dataSourceId: datasource to be ingested
+     * @param payload: deserialized data
+     * @param dClass: dao class (to be used for writing on Impala table)
+     * @param <T>: deserialization class type parameter
+     * @param <D>: dao class type parameter
+     * @return SourceResponse
+     */
 
     private <T, D extends GenericDao<T>> SourceResponse insertDataRecord(DataSourceId dataSourceId, T payload, Class<D> dClass) {
 

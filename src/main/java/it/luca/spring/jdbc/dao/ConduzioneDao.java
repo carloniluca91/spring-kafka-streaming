@@ -1,10 +1,11 @@
 package it.luca.spring.jdbc.dao;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.jdbc.bean.JDBCRecord;
 import it.luca.spring.jdbc.core.GenericDao;
-import it.luca.spring.json.conduzione.ConduzionePayload;
-import it.luca.spring.json.conduzione.ConduzioneRecord;
+import it.luca.spring.model.jdbc.JDBCRecord;
+import it.luca.spring.model.json.conduzione.ConduzionePayload;
+import it.luca.spring.model.json.conduzione.ConduzioneRecord;
+import it.luca.spring.utils.DataSourceId;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.customizer.BindMethods;
 import org.jdbi.v3.sqlobject.statement.SqlBatch;
 
@@ -21,7 +22,7 @@ public interface ConduzioneDao extends GenericDao<ConduzionePayload> {
     @Override
     default void save(ConduzionePayload object) {
 
-        List<JDBCRecord<ConduzioneRecord>> jdbcRecords = object.getRilevamenti()
+        List<JDBCRecord<ConduzioneRecord>> jdbcRecords = object.getSamples()
                 .stream().map(JDBCRecord::new)
                 .collect(Collectors.toList());
 

@@ -1,4 +1,4 @@
-package it.luca.spring.json.jarvis;
+package it.luca.spring.model.json.jarvis;
 
 import lombok.Data;
 

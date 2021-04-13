@@ -1,7 +1,8 @@
 package it.luca.spring.service;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.enumeration.ResponseCode;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.model.response.ResponseCode;
+import it.luca.spring.model.response.SourceResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

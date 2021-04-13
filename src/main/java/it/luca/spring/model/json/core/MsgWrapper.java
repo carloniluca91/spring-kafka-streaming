@@ -1,7 +1,7 @@
-package it.luca.spring.json.core;
+package it.luca.spring.model.json.core;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.enumeration.DatePattern;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.utils.DatePattern;
 import it.luca.spring.utils.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

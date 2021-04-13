@@ -1,7 +1,7 @@
-package it.luca.spring.jdbc.bean;
+package it.luca.spring.model.jdbc;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.enumeration.DatePattern;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.utils.DatePattern;
 import it.luca.spring.utils.Utils;
 import lombok.Getter;
 

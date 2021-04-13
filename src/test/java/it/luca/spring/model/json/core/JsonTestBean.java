@@ -1,4 +1,4 @@
-package it.luca.spring.json.core;
+package it.luca.spring.model.json.core;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

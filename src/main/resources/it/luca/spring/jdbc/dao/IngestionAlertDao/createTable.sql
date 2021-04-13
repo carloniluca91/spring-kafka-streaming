@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS _ingestion_alert (
+CREATE TABLE IF NOT EXISTS ingestion_alert_log (
 
     datasource STRING COMMENT 'DataSource Id',
     ts_alert TIMESTAMP COMMENT 'Alert Timestamp',
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS _ingestion_alert (
     alert_exception_class STRING COMMENT 'Alert Exception FQ Class Name',
     alert_exception_message STRING COMMENT 'Alert Exception Message',
     ts_insert TIMESTAMP COMMENT 'Record Insert Timestamp',
-    dt_insert TIMESTAMP COMMENT 'Record Insert Date (format yyyy-MM-dd)',
+    dt_insert TIMESTAMP COMMENT 'Record Insert Date (format yyyy-MM-dd)'
 )
 PARTITIONED BY (month STRING COMMENT 'Record Insert Month (format yyyy-MM)')
 STORED AS PARQUET

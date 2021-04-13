@@ -1,8 +1,7 @@
-package it.luca.spring.service;
+package it.luca.spring.model.response;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.enumeration.DatePattern;
-import it.luca.spring.enumeration.ResponseCode;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.utils.DatePattern;
 import it.luca.spring.utils.Utils;
 import lombok.Data;
 
@@ -22,8 +21,7 @@ public class SourceResponse {
 
         this.dataSourceId = dataSourceId;
         this.responseCode = optionalException.isEmpty() ? ResponseCode.OK : ResponseCode.KO;
-        this.responseMessage = optionalException
-                .map(Exception::getMessage)
-                .orElse("Message has been received, processed and sent");
+        this.responseMessage = optionalException.isEmpty() ? "Message has been received, processed and sent":
+                optionalException.get().getMessage();
     }
 }

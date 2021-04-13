@@ -1,4 +1,4 @@
-package it.luca.spring.enumeration;
+package it.luca.spring.utils;
 
 import lombok.Getter;
 

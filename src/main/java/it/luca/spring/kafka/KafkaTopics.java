@@ -1,24 +1,24 @@
 package it.luca.spring.kafka;
 
-import it.luca.spring.enumeration.DataSourceId;
+import it.luca.spring.utils.DataSourceId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaTopics {
 
-    @Value("${topic.bancll01}")
-    private String bancll01Topic;
+    @Value("${topic.conduzione}")
+    private String conduzioneTopic;
 
-    @Value("${topic.bancll34}")
-    private String bancll34Topic;
+    @Value("${topic.jarvis}")
+    private String jarvisTopic;
 
     public String getTopicForDataSource(DataSourceId dataSourceId) {
 
         String topic;
         switch (dataSourceId) {
-            case CONDUZIONE: topic = bancll01Topic; break;
-            case JARVIS: topic = bancll34Topic; break;
+            case CONDUZIONE: topic = conduzioneTopic; break;
+            case JARVIS: topic = jarvisTopic; break;
             default: throw new IllegalStateException("Unexpected dataSource: " + dataSourceId);
         }
 

@@ -1,7 +1,7 @@
 package it.luca.spring.kafka;
 
-import it.luca.spring.enumeration.DataSourceId;
-import it.luca.spring.json.core.MsgWrapper;
+import it.luca.spring.utils.DataSourceId;
+import it.luca.spring.model.json.core.MsgWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -20,6 +20,12 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, MsgWrapper<?>> kafkaTemplate;
 
+    /**
+     * Send message to Kafka topic depending on datasurce
+     * @param msgWrapper: wrapper of Kafka message body
+     * @param <T>: type parameter of Kafka message body
+     */
+
     public <T> void sendMessage(MsgWrapper<T> msgWrapper) {
 
         DataSourceId dataSourceId = msgWrapper.getDataSourceId();
@@ -28,6 +34,7 @@ public class KafkaProducer {
         future.addCallback(new ListenableFutureCallback<>() {
 
             @Override
+            @SuppressWarnings("NullableProblems")
             public void onFailure(Throwable throwable) {
                 log.error("({}) Unable to send message due to: {}", dataSourceId, throwable.getMessage());
             }

@@ -1,16 +1,20 @@
 package it.luca.spring.jdbc.core;
 
 import com.cloudera.impala.jdbc.DataSource;
+import it.luca.spring.jdbc.dao.IngestionAlertDao;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
+@EnableScheduling
 public class ApplicationDao {
 
     @Value("${spring.datasource.driverClassName}")
@@ -34,6 +38,13 @@ public class ApplicationDao {
         log.info("Initialized {}", jdbiClass);
     }
 
+    /**
+     * Insert record on Impala table using given dao class
+     * @param object: record to be inserted
+     * @param daoClass: dao class
+     * @param <T>: record type parameter
+     */
+
     public <T> void insertRecord(T object, Class<? extends GenericDao<T>> daoClass) {
 
         String rClassName = object.getClass().getSimpleName();
@@ -50,5 +61,14 @@ public class ApplicationDao {
         log.info("Saving instance of {} using {}", rClassName, daoClassName);
         jdbi.useHandle(handle -> handle.attach(daoClass).save(object));
         log.info("Saved instance of {} using {}", rClassName, daoClassName);
+    }
+
+    @Scheduled(cron = "00 50 23 * * ?")
+    private void insertOverWriteIngestionAlert() {
+
+        String tableName = jdbi.withHandle(handle -> handle.attach(IngestionAlertDao.class).getTableName());
+        log.info("Issuing INSERT OVERWRITE on table {}", tableName);
+        jdbi.useHandle(handle -> handle.attach(IngestionAlertDao.class).insertOverwrite());
+        log.info("Successfully issued INSERT OVERWRITE on table {}", tableName);
     }
 }

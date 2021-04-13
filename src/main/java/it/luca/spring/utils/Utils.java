@@ -1,7 +1,5 @@
 package it.luca.spring.utils;
 
-import it.luca.spring.enumeration.DatePattern;
-
 import java.time.LocalDateTime;
 
 public class Utils {

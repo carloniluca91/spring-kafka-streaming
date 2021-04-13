@@ -1,4 +1,4 @@
-package it.luca.spring.json.conduzione;
+package it.luca.spring.model.json.conduzione;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

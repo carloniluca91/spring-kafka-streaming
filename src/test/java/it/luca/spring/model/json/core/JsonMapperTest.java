@@ -1,7 +1,8 @@
-package it.luca.spring.json.core;
+package it.luca.spring.model.json.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.luca.spring.utils.JsonMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

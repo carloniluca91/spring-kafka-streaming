@@ -1,4 +1,4 @@
-package it.luca.spring.json.core;
+package it.luca.spring.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -11,8 +11,7 @@ import java.io.IOException;
 @Slf4j
 public class JsonMapper {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static <T> T readValue(String content, Class<T> valueType) throws JsonProcessingException {
 

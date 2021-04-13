@@ -1,4 +1,4 @@
-INSERT INTO _ingestion_alert PARTITION(month)
+INSERT INTO ingestion_alert_log PARTITION(month)
 VALUES (
 :r.getDataSourceId,
 :r.getLocalDateTime,
