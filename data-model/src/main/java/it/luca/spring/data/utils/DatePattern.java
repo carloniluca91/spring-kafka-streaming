@@ -10,3 +10,4 @@ public final class DatePattern {
     public static final String JARVIS_GIORNO_GAS = "dd/MM/yyyy";
     public static final String WEBDISP_DATA_DECORRENZA = "dd/MM/yyyy HH:mm:ss";
 }
+

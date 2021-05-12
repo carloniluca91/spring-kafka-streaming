@@ -19,6 +19,23 @@
         <name>it.luca</name>
     </organization>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <application.name>1357_disp_dev</application.name>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <application.name>1357_disp_prod</application.name>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +45,9 @@
         <avro.version>1.8.2</avro.version>
         <jdbi.version>3.16.0</jdbi.version>
         <impala.driver.version>2.6.15</impala.driver.version>
+        <impala.db.name>${application.name}</impala.db.name>
+        <impala.table.ingestionError>t_ingestion_error_log</impala.table.ingestionError>
+        <impala.table.ingestionSuccess>t_ingestion_success_log</impala.table.ingestionSuccess>
     </properties>
 
     <modules>
