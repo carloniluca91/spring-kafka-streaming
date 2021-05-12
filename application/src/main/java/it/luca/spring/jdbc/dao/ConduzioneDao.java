@@ -4,8 +4,6 @@ import it.luca.spring.jdbc.core.GenericDao;
 import it.luca.spring.model.jdbc.JDBCRecord;
 import it.luca.spring.model.json.conduzione.ConduzionePayload;
 import it.luca.spring.model.json.conduzione.ConduzioneRecord;
-import it.luca.spring.utils.DataSourceId;
-import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.customizer.BindMethods;
 import org.jdbi.v3.sqlobject.statement.SqlBatch;
 

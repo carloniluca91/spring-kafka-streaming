@@ -1,6 +1,5 @@
 package it.luca.spring.kafka;
 
-import it.luca.spring.utils.DataSourceId;
 import it.luca.spring.model.json.core.MsgWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

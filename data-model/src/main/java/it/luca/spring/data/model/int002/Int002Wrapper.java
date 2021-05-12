@@ -1,4 +1,4 @@
-package it.luca.spring.data.int002;
+package it.luca.spring.data.model.int002;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,8 +1,5 @@
 package it.luca.spring.model.response;
 
-import it.luca.spring.utils.DataSourceId;
-import it.luca.spring.utils.DatePattern;
-import it.luca.spring.utils.Utils;
 import lombok.Data;
 
 import java.util.Optional;

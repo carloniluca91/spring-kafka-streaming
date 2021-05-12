@@ -1,4 +1,4 @@
-package it.luca.spring.data.webdisp;
+package it.luca.spring.data.model.webdisp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

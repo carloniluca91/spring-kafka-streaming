@@ -1,6 +1,5 @@
 package it.luca.spring.jdbc.dao;
 
-import it.luca.spring.utils.DataSourceId;
 import it.luca.spring.model.jdbc.JDBCRecord;
 import it.luca.spring.jdbc.core.GenericDao;
 import it.luca.spring.model.json.jarvis.JarvisPayload;

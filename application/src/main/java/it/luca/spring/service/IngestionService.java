@@ -1,14 +1,12 @@
 package it.luca.spring.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import it.luca.spring.utils.DataSourceId;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.model.jdbc.IngestionAlertRecord;
 import it.luca.spring.jdbc.core.ApplicationDao;
 import it.luca.spring.jdbc.core.GenericDao;
 import it.luca.spring.jdbc.dao.IngestionAlertDao;
 import it.luca.spring.model.response.SourceResponse;
-import it.luca.spring.utils.JsonMapper;
 import it.luca.spring.model.json.core.MsgWrapper;
 import it.luca.spring.kafka.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;

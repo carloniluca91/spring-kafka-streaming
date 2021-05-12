@@ -1,6 +1,5 @@
 package it.luca.spring.kafka;
 
-import it.luca.spring.utils.DataSourceId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

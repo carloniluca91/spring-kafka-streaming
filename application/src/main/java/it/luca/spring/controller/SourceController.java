@@ -1,6 +1,5 @@
 package it.luca.spring.controller;
 
-import it.luca.spring.utils.DataSourceId;
 import it.luca.spring.jdbc.dao.ConduzioneDao;
 import it.luca.spring.jdbc.dao.JarvisDao;
 import it.luca.spring.model.json.conduzione.ConduzionePayload;

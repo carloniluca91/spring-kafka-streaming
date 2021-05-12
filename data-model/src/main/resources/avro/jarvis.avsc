@@ -1,0 +1,22 @@
+{
+  "namespace": "it.luca.spring.data.model.jarvis",
+  "name": "JarvisAvro",
+  "type": "record",
+  "fields": [
+    {"name": "ambito_flusso", "type": ["string", "null"]},
+    {"name": "nome_flusso", "type": ["string", "null"]},
+    {"name": "impresa_mittente", "type": ["string", "null"]},
+    {"name": "data_di_creazione", "type": ["string", "null"]},
+    {"name": "numero_dati", "type": ["int", "null"]},
+    {"name": "data_procedura", "type": ["string", "null"]},
+    {"name": "ciclo_di_riferimento", "type": ["string", "null"]},
+    {"name": "rinomina_energia", "type": ["double", "null"]},
+    {"name": "unita_di_misura_energia_rinomina", "type": ["string", "null"]},
+    {"name": "limite_minimo_energia", "type": ["double", "null"]},
+    {"name": "unita_di_misura_energia_limite_minimo", "type": ["string", "null"]},
+    {"name": "limite_massimo_energia", "type": ["double", "null"]},
+    {"name": "unita_di_misura_energia_limite_massimo", "type": ["string", "null"]},
+    {"name": "ts_inserimento", "type": "string"},
+    {"name": "dt_inserimento", "type": "string"}
+  ]
+}

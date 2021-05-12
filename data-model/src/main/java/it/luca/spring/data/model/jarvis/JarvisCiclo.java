@@ -1,4 +1,4 @@
-package it.luca.spring.data.jarvis;
+package it.luca.spring.data.model.jarvis;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

@@ -1,9 +1,10 @@
 # Spring Kafka Streaming
 
-Spring Boot-based project for ingesting data on a Hadoop environment
+Spring Boot application for receiving batches of data in `xml` or `json` format
+from various sources, convert them as `.avro` records and publish them on some 
+`Kafka` topics
 
-The project consists of a Web Service that defines an API with one `POST` method 
-for each datasource to be ingested. Input data are serialized in `json` format 
-and written on some `Kafka` topics.
+The project consist on following modules
 
-For every ingested message, a logging record is written in `Impala`
+* `application` which contains Spring application
+* `data-model` which contains data models for each source

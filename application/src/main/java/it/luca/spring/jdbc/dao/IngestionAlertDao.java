@@ -2,7 +2,6 @@ package it.luca.spring.jdbc.dao;
 
 import it.luca.spring.model.jdbc.IngestionAlertRecord;
 import it.luca.spring.jdbc.core.GenericDao;
-import it.luca.spring.utils.DataSourceId;
 import org.jdbi.v3.sqlobject.customizer.BindMethods;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 

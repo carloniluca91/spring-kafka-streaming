@@ -25,6 +25,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <avro.version>1.8.2</avro.version>
         <jdbi.version>3.16.0</jdbi.version>
         <impala.driver.version>2.6.15</impala.driver.version>
     </properties>

@@ -1,0 +1,40 @@
+package it.luca.spring.data.model.common;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.avro.io.BinaryEncoder;
+import org.apache.avro.io.DatumWriter;
+import org.apache.avro.io.EncoderFactory;
+import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.avro.specific.SpecificRecord;
+import org.apache.kafka.common.errors.SerializationException;
+import org.apache.kafka.common.serialization.Serializer;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import static it.luca.spring.data.utils.Utils.isPresent;
+
+@Slf4j
+public abstract class AvroSerializer<A extends SpecificRecord> implements Serializer<A> {
+
+    @Override
+    public byte[] serialize(String topic, A avroRecord) {
+
+        try {
+            byte[] result = null;
+            if (isPresent(avroRecord)) {
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                BinaryEncoder binaryEncoder = EncoderFactory.get().binaryEncoder(byteArrayOutputStream, null);
+                DatumWriter<A> datumWriter = new SpecificDatumWriter<>(avroRecord.getSchema());
+                datumWriter.write(avroRecord, binaryEncoder);
+                binaryEncoder.flush();
+                byteArrayOutputStream.close();
+                result = byteArrayOutputStream.toByteArray();
+            }
+            return result;
+        } catch (IOException ex) {
+            throw new SerializationException(String.format("Cannot serialize data for topic '%s'", topic), ex);
+        }
+    }
+}
