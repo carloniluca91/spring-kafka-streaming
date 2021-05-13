@@ -16,7 +16,7 @@
     {"name": "unita_di_misura_energia_limite_minimo", "type": ["string", "null"]},
     {"name": "limite_massimo_energia", "type": ["double", "null"]},
     {"name": "unita_di_misura_energia_limite_massimo", "type": ["string", "null"]},
-    {"name": "ts_inserimento", "type": "string"},
-    {"name": "dt_inserimento", "type": "string"}
+    {"name": "ts_ricezione", "type": "string"},
+    {"name": "dt_ricezione", "type": "string"}
   ]
 }

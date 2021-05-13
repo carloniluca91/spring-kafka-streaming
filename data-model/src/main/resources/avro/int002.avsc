@@ -23,7 +23,7 @@
     {"name": "pCS25_0" , "type": ["double", "null"]},
     {"name": "wobbe25_15" , "type": ["double", "null"]},
     {"name": "wobbe25_0" , "type": ["double", "null"]},
-    {"name": "ts_inserimento", "type": "string"},
-    {"name": "dt_inserimento", "type": "string"}
+    {"name": "ts_ricezione", "type": "string"},
+    {"name": "dt_ricezione", "type": "string"}
   ]
 }

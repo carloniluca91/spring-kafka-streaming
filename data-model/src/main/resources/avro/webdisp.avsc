@@ -17,7 +17,7 @@
     {"name": "tipo_nomina", "type": ["string", "null"]},
     {"name": "ciclo_nomina", "type": ["string", "null"]},
     {"name": "tipologia_punto", "type": ["string", "null"]},
-    {"name": "ts_inserimento", "type": "string"},
-    {"name": "dt_inserimento", "type": "string"}
+    {"name": "ts_ricezione", "type": "string"},
+    {"name": "dt_ricezione", "type": "string"}
   ]
 }

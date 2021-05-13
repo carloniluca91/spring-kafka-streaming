@@ -6,16 +6,16 @@ spring:
     producer:
       bootstrap-servers:
       - localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
-      retries: 1
+      retries: 2
       properties:
-        delivery.timeout.ms: 10000
-        max.block.ms: 15000
-        request.timeout.ms: 5000
-        reconnect.backoff.ms: 10000
-        retry.backoff.ms: 10000
+        delivery-timeout-ms: 10000
+        max-block-ms: 15000
+        request-timeout-ms: 5000
+        reconnect-backoff-ms: 10000
+        retry-backoff-ms: 10000
+        linger-ms: 5000
 topic:
-  conduzione: 1357-disp-conduzione-dev
-  jarvis: 1357-disp-jarvis-dev
+  webdisp: 1357-disp-webdisp-@spring.profiles.active@
+  jarvis: 1357-disp-jarvis-@spring.profiles.active@
+  int002: 1357-disp-int002-@spring.profiles.active@

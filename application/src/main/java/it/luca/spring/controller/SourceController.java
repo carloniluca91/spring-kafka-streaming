@@ -5,6 +5,7 @@ import it.luca.spring.service.PublishService;
 import it.luca.spring.model.response.SourceResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/source")
 public class SourceController {
+
+    @Value("${topic.webdisp}")
+    private String webdispTopic;
+
+    @Value("${topic.jarvis}")
+    private String jarvisTopic;
+
+    @Value("${topic.int002}")
+    private String int002Topic;
 
     @Autowired
     private PublishService service;
@@ -27,7 +37,7 @@ public class SourceController {
     @PostMapping("/webdisp")
     public SourceResponse conduzione(@RequestBody String input) {
 
-        WebdispSpecification specification = new WebdispSpecification();
+        WebdispSpecification specification = new WebdispSpecification(webdispTopic);
         return service.send(input, specification);
     }
 

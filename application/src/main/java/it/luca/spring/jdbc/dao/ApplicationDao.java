@@ -3,6 +3,7 @@ package it.luca.spring.jdbc.dao;
 import com.cloudera.impala.jdbc.DataSource;
 import it.luca.spring.data.utils.DatePattern;
 import it.luca.spring.jdbc.dto.ErrorDto;
+import it.luca.spring.jdbc.dto.SuccessDto;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -44,25 +45,37 @@ public class ApplicationDao {
         log.info("Initialized {} and created ingestion log table", jdbiClass);
     }
 
-    public <T> void insertBatch(List<T> records, Class<InsertBatch<T>> insertBatchClass) {
+    public void insertSuccessDtos(List<SuccessDto> records) {
+
+        insertBatch(records, SuccessDtoDao.class);
+    }
+
+    private  <T, D extends InsertBatch<T>> void insertBatch(List<T> records, Class<D> daoClass) {
 
         if (!records.isEmpty()) {
 
-            String recordClass = records.get(0).getClass().getSimpleName();
+            String recordClassName = records.get(0).getClass().getSimpleName();
             int recordsSize = records.size();
-            String daoClass = insertBatchClass.getSimpleName();
-            log.info("Saving {} instance(s) of {} using {}", recordsSize, recordClass, daoClass);
-            jdbi.useHandle(handle -> handle.attach(insertBatchClass).insertRecords(records));
-            log.info("Saved {} instance(s) of {} using {}", recordsSize, recordClass, daoClass);
+            String daoClassName = daoClass.getSimpleName();
+            log.info("Saving {} instance(s) of {} using {}", recordsSize, recordClassName, daoClassName);
+            jdbi.useHandle(handle -> handle.attach(daoClass).insertRecords(records));
+            log.info("Saved {} instance(s) of {} using {}", recordsSize, recordClassName, daoClassName);
         }
     }
 
-    public void insertRecord(ErrorDto record) {
+    private <T, D extends InsertSingleton<T>> void insertSingleton(T record, Class<D> daoClass) {
 
         String recordClass = record.getClass().getSimpleName();
-        log.info("Saving instance of {}", recordClass);
-        jdbi.useHandle(handle -> handle.attach(ErrorDtoDao.class).insertRecord(record));
-        log.info("Saved instance of {}", recordClass);
+        String daoClassName = daoClass.getName();
+        log.info("Saving instance of {} using {}", recordClass, daoClassName);
+        jdbi.useHandle(handle -> handle.attach(daoClass).insertRecord(record));
+        log.info("Saved instance of {} using {}", recordClass, daoClassName);
+
+    }
+
+    public void insertErrorDto(ErrorDto record) {
+
+        insertSingleton(record, ErrorDtoDao.class);
     }
 
     @Scheduled(cron = "30 59 23 * * *")

@@ -13,8 +13,8 @@ import static it.luca.spring.data.utils.Utils.now;
 
 public class WebdispSpecification extends SourceSpecification<WebdispWrapper, WebdispAvro> {
 
-    public WebdispSpecification() {
-        super(DataSourceId.WEBDISP, DataSourceType.XML, WebdispWrapper.class, WebdispAvro.class, "");
+    public WebdispSpecification(String topicName) {
+        super(DataSourceId.WEBDISP, DataSourceType.XML, WebdispWrapper.class, WebdispAvro.class, topicName);
     }
 
     @Override
