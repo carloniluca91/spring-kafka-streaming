@@ -25,14 +25,14 @@ public class KafkaProducer {
 
     public <A extends SpecificRecord> List<SentMessageDto> sendMessages(SourceSpecification<?, A> specification, List<A> avroRecords) {
 
-        String topicName = specification.getTopicName();
+        String topic = specification.getTopicName();
         DataSourceId dataSourceId = specification.getDataSourceId();
-        KafkaTemplate<String, A> kafkaTemplate = producerFactory.getKafkaTemplate();
+        KafkaTemplate<String, A> kafkaTemplate = producerFactory.kafkaTemplate();
         List<SentMessageDto> sentMessageDtos = new ArrayList<>();
         IntStream.range(0, avroRecords.size()).forEach(i -> {
 
             A avroRecord = avroRecords.get(i);
-            ListenableFuture<SendResult<String, A>> future = kafkaTemplate.send(topicName, avroRecord);
+            ListenableFuture<SendResult<String, A>> future = kafkaTemplate.send(topic, avroRecord);
             future.addCallback(new ListenableFutureCallback<>() {
 
                 @Override

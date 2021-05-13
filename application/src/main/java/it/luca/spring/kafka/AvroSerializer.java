@@ -11,7 +11,7 @@ import org.apache.kafka.common.serialization.Serializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
+/*
 @Slf4j
 public class AvroSerializer<A extends SpecificRecord> implements Serializer<A> {
 
@@ -31,3 +31,6 @@ public class AvroSerializer<A extends SpecificRecord> implements Serializer<A> {
         }
     }
 }
+
+
+ */

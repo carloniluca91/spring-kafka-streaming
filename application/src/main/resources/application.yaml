@@ -4,8 +4,7 @@ spring:
     url: jdbc:impala://quickstart.cloudera:21050
   kafka:
     producer:
-      bootstrap-servers:
-      - localhost:9092
+      bootstrap-servers: localhost:9092
       acks: all
       retries: 2
       properties:
