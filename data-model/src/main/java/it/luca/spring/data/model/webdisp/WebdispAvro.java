@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4182124220590199543L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WebdispAvro\",\"namespace\":\"it.luca.spring.data.model.webdisp\",\"fields\":[{\"name\":\"data_ora_invio\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"pcs\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_misura_energia\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"valore_volume\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_misura_volume\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_elaborazione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_decorrenza\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"codice_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione_punto\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipo_nomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ciclo_nomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipologia_punto\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ts_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  private static final long serialVersionUID = 8472719044097972072L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WebdispAvro\",\"namespace\":\"it.luca.spring.data.model.webdisp\",\"fields\":[{\"name\":\"data_ora_invio\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"pcs\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_misura_energia\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"valore_volume\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_misura_volume\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_elaborazione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_decorrenza\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"codice_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione_punto\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipo_nomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ciclo_nomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipologia_punto\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ts_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -65,8 +65,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
    private java.lang.String tipo_nomina;
    private java.lang.String ciclo_nomina;
    private java.lang.String tipologia_punto;
-   private java.lang.String ts_inserimento;
-   private java.lang.String dt_inserimento;
+   private java.lang.String ts_ricezione;
+   private java.lang.String dt_ricezione;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -91,10 +91,10 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
    * @param tipo_nomina The new value for tipo_nomina
    * @param ciclo_nomina The new value for ciclo_nomina
    * @param tipologia_punto The new value for tipologia_punto
-   * @param ts_inserimento The new value for ts_inserimento
-   * @param dt_inserimento The new value for dt_inserimento
+   * @param ts_ricezione The new value for ts_ricezione
+   * @param dt_ricezione The new value for dt_ricezione
    */
-  public WebdispAvro(java.lang.String data_ora_invio, java.lang.Double pcs, java.lang.Double valore_energia, java.lang.String unita_misura_energia, java.lang.Double valore_volume, java.lang.String unita_misura_volume, java.lang.String data_elaborazione, java.lang.String data_decorrenza, java.lang.String codice_remi, java.lang.String descrizione_remi, java.lang.String descrizione_punto, java.lang.String tipo_nomina, java.lang.String ciclo_nomina, java.lang.String tipologia_punto, java.lang.String ts_inserimento, java.lang.String dt_inserimento) {
+  public WebdispAvro(java.lang.String data_ora_invio, java.lang.Double pcs, java.lang.Double valore_energia, java.lang.String unita_misura_energia, java.lang.Double valore_volume, java.lang.String unita_misura_volume, java.lang.String data_elaborazione, java.lang.String data_decorrenza, java.lang.String codice_remi, java.lang.String descrizione_remi, java.lang.String descrizione_punto, java.lang.String tipo_nomina, java.lang.String ciclo_nomina, java.lang.String tipologia_punto, java.lang.String ts_ricezione, java.lang.String dt_ricezione) {
     this.data_ora_invio = data_ora_invio;
     this.pcs = pcs;
     this.valore_energia = valore_energia;
@@ -109,8 +109,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
     this.tipo_nomina = tipo_nomina;
     this.ciclo_nomina = ciclo_nomina;
     this.tipologia_punto = tipologia_punto;
-    this.ts_inserimento = ts_inserimento;
-    this.dt_inserimento = dt_inserimento;
+    this.ts_ricezione = ts_ricezione;
+    this.dt_ricezione = dt_ricezione;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -131,8 +131,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
     case 11: return tipo_nomina;
     case 12: return ciclo_nomina;
     case 13: return tipologia_punto;
-    case 14: return ts_inserimento;
-    case 15: return dt_inserimento;
+    case 14: return ts_ricezione;
+    case 15: return dt_ricezione;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -155,8 +155,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
     case 11: tipo_nomina = (java.lang.String)value$; break;
     case 12: ciclo_nomina = (java.lang.String)value$; break;
     case 13: tipologia_punto = (java.lang.String)value$; break;
-    case 14: ts_inserimento = (java.lang.String)value$; break;
-    case 15: dt_inserimento = (java.lang.String)value$; break;
+    case 14: ts_ricezione = (java.lang.String)value$; break;
+    case 15: dt_ricezione = (java.lang.String)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -386,35 +386,35 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
-   * Gets the value of the 'ts_inserimento' field.
-   * @return The value of the 'ts_inserimento' field.
+   * Gets the value of the 'ts_ricezione' field.
+   * @return The value of the 'ts_ricezione' field.
    */
-  public java.lang.String getTsInserimento() {
-    return ts_inserimento;
+  public java.lang.String getTsRicezione() {
+    return ts_ricezione;
   }
 
   /**
-   * Sets the value of the 'ts_inserimento' field.
+   * Sets the value of the 'ts_ricezione' field.
    * @param value the value to set.
    */
-  public void setTsInserimento(java.lang.String value) {
-    this.ts_inserimento = value;
+  public void setTsRicezione(java.lang.String value) {
+    this.ts_ricezione = value;
   }
 
   /**
-   * Gets the value of the 'dt_inserimento' field.
-   * @return The value of the 'dt_inserimento' field.
+   * Gets the value of the 'dt_ricezione' field.
+   * @return The value of the 'dt_ricezione' field.
    */
-  public java.lang.String getDtInserimento() {
-    return dt_inserimento;
+  public java.lang.String getDtRicezione() {
+    return dt_ricezione;
   }
 
   /**
-   * Sets the value of the 'dt_inserimento' field.
+   * Sets the value of the 'dt_ricezione' field.
    * @param value the value to set.
    */
-  public void setDtInserimento(java.lang.String value) {
-    this.dt_inserimento = value;
+  public void setDtRicezione(java.lang.String value) {
+    this.dt_ricezione = value;
   }
 
   /**
@@ -463,8 +463,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
     private java.lang.String tipo_nomina;
     private java.lang.String ciclo_nomina;
     private java.lang.String tipologia_punto;
-    private java.lang.String ts_inserimento;
-    private java.lang.String dt_inserimento;
+    private java.lang.String ts_ricezione;
+    private java.lang.String dt_ricezione;
 
     /** Creates a new Builder */
     private Builder() {
@@ -533,12 +533,12 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
         this.tipologia_punto = data().deepCopy(fields()[13].schema(), other.tipologia_punto);
         fieldSetFlags()[13] = true;
       }
-      if (isValidValue(fields()[14], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[14].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[14], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[14].schema(), other.ts_ricezione);
         fieldSetFlags()[14] = true;
       }
-      if (isValidValue(fields()[15], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[15].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[15], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[15].schema(), other.dt_ricezione);
         fieldSetFlags()[15] = true;
       }
     }
@@ -605,12 +605,12 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
         this.tipologia_punto = data().deepCopy(fields()[13].schema(), other.tipologia_punto);
         fieldSetFlags()[13] = true;
       }
-      if (isValidValue(fields()[14], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[14].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[14], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[14].schema(), other.ts_ricezione);
         fieldSetFlags()[14] = true;
       }
-      if (isValidValue(fields()[15], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[15].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[15], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[15].schema(), other.dt_ricezione);
         fieldSetFlags()[15] = true;
       }
     }
@@ -1162,79 +1162,79 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
     }
 
     /**
-      * Gets the value of the 'ts_inserimento' field.
+      * Gets the value of the 'ts_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getTsInserimento() {
-      return ts_inserimento;
+    public java.lang.String getTsRicezione() {
+      return ts_ricezione;
     }
 
     /**
-      * Sets the value of the 'ts_inserimento' field.
-      * @param value The value of 'ts_inserimento'.
+      * Sets the value of the 'ts_ricezione' field.
+      * @param value The value of 'ts_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder setTsInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder setTsRicezione(java.lang.String value) {
       validate(fields()[14], value);
-      this.ts_inserimento = value;
+      this.ts_ricezione = value;
       fieldSetFlags()[14] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'ts_inserimento' field has been set.
-      * @return True if the 'ts_inserimento' field has been set, false otherwise.
+      * Checks whether the 'ts_ricezione' field has been set.
+      * @return True if the 'ts_ricezione' field has been set, false otherwise.
       */
-    public boolean hasTsInserimento() {
+    public boolean hasTsRicezione() {
       return fieldSetFlags()[14];
     }
 
 
     /**
-      * Clears the value of the 'ts_inserimento' field.
+      * Clears the value of the 'ts_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder clearTsInserimento() {
-      ts_inserimento = null;
+    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder clearTsRicezione() {
+      ts_ricezione = null;
       fieldSetFlags()[14] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'dt_inserimento' field.
+      * Gets the value of the 'dt_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getDtInserimento() {
-      return dt_inserimento;
+    public java.lang.String getDtRicezione() {
+      return dt_ricezione;
     }
 
     /**
-      * Sets the value of the 'dt_inserimento' field.
-      * @param value The value of 'dt_inserimento'.
+      * Sets the value of the 'dt_ricezione' field.
+      * @param value The value of 'dt_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder setDtInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder setDtRicezione(java.lang.String value) {
       validate(fields()[15], value);
-      this.dt_inserimento = value;
+      this.dt_ricezione = value;
       fieldSetFlags()[15] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'dt_inserimento' field has been set.
-      * @return True if the 'dt_inserimento' field has been set, false otherwise.
+      * Checks whether the 'dt_ricezione' field has been set.
+      * @return True if the 'dt_ricezione' field has been set, false otherwise.
       */
-    public boolean hasDtInserimento() {
+    public boolean hasDtRicezione() {
       return fieldSetFlags()[15];
     }
 
 
     /**
-      * Clears the value of the 'dt_inserimento' field.
+      * Clears the value of the 'dt_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder clearDtInserimento() {
-      dt_inserimento = null;
+    public it.luca.spring.data.model.webdisp.WebdispAvro.Builder clearDtRicezione() {
+      dt_ricezione = null;
       fieldSetFlags()[15] = false;
       return this;
     }
@@ -1258,8 +1258,8 @@ public class WebdispAvro extends org.apache.avro.specific.SpecificRecordBase imp
         record.tipo_nomina = fieldSetFlags()[11] ? this.tipo_nomina : (java.lang.String) defaultValue(fields()[11]);
         record.ciclo_nomina = fieldSetFlags()[12] ? this.ciclo_nomina : (java.lang.String) defaultValue(fields()[12]);
         record.tipologia_punto = fieldSetFlags()[13] ? this.tipologia_punto : (java.lang.String) defaultValue(fields()[13]);
-        record.ts_inserimento = fieldSetFlags()[14] ? this.ts_inserimento : (java.lang.String) defaultValue(fields()[14]);
-        record.dt_inserimento = fieldSetFlags()[15] ? this.dt_inserimento : (java.lang.String) defaultValue(fields()[15]);
+        record.ts_ricezione = fieldSetFlags()[14] ? this.ts_ricezione : (java.lang.String) defaultValue(fields()[14]);
+        record.dt_ricezione = fieldSetFlags()[15] ? this.dt_ricezione : (java.lang.String) defaultValue(fields()[15]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

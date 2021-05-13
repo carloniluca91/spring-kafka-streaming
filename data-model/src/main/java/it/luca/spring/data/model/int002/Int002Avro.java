@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -217836437796430672L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Int002Avro\",\"namespace\":\"it.luca.spring.data.model.int002\",\"fields\":[{\"name\":\"giorno_ora_riferimento\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM1\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM2\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM3\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM4\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipologia\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"codice_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"valore_1\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_1\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_2\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_2\",\"type\":[\"double\",\"null\"]},{\"name\":\"PCS\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_3\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_3\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_4\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_4\",\"type\":[\"double\",\"null\"]},{\"name\":\"pCS25_0\",\"type\":[\"double\",\"null\"]},{\"name\":\"wobbe25_15\",\"type\":[\"double\",\"null\"]},{\"name\":\"wobbe25_0\",\"type\":[\"double\",\"null\"]},{\"name\":\"ts_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  private static final long serialVersionUID = 7218553896288542029L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Int002Avro\",\"namespace\":\"it.luca.spring.data.model.int002\",\"fields\":[{\"name\":\"giorno_ora_riferimento\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM1\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM2\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM3\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"uDM4\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"descrizione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"tipologia\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"codice_remi\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"valore_1\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_1\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_2\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_2\",\"type\":[\"double\",\"null\"]},{\"name\":\"PCS\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_3\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_3\",\"type\":[\"double\",\"null\"]},{\"name\":\"valore_4\",\"type\":[\"double\",\"null\"]},{\"name\":\"progressivo_4\",\"type\":[\"double\",\"null\"]},{\"name\":\"pCS25_0\",\"type\":[\"double\",\"null\"]},{\"name\":\"wobbe25_15\",\"type\":[\"double\",\"null\"]},{\"name\":\"wobbe25_0\",\"type\":[\"double\",\"null\"]},{\"name\":\"ts_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,8 +71,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
    private java.lang.Double pCS25_0;
    private java.lang.Double wobbe25_15;
    private java.lang.Double wobbe25_0;
-   private java.lang.String ts_inserimento;
-   private java.lang.String dt_inserimento;
+   private java.lang.String ts_ricezione;
+   private java.lang.String dt_ricezione;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -103,10 +103,10 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
    * @param pCS25_0 The new value for pCS25_0
    * @param wobbe25_15 The new value for wobbe25_15
    * @param wobbe25_0 The new value for wobbe25_0
-   * @param ts_inserimento The new value for ts_inserimento
-   * @param dt_inserimento The new value for dt_inserimento
+   * @param ts_ricezione The new value for ts_ricezione
+   * @param dt_ricezione The new value for dt_ricezione
    */
-  public Int002Avro(java.lang.String giorno_ora_riferimento, java.lang.String uDM1, java.lang.String uDM2, java.lang.String uDM3, java.lang.String uDM4, java.lang.String descrizione, java.lang.String tipologia, java.lang.String codice_remi, java.lang.Double valore_1, java.lang.Double progressivo_1, java.lang.Double valore_2, java.lang.Double progressivo_2, java.lang.Double PCS, java.lang.Double valore_3, java.lang.Double progressivo_3, java.lang.Double valore_4, java.lang.Double progressivo_4, java.lang.Double pCS25_0, java.lang.Double wobbe25_15, java.lang.Double wobbe25_0, java.lang.String ts_inserimento, java.lang.String dt_inserimento) {
+  public Int002Avro(java.lang.String giorno_ora_riferimento, java.lang.String uDM1, java.lang.String uDM2, java.lang.String uDM3, java.lang.String uDM4, java.lang.String descrizione, java.lang.String tipologia, java.lang.String codice_remi, java.lang.Double valore_1, java.lang.Double progressivo_1, java.lang.Double valore_2, java.lang.Double progressivo_2, java.lang.Double PCS, java.lang.Double valore_3, java.lang.Double progressivo_3, java.lang.Double valore_4, java.lang.Double progressivo_4, java.lang.Double pCS25_0, java.lang.Double wobbe25_15, java.lang.Double wobbe25_0, java.lang.String ts_ricezione, java.lang.String dt_ricezione) {
     this.giorno_ora_riferimento = giorno_ora_riferimento;
     this.uDM1 = uDM1;
     this.uDM2 = uDM2;
@@ -127,8 +127,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
     this.pCS25_0 = pCS25_0;
     this.wobbe25_15 = wobbe25_15;
     this.wobbe25_0 = wobbe25_0;
-    this.ts_inserimento = ts_inserimento;
-    this.dt_inserimento = dt_inserimento;
+    this.ts_ricezione = ts_ricezione;
+    this.dt_ricezione = dt_ricezione;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -155,8 +155,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
     case 17: return pCS25_0;
     case 18: return wobbe25_15;
     case 19: return wobbe25_0;
-    case 20: return ts_inserimento;
-    case 21: return dt_inserimento;
+    case 20: return ts_ricezione;
+    case 21: return dt_ricezione;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -185,8 +185,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
     case 17: pCS25_0 = (java.lang.Double)value$; break;
     case 18: wobbe25_15 = (java.lang.Double)value$; break;
     case 19: wobbe25_0 = (java.lang.Double)value$; break;
-    case 20: ts_inserimento = (java.lang.String)value$; break;
-    case 21: dt_inserimento = (java.lang.String)value$; break;
+    case 20: ts_ricezione = (java.lang.String)value$; break;
+    case 21: dt_ricezione = (java.lang.String)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -512,35 +512,35 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
-   * Gets the value of the 'ts_inserimento' field.
-   * @return The value of the 'ts_inserimento' field.
+   * Gets the value of the 'ts_ricezione' field.
+   * @return The value of the 'ts_ricezione' field.
    */
-  public java.lang.String getTsInserimento() {
-    return ts_inserimento;
+  public java.lang.String getTsRicezione() {
+    return ts_ricezione;
   }
 
   /**
-   * Sets the value of the 'ts_inserimento' field.
+   * Sets the value of the 'ts_ricezione' field.
    * @param value the value to set.
    */
-  public void setTsInserimento(java.lang.String value) {
-    this.ts_inserimento = value;
+  public void setTsRicezione(java.lang.String value) {
+    this.ts_ricezione = value;
   }
 
   /**
-   * Gets the value of the 'dt_inserimento' field.
-   * @return The value of the 'dt_inserimento' field.
+   * Gets the value of the 'dt_ricezione' field.
+   * @return The value of the 'dt_ricezione' field.
    */
-  public java.lang.String getDtInserimento() {
-    return dt_inserimento;
+  public java.lang.String getDtRicezione() {
+    return dt_ricezione;
   }
 
   /**
-   * Sets the value of the 'dt_inserimento' field.
+   * Sets the value of the 'dt_ricezione' field.
    * @param value the value to set.
    */
-  public void setDtInserimento(java.lang.String value) {
-    this.dt_inserimento = value;
+  public void setDtRicezione(java.lang.String value) {
+    this.dt_ricezione = value;
   }
 
   /**
@@ -595,8 +595,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
     private java.lang.Double pCS25_0;
     private java.lang.Double wobbe25_15;
     private java.lang.Double wobbe25_0;
-    private java.lang.String ts_inserimento;
-    private java.lang.String dt_inserimento;
+    private java.lang.String ts_ricezione;
+    private java.lang.String dt_ricezione;
 
     /** Creates a new Builder */
     private Builder() {
@@ -689,12 +689,12 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
         this.wobbe25_0 = data().deepCopy(fields()[19].schema(), other.wobbe25_0);
         fieldSetFlags()[19] = true;
       }
-      if (isValidValue(fields()[20], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[20].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[20], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[20].schema(), other.ts_ricezione);
         fieldSetFlags()[20] = true;
       }
-      if (isValidValue(fields()[21], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[21].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[21], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[21].schema(), other.dt_ricezione);
         fieldSetFlags()[21] = true;
       }
     }
@@ -785,12 +785,12 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
         this.wobbe25_0 = data().deepCopy(fields()[19].schema(), other.wobbe25_0);
         fieldSetFlags()[19] = true;
       }
-      if (isValidValue(fields()[20], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[20].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[20], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[20].schema(), other.ts_ricezione);
         fieldSetFlags()[20] = true;
       }
-      if (isValidValue(fields()[21], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[21].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[21], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[21].schema(), other.dt_ricezione);
         fieldSetFlags()[21] = true;
       }
     }
@@ -1576,79 +1576,79 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     /**
-      * Gets the value of the 'ts_inserimento' field.
+      * Gets the value of the 'ts_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getTsInserimento() {
-      return ts_inserimento;
+    public java.lang.String getTsRicezione() {
+      return ts_ricezione;
     }
 
     /**
-      * Sets the value of the 'ts_inserimento' field.
-      * @param value The value of 'ts_inserimento'.
+      * Sets the value of the 'ts_ricezione' field.
+      * @param value The value of 'ts_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.int002.Int002Avro.Builder setTsInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.int002.Int002Avro.Builder setTsRicezione(java.lang.String value) {
       validate(fields()[20], value);
-      this.ts_inserimento = value;
+      this.ts_ricezione = value;
       fieldSetFlags()[20] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'ts_inserimento' field has been set.
-      * @return True if the 'ts_inserimento' field has been set, false otherwise.
+      * Checks whether the 'ts_ricezione' field has been set.
+      * @return True if the 'ts_ricezione' field has been set, false otherwise.
       */
-    public boolean hasTsInserimento() {
+    public boolean hasTsRicezione() {
       return fieldSetFlags()[20];
     }
 
 
     /**
-      * Clears the value of the 'ts_inserimento' field.
+      * Clears the value of the 'ts_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.int002.Int002Avro.Builder clearTsInserimento() {
-      ts_inserimento = null;
+    public it.luca.spring.data.model.int002.Int002Avro.Builder clearTsRicezione() {
+      ts_ricezione = null;
       fieldSetFlags()[20] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'dt_inserimento' field.
+      * Gets the value of the 'dt_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getDtInserimento() {
-      return dt_inserimento;
+    public java.lang.String getDtRicezione() {
+      return dt_ricezione;
     }
 
     /**
-      * Sets the value of the 'dt_inserimento' field.
-      * @param value The value of 'dt_inserimento'.
+      * Sets the value of the 'dt_ricezione' field.
+      * @param value The value of 'dt_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.int002.Int002Avro.Builder setDtInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.int002.Int002Avro.Builder setDtRicezione(java.lang.String value) {
       validate(fields()[21], value);
-      this.dt_inserimento = value;
+      this.dt_ricezione = value;
       fieldSetFlags()[21] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'dt_inserimento' field has been set.
-      * @return True if the 'dt_inserimento' field has been set, false otherwise.
+      * Checks whether the 'dt_ricezione' field has been set.
+      * @return True if the 'dt_ricezione' field has been set, false otherwise.
       */
-    public boolean hasDtInserimento() {
+    public boolean hasDtRicezione() {
       return fieldSetFlags()[21];
     }
 
 
     /**
-      * Clears the value of the 'dt_inserimento' field.
+      * Clears the value of the 'dt_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.int002.Int002Avro.Builder clearDtInserimento() {
-      dt_inserimento = null;
+    public it.luca.spring.data.model.int002.Int002Avro.Builder clearDtRicezione() {
+      dt_ricezione = null;
       fieldSetFlags()[21] = false;
       return this;
     }
@@ -1678,8 +1678,8 @@ public class Int002Avro extends org.apache.avro.specific.SpecificRecordBase impl
         record.pCS25_0 = fieldSetFlags()[17] ? this.pCS25_0 : (java.lang.Double) defaultValue(fields()[17]);
         record.wobbe25_15 = fieldSetFlags()[18] ? this.wobbe25_15 : (java.lang.Double) defaultValue(fields()[18]);
         record.wobbe25_0 = fieldSetFlags()[19] ? this.wobbe25_0 : (java.lang.Double) defaultValue(fields()[19]);
-        record.ts_inserimento = fieldSetFlags()[20] ? this.ts_inserimento : (java.lang.String) defaultValue(fields()[20]);
-        record.dt_inserimento = fieldSetFlags()[21] ? this.dt_inserimento : (java.lang.String) defaultValue(fields()[21]);
+        record.ts_ricezione = fieldSetFlags()[20] ? this.ts_ricezione : (java.lang.String) defaultValue(fields()[20]);
+        record.dt_ricezione = fieldSetFlags()[21] ? this.dt_ricezione : (java.lang.String) defaultValue(fields()[21]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

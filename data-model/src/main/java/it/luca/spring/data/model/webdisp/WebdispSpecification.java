@@ -35,8 +35,8 @@ public class WebdispSpecification extends SourceSpecification<WebdispWrapper, We
                 .setTipoNomina(x.getTipoNomina())
                 .setCicloNomina(x.getCicloNomina())
                 .setTipologiaPunto(x.getTipologiaPunto())
-                .setTsInserimento(now(DatePattern.DEFAULT_TIMESTAMP))
-                .setDtInserimento(now(DatePattern.DEFAULT_DATE))
+                .setTsRicezione(now(DatePattern.DEFAULT_TIMESTAMP))
+                .setDtRicezione(now(DatePattern.DEFAULT_DATE))
                 .build();
 
         return map(input.getNomine(), function);

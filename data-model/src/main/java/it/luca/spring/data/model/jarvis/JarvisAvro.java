@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -5701381952404063153L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"JarvisAvro\",\"namespace\":\"it.luca.spring.data.model.jarvis\",\"fields\":[{\"name\":\"ambito_flusso\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"nome_flusso\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"impresa_mittente\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_di_creazione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"numero_dati\",\"type\":[\"int\",\"null\"]},{\"name\":\"data_procedura\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ciclo_di_riferimento\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"rinomina_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_rinomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"limite_minimo_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_limite_minimo\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"limite_massimo_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_limite_massimo\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ts_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_inserimento\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  private static final long serialVersionUID = -3974769543888145959L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"JarvisAvro\",\"namespace\":\"it.luca.spring.data.model.jarvis\",\"fields\":[{\"name\":\"ambito_flusso\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"nome_flusso\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"impresa_mittente\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"data_di_creazione\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"numero_dati\",\"type\":[\"int\",\"null\"]},{\"name\":\"data_procedura\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ciclo_di_riferimento\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"rinomina_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_rinomina\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"limite_minimo_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_limite_minimo\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"limite_massimo_energia\",\"type\":[\"double\",\"null\"]},{\"name\":\"unita_di_misura_energia_limite_massimo\",\"type\":[{\"type\":\"string\",\"avro.java.string\":\"String\"},\"null\"]},{\"name\":\"ts_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"dt_ricezione\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -64,8 +64,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
    private java.lang.String unita_di_misura_energia_limite_minimo;
    private java.lang.Double limite_massimo_energia;
    private java.lang.String unita_di_misura_energia_limite_massimo;
-   private java.lang.String ts_inserimento;
-   private java.lang.String dt_inserimento;
+   private java.lang.String ts_ricezione;
+   private java.lang.String dt_ricezione;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -89,10 +89,10 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
    * @param unita_di_misura_energia_limite_minimo The new value for unita_di_misura_energia_limite_minimo
    * @param limite_massimo_energia The new value for limite_massimo_energia
    * @param unita_di_misura_energia_limite_massimo The new value for unita_di_misura_energia_limite_massimo
-   * @param ts_inserimento The new value for ts_inserimento
-   * @param dt_inserimento The new value for dt_inserimento
+   * @param ts_ricezione The new value for ts_ricezione
+   * @param dt_ricezione The new value for dt_ricezione
    */
-  public JarvisAvro(java.lang.String ambito_flusso, java.lang.String nome_flusso, java.lang.String impresa_mittente, java.lang.String data_di_creazione, java.lang.Integer numero_dati, java.lang.String data_procedura, java.lang.String ciclo_di_riferimento, java.lang.Double rinomina_energia, java.lang.String unita_di_misura_energia_rinomina, java.lang.Double limite_minimo_energia, java.lang.String unita_di_misura_energia_limite_minimo, java.lang.Double limite_massimo_energia, java.lang.String unita_di_misura_energia_limite_massimo, java.lang.String ts_inserimento, java.lang.String dt_inserimento) {
+  public JarvisAvro(java.lang.String ambito_flusso, java.lang.String nome_flusso, java.lang.String impresa_mittente, java.lang.String data_di_creazione, java.lang.Integer numero_dati, java.lang.String data_procedura, java.lang.String ciclo_di_riferimento, java.lang.Double rinomina_energia, java.lang.String unita_di_misura_energia_rinomina, java.lang.Double limite_minimo_energia, java.lang.String unita_di_misura_energia_limite_minimo, java.lang.Double limite_massimo_energia, java.lang.String unita_di_misura_energia_limite_massimo, java.lang.String ts_ricezione, java.lang.String dt_ricezione) {
     this.ambito_flusso = ambito_flusso;
     this.nome_flusso = nome_flusso;
     this.impresa_mittente = impresa_mittente;
@@ -106,8 +106,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
     this.unita_di_misura_energia_limite_minimo = unita_di_misura_energia_limite_minimo;
     this.limite_massimo_energia = limite_massimo_energia;
     this.unita_di_misura_energia_limite_massimo = unita_di_misura_energia_limite_massimo;
-    this.ts_inserimento = ts_inserimento;
-    this.dt_inserimento = dt_inserimento;
+    this.ts_ricezione = ts_ricezione;
+    this.dt_ricezione = dt_ricezione;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -127,8 +127,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
     case 10: return unita_di_misura_energia_limite_minimo;
     case 11: return limite_massimo_energia;
     case 12: return unita_di_misura_energia_limite_massimo;
-    case 13: return ts_inserimento;
-    case 14: return dt_inserimento;
+    case 13: return ts_ricezione;
+    case 14: return dt_ricezione;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -150,8 +150,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
     case 10: unita_di_misura_energia_limite_minimo = (java.lang.String)value$; break;
     case 11: limite_massimo_energia = (java.lang.Double)value$; break;
     case 12: unita_di_misura_energia_limite_massimo = (java.lang.String)value$; break;
-    case 13: ts_inserimento = (java.lang.String)value$; break;
-    case 14: dt_inserimento = (java.lang.String)value$; break;
+    case 13: ts_ricezione = (java.lang.String)value$; break;
+    case 14: dt_ricezione = (java.lang.String)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -365,35 +365,35 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
-   * Gets the value of the 'ts_inserimento' field.
-   * @return The value of the 'ts_inserimento' field.
+   * Gets the value of the 'ts_ricezione' field.
+   * @return The value of the 'ts_ricezione' field.
    */
-  public java.lang.String getTsInserimento() {
-    return ts_inserimento;
+  public java.lang.String getTsRicezione() {
+    return ts_ricezione;
   }
 
   /**
-   * Sets the value of the 'ts_inserimento' field.
+   * Sets the value of the 'ts_ricezione' field.
    * @param value the value to set.
    */
-  public void setTsInserimento(java.lang.String value) {
-    this.ts_inserimento = value;
+  public void setTsRicezione(java.lang.String value) {
+    this.ts_ricezione = value;
   }
 
   /**
-   * Gets the value of the 'dt_inserimento' field.
-   * @return The value of the 'dt_inserimento' field.
+   * Gets the value of the 'dt_ricezione' field.
+   * @return The value of the 'dt_ricezione' field.
    */
-  public java.lang.String getDtInserimento() {
-    return dt_inserimento;
+  public java.lang.String getDtRicezione() {
+    return dt_ricezione;
   }
 
   /**
-   * Sets the value of the 'dt_inserimento' field.
+   * Sets the value of the 'dt_ricezione' field.
    * @param value the value to set.
    */
-  public void setDtInserimento(java.lang.String value) {
-    this.dt_inserimento = value;
+  public void setDtRicezione(java.lang.String value) {
+    this.dt_ricezione = value;
   }
 
   /**
@@ -441,8 +441,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
     private java.lang.String unita_di_misura_energia_limite_minimo;
     private java.lang.Double limite_massimo_energia;
     private java.lang.String unita_di_misura_energia_limite_massimo;
-    private java.lang.String ts_inserimento;
-    private java.lang.String dt_inserimento;
+    private java.lang.String ts_ricezione;
+    private java.lang.String dt_ricezione;
 
     /** Creates a new Builder */
     private Builder() {
@@ -507,12 +507,12 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
         this.unita_di_misura_energia_limite_massimo = data().deepCopy(fields()[12].schema(), other.unita_di_misura_energia_limite_massimo);
         fieldSetFlags()[12] = true;
       }
-      if (isValidValue(fields()[13], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[13].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[13], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[13].schema(), other.ts_ricezione);
         fieldSetFlags()[13] = true;
       }
-      if (isValidValue(fields()[14], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[14].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[14], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[14].schema(), other.dt_ricezione);
         fieldSetFlags()[14] = true;
       }
     }
@@ -575,12 +575,12 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
         this.unita_di_misura_energia_limite_massimo = data().deepCopy(fields()[12].schema(), other.unita_di_misura_energia_limite_massimo);
         fieldSetFlags()[12] = true;
       }
-      if (isValidValue(fields()[13], other.ts_inserimento)) {
-        this.ts_inserimento = data().deepCopy(fields()[13].schema(), other.ts_inserimento);
+      if (isValidValue(fields()[13], other.ts_ricezione)) {
+        this.ts_ricezione = data().deepCopy(fields()[13].schema(), other.ts_ricezione);
         fieldSetFlags()[13] = true;
       }
-      if (isValidValue(fields()[14], other.dt_inserimento)) {
-        this.dt_inserimento = data().deepCopy(fields()[14].schema(), other.dt_inserimento);
+      if (isValidValue(fields()[14], other.dt_ricezione)) {
+        this.dt_ricezione = data().deepCopy(fields()[14].schema(), other.dt_ricezione);
         fieldSetFlags()[14] = true;
       }
     }
@@ -1093,79 +1093,79 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     /**
-      * Gets the value of the 'ts_inserimento' field.
+      * Gets the value of the 'ts_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getTsInserimento() {
-      return ts_inserimento;
+    public java.lang.String getTsRicezione() {
+      return ts_ricezione;
     }
 
     /**
-      * Sets the value of the 'ts_inserimento' field.
-      * @param value The value of 'ts_inserimento'.
+      * Sets the value of the 'ts_ricezione' field.
+      * @param value The value of 'ts_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder setTsInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder setTsRicezione(java.lang.String value) {
       validate(fields()[13], value);
-      this.ts_inserimento = value;
+      this.ts_ricezione = value;
       fieldSetFlags()[13] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'ts_inserimento' field has been set.
-      * @return True if the 'ts_inserimento' field has been set, false otherwise.
+      * Checks whether the 'ts_ricezione' field has been set.
+      * @return True if the 'ts_ricezione' field has been set, false otherwise.
       */
-    public boolean hasTsInserimento() {
+    public boolean hasTsRicezione() {
       return fieldSetFlags()[13];
     }
 
 
     /**
-      * Clears the value of the 'ts_inserimento' field.
+      * Clears the value of the 'ts_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder clearTsInserimento() {
-      ts_inserimento = null;
+    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder clearTsRicezione() {
+      ts_ricezione = null;
       fieldSetFlags()[13] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'dt_inserimento' field.
+      * Gets the value of the 'dt_ricezione' field.
       * @return The value.
       */
-    public java.lang.String getDtInserimento() {
-      return dt_inserimento;
+    public java.lang.String getDtRicezione() {
+      return dt_ricezione;
     }
 
     /**
-      * Sets the value of the 'dt_inserimento' field.
-      * @param value The value of 'dt_inserimento'.
+      * Sets the value of the 'dt_ricezione' field.
+      * @param value The value of 'dt_ricezione'.
       * @return This builder.
       */
-    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder setDtInserimento(java.lang.String value) {
+    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder setDtRicezione(java.lang.String value) {
       validate(fields()[14], value);
-      this.dt_inserimento = value;
+      this.dt_ricezione = value;
       fieldSetFlags()[14] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'dt_inserimento' field has been set.
-      * @return True if the 'dt_inserimento' field has been set, false otherwise.
+      * Checks whether the 'dt_ricezione' field has been set.
+      * @return True if the 'dt_ricezione' field has been set, false otherwise.
       */
-    public boolean hasDtInserimento() {
+    public boolean hasDtRicezione() {
       return fieldSetFlags()[14];
     }
 
 
     /**
-      * Clears the value of the 'dt_inserimento' field.
+      * Clears the value of the 'dt_ricezione' field.
       * @return This builder.
       */
-    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder clearDtInserimento() {
-      dt_inserimento = null;
+    public it.luca.spring.data.model.jarvis.JarvisAvro.Builder clearDtRicezione() {
+      dt_ricezione = null;
       fieldSetFlags()[14] = false;
       return this;
     }
@@ -1188,8 +1188,8 @@ public class JarvisAvro extends org.apache.avro.specific.SpecificRecordBase impl
         record.unita_di_misura_energia_limite_minimo = fieldSetFlags()[10] ? this.unita_di_misura_energia_limite_minimo : (java.lang.String) defaultValue(fields()[10]);
         record.limite_massimo_energia = fieldSetFlags()[11] ? this.limite_massimo_energia : (java.lang.Double) defaultValue(fields()[11]);
         record.unita_di_misura_energia_limite_massimo = fieldSetFlags()[12] ? this.unita_di_misura_energia_limite_massimo : (java.lang.String) defaultValue(fields()[12]);
-        record.ts_inserimento = fieldSetFlags()[13] ? this.ts_inserimento : (java.lang.String) defaultValue(fields()[13]);
-        record.dt_inserimento = fieldSetFlags()[14] ? this.dt_inserimento : (java.lang.String) defaultValue(fields()[14]);
+        record.ts_ricezione = fieldSetFlags()[13] ? this.ts_ricezione : (java.lang.String) defaultValue(fields()[13]);
+        record.dt_ricezione = fieldSetFlags()[14] ? this.dt_ricezione : (java.lang.String) defaultValue(fields()[14]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
