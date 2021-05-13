@@ -13,16 +13,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Slf4j
-public class AvroSerializer<A extends SpecificRecord> implements Serializer<A> {
+public class AvroSerializer implements Serializer<SpecificRecord> {
 
     @Override
-    public byte[] serialize(String topic, A avroRecord) {
+    public byte[] serialize(String topic, SpecificRecord record) {
 
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             BinaryEncoder binaryEncoder = EncoderFactory.get().binaryEncoder(byteArrayOutputStream, null);
-            DatumWriter<A> datumWriter = new SpecificDatumWriter<>(avroRecord.getSchema());
-            datumWriter.write(avroRecord, binaryEncoder);
+            DatumWriter<SpecificRecord> datumWriter = new SpecificDatumWriter<>(record.getSchema());
+            datumWriter.write(record, binaryEncoder);
             binaryEncoder.flush();
             byteArrayOutputStream.close();
             return byteArrayOutputStream.toByteArray();

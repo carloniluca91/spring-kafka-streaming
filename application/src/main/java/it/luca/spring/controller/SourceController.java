@@ -1,11 +1,7 @@
 package it.luca.spring.controller;
 
 import it.luca.spring.data.model.webdisp.WebdispSpecification;
-import it.luca.spring.jdbc.dao.dao.ConduzioneDao;
-import it.luca.spring.jdbc.dao.dao.JarvisDao;
-import it.luca.spring.model.json.conduzione.ConduzionePayload;
-import it.luca.spring.model.json.jarvis.JarvisPayload;
-import it.luca.spring.service.SenderService;
+import it.luca.spring.service.PublishService;
 import it.luca.spring.model.response.SourceResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SourceController {
 
     @Autowired
-    private SenderService senderService;
+    private PublishService service;
 
     /**
      * POST method for datasource WEBDISP
@@ -31,8 +27,8 @@ public class SourceController {
     @PostMapping("/webdisp")
     public SourceResponse conduzione(@RequestBody String input) {
 
-        WebdispSpecification webdispSpecification = new WebdispSpecification();
-        return senderService.send(input, webdispSpecification);
+        WebdispSpecification specification = new WebdispSpecification();
+        return service.send(input, specification);
     }
 
     /**

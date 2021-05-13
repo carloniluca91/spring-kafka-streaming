@@ -17,6 +17,7 @@ public class SourceResponse {
     private final ResponseCode responseCode;
     private final String responseMessage;
 
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     public SourceResponse(DataSourceId dataSourceId, Optional<Exception> optionalException) {
 
         this.dataSourceId = dataSourceId;

@@ -5,8 +5,10 @@ import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
+import it.luca.spring.jdbc.dto.SuccessDto;
 import it.luca.spring.kafka.KafkaProducer;
-import it.luca.spring.jdbc.bean.IngestionErrorRecord;
+import it.luca.spring.jdbc.dto.ErrorDto;
+import it.luca.spring.model.dto.SentMessageDto;
 import it.luca.spring.model.response.SourceResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.specific.SpecificRecord;
@@ -21,7 +23,7 @@ import static it.luca.spring.data.utils.ObjectDeserializer.readValue;
 
 @Slf4j
 @Service
-public class SenderService {
+public class PublishService {
 
     @Autowired
     private KafkaProducer kafkaProducer;
@@ -38,7 +40,8 @@ public class SenderService {
                 log.info("({}) Received call. Input:\n\n{}\n", dataSourceId, input);
                 T payload = readValue(input, specification);
                 List<A> avroRecords = specification.getAvroRecords(payload);
-                //kafkaProducer.sendMessages(specification, avroRecords);
+                List<SentMessageDto> sentMessageDtos = kafkaProducer.sendMessages(specification, avroRecords);
+
                 return new SourceResponse(dataSourceId, Optional.empty());
             } else {
                 throw new EmptyInputException(dataSourceId);
@@ -56,7 +59,7 @@ public class SenderService {
     private void writeErrorRecord(SourceSpecification<?, ?> specification, Exception exception) {
 
         try {
-            IngestionErrorRecord ingestionAlertRecord = new IngestionErrorRecord(specification, exception);
+            ErrorDto ingestionAlertRecord = new ErrorDto(specification, exception);
             applicationDao.insertRecord(ingestionAlertRecord);
         } catch (Exception e) {
             log.error("({}) Caught exception while saving alert record. Class: {}. Message: {}",

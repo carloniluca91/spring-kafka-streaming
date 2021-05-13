@@ -2,9 +2,9 @@ package it.luca.spring.kafka;
 
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.model.dto.SentMessageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.specific.SpecificRecord;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -16,20 +16,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Component
 public class KafkaProducer {
 
-    public <A extends SpecificRecord> List<Long> sendMessages(SourceSpecification<?, A> specification, List<A> avroRecords) {
+    public <A extends SpecificRecord> List<SentMessageDto> sendMessages(SourceSpecification<?, A> specification, List<A> avroRecords) {
 
         String topicName = specification.getTopicName();
         DataSourceId dataSourceId = specification.getDataSourceId();
         Map<String, Object> map = new HashMap<>();
         KafkaTemplate<String, A> kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(map));
-        avroRecords.forEach(x -> {
+        List<SentMessageDto> sentMessageDtos = new ArrayList<>();
+        IntStream.range(0, avroRecords.size()).forEach(i -> {
 
-            ListenableFuture<SendResult<String, A>> future = kafkaTemplate.send(topicName, x);
+            A avroRecord = avroRecords.get(i);
+            ListenableFuture<SendResult<String, A>> future = kafkaTemplate.send(topicName, avroRecord);
             future.addCallback(new ListenableFutureCallback<>() {
 
                 @Override
@@ -39,13 +42,17 @@ public class KafkaProducer {
                 }
 
                 @Override
-                public void onSuccess(SendResult<String, A> stringTSendResult) {
-                    log.info("({}) Sent message with offset=[{}] to topic {}",
-                            dataSourceId, stringTSendResult.getRecordMetadata().offset(), topicName);
+                public void onSuccess(SendResult<String, A> sendResult) {
+
+                    String topicName = sendResult.getRecordMetadata().topic();
+                    int topicPartition = sendResult.getRecordMetadata().partition();
+                    long messageOffset = sendResult.getRecordMetadata().offset();
+                    sentMessageDtos.add(new SentMessageDto(avroRecords.size(), i + 1, topicPartition, messageOffset));
+                    log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topicName, topicPartition);
                 }});
         });
 
-        return new ArrayList<>();
+        return sentMessageDtos;
     }
     /*
     @Autowired
