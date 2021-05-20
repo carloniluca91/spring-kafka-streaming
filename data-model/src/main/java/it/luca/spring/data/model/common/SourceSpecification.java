@@ -13,4 +13,6 @@ public abstract class SourceSpecification<T> {
     protected final DataSourceType dataSourceType;
     protected final Class<T> inputDataClass;
     protected final String topicName;
+
+    //public abstract ValidationDto validate(T input);
 }

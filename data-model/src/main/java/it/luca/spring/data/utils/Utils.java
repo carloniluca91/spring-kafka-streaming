@@ -64,6 +64,18 @@ public class Utils {
     }
 
     /**
+     * Checks wheter given input is null
+     * @param input input object
+     * @param <T> type of input object
+     * @return Returns true if given input is null, false otherwise
+     */
+
+    public static <T> boolean isNotPresent(T input) {
+
+        return !isPresent(input);
+    }
+
+    /**
      * Checks wheter given input is not null
      * @param input input object
      * @param <T> type of input object

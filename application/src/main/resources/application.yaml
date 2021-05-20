@@ -1,10 +1,10 @@
 spring:
   datasource:
     driverClassName: com.cloudera.impala.jdbc.Driver
-    url: jdbc:impala://quickstart.cloudera:21050
+    url: jdbc:impala://quickstart-bigdata:21050/@impala.db.name@
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: quickstart-bigdata:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all

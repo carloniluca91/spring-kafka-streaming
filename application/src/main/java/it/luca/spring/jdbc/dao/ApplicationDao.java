@@ -42,13 +42,17 @@ public class ApplicationDao {
         log.info("Initialized {} and created ingestion log table", jdbiClass);
     }
 
-    public void insertIngestionRecord(IngestionRecord record) {
+    public <T extends IngestionRecord> void insertIngestionRecord(T record) {
 
         String recordClass = record.getClass().getSimpleName();
         String daoClassName = IngestionRecordDao.class.getName();
         log.info("Saving instance of {} using {}", recordClass, daoClassName);
-        jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertRecord(record));
-        log.info("Saved instance of {} using {}", recordClass, daoClassName);
+        try {
+            jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertRecord(record));
+            log.info("Saved instance of {} using {}", recordClass, daoClassName);
+        } catch (Exception e) {
+            log.error("Caught exception while saving instance of {}. Class: {}. Message: {}", recordClass, e.getClass().getName(), e.getMessage());
+        }
     }
 
     @Scheduled(cron = "50 59 23 * * *")

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS @impala.db.name@.@impala.table.ingestionLog@ (
     topic_name STRING,
     topic_partition INT COMMENT 'Partition where message has been published (-1 in case of failure)',
     ingestion_operation_code STRING COMMENT 'OK if success, KO if failure',
-    message_offset LONG COMMENT 'Offset of published message (-1 in case of failure)',
+    message_offset BIGINT COMMENT 'Offset of published message (-1 in case of failure)',
     exception_class STRING COMMENT 'FQ name of exception class',
     exception_message STRING,
     insert_ts TIMESTAMP

@@ -1,11 +1,13 @@
 package it.luca.spring.controller;
 
 import it.luca.spring.data.model.webdisp.WebdispSpecification;
+import it.luca.spring.model.response.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
-import it.luca.spring.model.response.SourceResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +37,10 @@ public class SourceController {
      */
 
     @PostMapping("/webdisp")
-    public SourceResponse webdisp(@RequestBody String input) {
+    public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
         WebdispSpecification specification = new WebdispSpecification(webdispTopic);
-        return service.send(input, specification);
+        return new ResponseEntity<>(service.send(input, specification), HttpStatus.OK);
     }
 
     /**
