@@ -42,7 +42,7 @@ public class PublishService {
                 T payload = readValue(input, specification);
                 Optional<SentMessageDto> optionalSentMessageDto = kafkaProducer.sendMessage(specification, new MsgWrapper<>(payload));
                 optionalSentMessageDto.ifPresent(x -> writeSuccessRecord(specification, x));
-                return new SourceResponse(dataSourceId, Optional.empty());
+                return new SourceResponse(dataSourceId);
             } else {
                 throw new EmptyInputException(dataSourceId);
             }
@@ -52,7 +52,7 @@ public class PublishService {
                     "({}) Caught exception while sending data to Kafka. Class: {}. Message: {}";
             log.error(errorMsg, dataSourceId, exception.getClass().getName(), exception.getMessage());
             writeErrorRecord(specification, exception);
-            return new SourceResponse(dataSourceId, Optional.of(exception));
+            return new SourceResponse(dataSourceId, exception);
         }
     }
 
@@ -79,7 +79,7 @@ public class PublishService {
                 SuccessRecord.class,
                 x -> new SuccessRecord(specification, x),
                 sentMessageDto,
-                x -> applicationDao.insertSuccessDto(x));
+                x -> applicationDao.insertIngestionRecord(x));
     }
 
     private void writeErrorRecord(SourceSpecification<?> specification, Exception exception) {
@@ -88,6 +88,6 @@ public class PublishService {
                 ErrorRecord.class,
                 x -> new ErrorRecord(specification, x),
                 exception,
-                x -> applicationDao.insertErrorDto(x));
+                x -> applicationDao.insertIngestionRecord(x));
     }
 }

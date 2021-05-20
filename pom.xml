@@ -42,13 +42,10 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <avro.version>1.8.2</avro.version>
         <jdbi.version>3.16.0</jdbi.version>
         <impala.driver.version>2.6.15</impala.driver.version>
         <impala.db.name>${application.name}</impala.db.name>
-        <impala.table.ingestionError>t_ingestion_error_log</impala.table.ingestionError>
-        <impala.table.ingestionSuccess>t_ingestion_success_log</impala.table.ingestionSuccess>
-        <kafka.avro.serializer.version>5.5.1</kafka.avro.serializer.version>
+        <impala.table.ingestionLog>t_kafka_ingestion_log</impala.table.ingestionLog>
     </properties>
 
     <modules>

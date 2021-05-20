@@ -4,7 +4,6 @@ import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.model.dto.SentMessageDto;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -41,11 +40,10 @@ public class KafkaProducer {
             @Override
             public void onSuccess(SendResult<String, MsgWrapper<?>> sendResult) {
 
-                String topicName = sendResult.getRecordMetadata().topic();
                 int topicPartition = sendResult.getRecordMetadata().partition();
                 long messageOffset = sendResult.getRecordMetadata().offset();
                 sentMessageDtos.add(new SentMessageDto(topicPartition, messageOffset));
-                log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topicName, topicPartition);
+                log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topic, topicPartition);
             }});
 
         return sentMessageDtos.isEmpty() ?

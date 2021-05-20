@@ -4,9 +4,7 @@ import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.utils.DatePattern;
 import lombok.Data;
 
-import java.util.Optional;
-
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.spring.data.utils.Utils.*;
 
 @Data
 public class SourceResponse {
@@ -17,12 +15,15 @@ public class SourceResponse {
     private final ResponseCode responseCode;
     private final String responseMessage;
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    public SourceResponse(DataSourceId dataSourceId, Optional<Exception> optionalException) {
+    public SourceResponse(DataSourceId dataSourceId) {
+
+        this(dataSourceId, null);
+    }
+
+    public SourceResponse(DataSourceId dataSourceId, Exception exception) {
 
         this.dataSourceId = dataSourceId;
-        this.responseCode = optionalException.isEmpty() ? ResponseCode.OK : ResponseCode.KO;
-        this.responseMessage = optionalException.isEmpty() ? "Message has been received, processed and sent":
-                optionalException.get().getMessage();
+        this.responseCode = isPresent(exception) ? ResponseCode.OK : ResponseCode.KO;
+        this.responseMessage = orElse(exception, Exception::getMessage, "Message has been received, processed and sent");
     }
 }
