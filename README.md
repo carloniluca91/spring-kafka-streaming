@@ -1,8 +1,7 @@
 # Spring Kafka Streaming
 
 Spring Boot application for receiving batches of data in `xml` or `json` format
-from various sources, convert them as `.avro` records and publish them on some 
-`Kafka` topics
+from various sources and publish them on some `Kafka` topics in a standardized shape
 
 The project consist on following modules
 

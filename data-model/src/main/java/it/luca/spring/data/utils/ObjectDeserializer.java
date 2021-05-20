@@ -19,7 +19,7 @@ public class ObjectDeserializer {
     private final static ObjectMapper xmlMapper = new XmlMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    public static <T> T readValue(InputStream inputStream, SourceSpecification<T, ?> specification) throws IOException {
+    public static <T> T readValue(InputStream inputStream, SourceSpecification<T> specification) throws IOException {
 
         Class<T> valueType = specification.getInputDataClass();
         String className = specification.getInputDataClass().getSimpleName();
@@ -33,7 +33,7 @@ public class ObjectDeserializer {
         return payload;
     }
 
-    public static <T> T readValue(String content, SourceSpecification<T, ?> specification) throws IOException {
+    public static <T> T readValue(String content, SourceSpecification<T> specification) throws IOException {
 
         Class<T> valueType = specification.getInputDataClass();
         String className = specification.getInputDataClass().getSimpleName();

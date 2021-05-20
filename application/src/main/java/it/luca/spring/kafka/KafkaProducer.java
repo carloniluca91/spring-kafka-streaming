@@ -1,10 +1,11 @@
 package it.luca.spring.kafka;
 
 import it.luca.spring.data.enumeration.DataSourceId;
+import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.model.dto.SentMessageDto;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.avro.specific.SpecificRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -14,44 +15,41 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Optional;
 
 @Slf4j
 @Component
 public class KafkaProducer {
 
     @Autowired
-    private KafkaProducerFactory producerFactory;
+    private KafkaTemplate<String, MsgWrapper<?>> kafkaTemplate;
 
-    public <A extends SpecificRecord> List<SentMessageDto> sendMessages(SourceSpecification<?, A> specification, List<A> avroRecords) {
+    public Optional<SentMessageDto> sendMessage(SourceSpecification<?> specification, MsgWrapper<?> msgWrapper) {
 
         String topic = specification.getTopicName();
         DataSourceId dataSourceId = specification.getDataSourceId();
-        KafkaTemplate<String, A> kafkaTemplate = producerFactory.kafkaTemplate();
+        ListenableFuture<SendResult<String, MsgWrapper<?>>> future = kafkaTemplate.send(topic, msgWrapper);
         List<SentMessageDto> sentMessageDtos = new ArrayList<>();
-        IntStream.range(0, avroRecords.size()).forEach(i -> {
+        future.addCallback(new ListenableFutureCallback<>() {
 
-            A avroRecord = avroRecords.get(i);
-            ListenableFuture<SendResult<String, A>> future = kafkaTemplate.send(topic, avroRecord);
-            future.addCallback(new ListenableFutureCallback<>() {
+            @Override
+            @SuppressWarnings("NullableProblems")
+            public void onFailure(Throwable throwable) {
+                log.error("({}) Unable to send message due to: {}", dataSourceId, throwable.getMessage());
+            }
 
-                @Override
-                @SuppressWarnings("NullableProblems")
-                public void onFailure(Throwable throwable) {
-                    log.error("({}) Unable to send message due to: {}", dataSourceId, throwable.getMessage());
-                }
+            @Override
+            public void onSuccess(SendResult<String, MsgWrapper<?>> sendResult) {
 
-                @Override
-                public void onSuccess(SendResult<String, A> sendResult) {
+                String topicName = sendResult.getRecordMetadata().topic();
+                int topicPartition = sendResult.getRecordMetadata().partition();
+                long messageOffset = sendResult.getRecordMetadata().offset();
+                sentMessageDtos.add(new SentMessageDto(topicPartition, messageOffset));
+                log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topicName, topicPartition);
+            }});
 
-                    String topicName = sendResult.getRecordMetadata().topic();
-                    int topicPartition = sendResult.getRecordMetadata().partition();
-                    long messageOffset = sendResult.getRecordMetadata().offset();
-                    sentMessageDtos.add(new SentMessageDto(avroRecords.size(), i + 1, topicPartition, messageOffset));
-                    log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topicName, topicPartition);
-                }});
-        });
-
-        return sentMessageDtos;
+        return sentMessageDtos.isEmpty() ?
+                Optional.empty() :
+                Optional.of(sentMessageDtos.get(0));
     }
 }

@@ -35,7 +35,7 @@ public class SourceController {
      */
 
     @PostMapping("/webdisp")
-    public SourceResponse conduzione(@RequestBody String input) {
+    public SourceResponse webdisp(@RequestBody String input) {
 
         WebdispSpecification specification = new WebdispSpecification(webdispTopic);
         return service.send(input, specification);
