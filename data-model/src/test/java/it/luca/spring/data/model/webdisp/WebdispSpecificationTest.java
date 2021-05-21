@@ -1,35 +1,25 @@
 package it.luca.spring.data.model.webdisp;
 
 import it.luca.spring.data.model.common.SourceSpecificationTest;
-import it.luca.spring.data.model.validation.common.ValidationDto;
-import org.junit.jupiter.api.Test;
+import it.luca.spring.data.model.validation.ExpectedValidation;
 
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.List;
 
 class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
-    public WebdispSpecificationTest() throws IOException {
-        super("webdisp.xml", new WebdispSpecification("topic"));
+    public WebdispSpecificationTest() {
+        super("webdisp", new WebdispSpecification("topic"));
     }
 
-    @Test
     @Override
-    public void assertReadValue() {
+    protected List<ExpectedValidation> getExpectedValidations() {
 
-        assertNotNull(instance);
-        assertNotNull(instance.getDataOraInvio());
-        assertNotNull(instance.getNomine());
-        assertFalse(instance.getNomine().isEmpty());
-    }
-
-    @Test
-    @Override
-    public void assertObjectValidation() {
-
-        ValidationDto validationDto = specification.validate(instance);
-        assertTrue(validationDto.isValid());
-        assertEquals("OK", validationDto.getMessage());
+        return Arrays.asList(
+                new ExpectedValidation("webdisp_empty.xml", false, 2),
+                new ExpectedValidation("webdisp_empty_nomine.xml", false, 1),
+                new ExpectedValidation("webdisp_no_dataOraInvio.xml", false, 1),
+                new ExpectedValidation("webdisp_no_nomine.xml", false, 1),
+                new ExpectedValidation("webdisp_valid.xml", true, 0));
     }
 }

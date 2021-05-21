@@ -55,12 +55,17 @@ public class ApplicationDao {
         }
     }
 
-    @Scheduled(cron = "50 59 23 * * *")
+    @Scheduled(cron = "55 59 23 * * *")
     private void insertOverWrite() {
 
         String today = now(DatePattern.DEFAULT_DATE);
-        log.info("Issuing INSERT OVERWRITE on ingestion log table (partition = {})", today);
-        jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertOverwrite(today));
-        log.info("Successfully issued INSERT OVERWRITE on ingestion log table (partition = {})", today);
+        try {
+            log.info("Issuing INSERT OVERWRITE on ingestion log table (partition = {})", today);
+            jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertOverwrite(today));
+            log.info("Successfully issued INSERT OVERWRITE on ingestion log table (partition = {})", today);
+        } catch (Exception e) {
+            log.error("Caught exception while issuing INSERT OVERWRITE on ingestion log table (partition = {}). Class: {}. Message: {}",
+                    today, e.getClass().getName(), e.getMessage());
+        }
     }
 }

@@ -6,6 +6,7 @@ import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.data.model.validation.common.ValidationDto;
 import it.luca.spring.exception.EmptyInputException;
+import it.luca.spring.exception.InputValidationException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
 import it.luca.spring.jdbc.dto.ErrorRecord;
 import it.luca.spring.kafka.KafkaProducer;
@@ -41,10 +42,10 @@ public class PublishService {
                     producer.sendMessage(specification, new MsgWrapper<>(payload), dao);
                     return new DataSourceResponseDto(specification, null);
                 } else {
-                    throw new IllegalArgumentException(String.format("(%s) %s", dataSourceId, validationDto.getMessage()));
+                    throw new InputValidationException(validationDto);
                 }
             } else {
-                throw new EmptyInputException(dataSourceId);
+                throw new EmptyInputException();
             }
         } catch (Exception exception) {
             String errorMsg = ((exception instanceof JsonProcessingException) |

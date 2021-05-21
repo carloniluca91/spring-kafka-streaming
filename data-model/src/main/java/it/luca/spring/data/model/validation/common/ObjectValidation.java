@@ -23,8 +23,8 @@ public abstract class ObjectValidation<T> {
         List<ValidationDto> attributeValidations = map(rules, x -> x.validate(input));
         boolean validInput = attributeValidations.stream().allMatch(ValidationDto::isValid);
         String message = validInput ?
-                "OK" :
-                String.join(", ", map(filter(attributeValidations, ValidationDto::isValid), ValidationDto::getMessage));
+                null :
+                String.join(", ", map(filter(attributeValidations, x -> !x.isValid()), ValidationDto::getMessage));
 
         return new ValidationDto(validInput, message);
     }

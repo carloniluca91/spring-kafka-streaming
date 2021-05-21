@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import it.luca.spring.data.utils.XMLField;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 

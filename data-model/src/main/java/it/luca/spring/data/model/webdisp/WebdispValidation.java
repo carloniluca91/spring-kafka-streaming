@@ -10,7 +10,6 @@ public class WebdispValidation extends ObjectValidation<WebdispPayload> {
     public WebdispValidation() {
 
         super(new NotNullRule<>(WebdispPayload::getDataOraInvio, XMLField.DATA_ORA_INVIO),
-                new NotNullRule<>(WebdispPayload::getNomine, XMLField.NOMINE),
                 new NotEmptyListRule<>(WebdispPayload::getNomine, XMLField.NOMINE));
     }
 }

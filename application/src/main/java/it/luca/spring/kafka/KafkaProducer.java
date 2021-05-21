@@ -20,13 +20,13 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 public class KafkaProducer {
 
     @Autowired
-    private KafkaTemplate<String, MsgWrapper<?>> kafkaTemplate;
+    private KafkaTemplate<String, MsgWrapper<?>> template;
 
     public void sendMessage(SourceSpecification<?> specification, MsgWrapper<?> msgWrapper, ApplicationDao dao) {
 
         String topic = specification.getTopicName();
         DataSourceId dataSourceId = specification.getDataSourceId();
-        ListenableFuture<SendResult<String, MsgWrapper<?>>> future = kafkaTemplate.send(topic, msgWrapper);
+        ListenableFuture<SendResult<String, MsgWrapper<?>>> future = template.send(topic, msgWrapper);
         future.addCallback(new ListenableFutureCallback<>() {
 
             @Override
