@@ -1,14 +1,23 @@
-package it.luca.spring.data.model.validation;
+package it.luca.spring.data.model.validation.rules;
 
+import it.luca.spring.data.model.validation.common.ValidationType;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@Getter
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 @AllArgsConstructor
-public abstract class InvalidAttributeDescription {
+public abstract class Validation<T, R> {
 
-    private final ValidationType validationType;
+    private final Function<T, R> function;
+    private final Predicate<R> predicate;
     private final String attributeName;
+    private final ValidationType validationType;
+
+    public boolean validate(T inputObject) {
+
+        return predicate.test(function.apply(inputObject));
+    }
 
     public String getDescription() {
 

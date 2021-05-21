@@ -2,8 +2,8 @@ package it.luca.spring.data.model.common;
 
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.enumeration.DataSourceType;
-import it.luca.spring.data.model.validation.ObjectValidation;
-import it.luca.spring.data.model.validation.ValidationDto;
+import it.luca.spring.data.model.validation.common.ObjectValidation;
+import it.luca.spring.data.model.validation.common.ValidationDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -18,4 +18,6 @@ public abstract class SourceSpecificationTest<T> {
     }
 
     public abstract void assertReadValue();
+
+    public abstract void assertObjectValidation();
 }

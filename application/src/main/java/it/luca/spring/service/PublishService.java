@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
-import it.luca.spring.data.model.validation.ValidationDto;
+import it.luca.spring.data.model.validation.common.ValidationDto;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
 import it.luca.spring.jdbc.dto.ErrorRecord;

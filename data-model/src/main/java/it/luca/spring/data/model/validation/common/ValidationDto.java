@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation;
+package it.luca.spring.data.model.validation.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
