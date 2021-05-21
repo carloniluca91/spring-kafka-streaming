@@ -6,18 +6,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NotNullRuleTest {
+class NotNullRuleTest extends RuleTest<String> {
 
-    private final String ATTRIBUTE_NAME = "name";
-    private final NotNullRule<TestBean, String> rule = new NotNullRule<>(TestBean::getName, ATTRIBUTE_NAME);
+    public NotNullRuleTest() {
+        super(new NotNullRule<>(TestBean::getName, ATTRIBUTE_NAME));
+    }
 
     @Test
-    public void validate() {
+    @Override
+    public void validateFailure() {
 
         TestBean emptyBean = new TestBean();
         ValidationDto failedValidation = rule.validate(emptyBean);
         assertFalse(failedValidation.isValid());
-        assertEquals(String.format("%s attribute is null", ATTRIBUTE_NAME), failedValidation.getMessage());
+        assertNotNull(failedValidation.getMessage());
+    }
+
+    @Test
+    @Override
+    public void validateSuccess() {
 
         TestBean nonEmptyBean = new TestBean();
         nonEmptyBean.setName("hello");

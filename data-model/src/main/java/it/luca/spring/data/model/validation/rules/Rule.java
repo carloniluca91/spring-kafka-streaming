@@ -19,10 +19,10 @@ public abstract class Rule<T, R> {
 
         boolean valid = predicate.test(function.apply(inputObject));
         String erroDescription;
-        //noinspection SwitchStatementWithTooFewBranches
         switch (validationType) {
-            case EMPTY_LIST: erroDescription = String.format("%s list is empty", attributeName); break;
-            default: erroDescription = String.format("%s attribute is null", attributeName); break;
+            case EMPTY_LIST: erroDescription = String.format("'%s' list is null or empty", attributeName); break;
+            case NULL_ATTRIBUTE: erroDescription = String.format("'%s' attribute is null", attributeName); break;
+            default: throw new IllegalArgumentException(String.format("Unrecognized validationType: %s", validationType));
         }
 
         return new ValidationDto(valid, valid ? null : erroDescription);
