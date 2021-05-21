@@ -7,12 +7,12 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class Int002Wrapper {
+public class Int002Payload {
 
     private final List<Int002Ciclo> cicli;
 
     @JsonCreator
-    public Int002Wrapper(@JsonProperty("cicli") List<Int002Ciclo> cicli) {
+    public Int002Payload(@JsonProperty("cicli") List<Int002Ciclo> cicli) {
 
         this.cicli = cicli;
     }
