@@ -1,32 +1,30 @@
 package it.luca.spring.data.model.validation.common;
 
-import it.luca.spring.data.model.validation.rules.Validation;
+import it.luca.spring.data.model.validation.rules.Rule;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import static it.luca.spring.data.utils.Utils.filter;
+import static it.luca.spring.data.utils.Utils.map;
 
 public abstract class ObjectValidation<T> {
 
-    private final List<Validation<T, ?>> validations;
+    private final List<Rule<T, ?>> rules;
 
     @SafeVarargs
-    public ObjectValidation(Validation<T, ?>... validations) {
+    public ObjectValidation(Rule<T, ?>... rules) {
 
-        this.validations = Arrays.asList(validations);
+        this.rules = Arrays.asList(rules);
     }
 
     public ValidationDto validate(T input) {
 
-        Predicate<Validation<T, ?>> predicate = x -> x.validate(input);
-        boolean validInput = validations.stream().allMatch(predicate);
+        List<ValidationDto> attributeValidations = map(rules, x -> x.validate(input));
+        boolean validInput = attributeValidations.stream().allMatch(ValidationDto::isValid);
         String message = validInput ?
                 "OK" :
-                validations.stream()
-                        .filter(predicate.negate())
-                        .map(Validation::getDescription)
-                        .collect(Collectors.joining(", "));
+                String.join(", ", map(filter(attributeValidations, ValidationDto::isValid), ValidationDto::getMessage));
 
         return new ValidationDto(validInput, message);
     }

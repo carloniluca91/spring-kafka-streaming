@@ -2,16 +2,14 @@ package it.luca.spring.data.model.validation.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.Accessors;
 
+@Getter
 @AllArgsConstructor
 public class ValidationDto {
 
+    @Accessors(fluent = true)
     private final Boolean isValid;
 
-    @Getter()
     private final String message;
-
-    public boolean isValid() {
-        return isValid;
-    }
 }

@@ -5,9 +5,9 @@ import it.luca.spring.data.utils.Utils;
 
 import java.util.function.Function;
 
-public class NotNullValidation<T, R> extends Validation<T, R> {
+public class NotNullRule<T, R> extends Rule<T, R> {
 
-    public NotNullValidation(Function<T, R> function, String attributeName) {
+    public NotNullRule(Function<T, R> function, String attributeName) {
 
         super(function, Utils::isPresent, attributeName, ValidationType.NULL_ATTRIBUTE);
     }

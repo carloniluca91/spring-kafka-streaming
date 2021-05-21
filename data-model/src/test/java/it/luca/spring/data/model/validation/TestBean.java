@@ -8,6 +8,5 @@ import java.util.List;
 public class TestBean {
 
     private String name;
-    private Integer id;
     private List<String> list;
 }
