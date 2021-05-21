@@ -2,6 +2,7 @@ package it.luca.spring.data.model.webdisp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import it.luca.spring.data.utils.XMLField;
 import lombok.Getter;
 
 @Getter
@@ -22,19 +23,19 @@ public class WebdispNomina {
     private final String tipologiaPunto;
 
     @JsonCreator
-    public WebdispNomina(@JacksonXmlProperty(localName = "pcs") Double pcs,
-                         @JacksonXmlProperty(localName = "valoreEnergia") Double valoreEnergia,
-                         @JacksonXmlProperty(localName = "unitaMisuraEnergia") String unitaMisuraEnergia,
-                         @JacksonXmlProperty(localName = "valoreVolume") Double valoreVolume,
-                         @JacksonXmlProperty(localName = "unitaMisuraVolume") String unitaMisuraVolume,
-                         @JacksonXmlProperty(localName = "dataElaborazione") String dataElaborazione,
-                         @JacksonXmlProperty(localName = "dataDecorrenza") String dataDecorrenza,
-                         @JacksonXmlProperty(localName = "codiceRemi") String codiceRemi,
-                         @JacksonXmlProperty(localName = "descrizioneRemi") String descrizioneRemi,
-                         @JacksonXmlProperty(localName = "descrizionePunto") String descrizionePunto,
-                         @JacksonXmlProperty(localName = "tipoNomina") String tipoNomina,
-                         @JacksonXmlProperty(localName = "cicloNomina") String cicloNomina,
-                         @JacksonXmlProperty(localName = "tipologiaPunto") String tipologiaPunto) {
+    public WebdispNomina(@JacksonXmlProperty(localName = XMLField.PCS) Double pcs,
+                         @JacksonXmlProperty(localName = XMLField.VALORE_ENERGIA) Double valoreEnergia,
+                         @JacksonXmlProperty(localName = XMLField.UNITA_MISURA_ENERGIA) String unitaMisuraEnergia,
+                         @JacksonXmlProperty(localName = XMLField.VALORE_VOLUME) Double valoreVolume,
+                         @JacksonXmlProperty(localName = XMLField.UNITA_MISURA_VOLUME) String unitaMisuraVolume,
+                         @JacksonXmlProperty(localName = XMLField.DATA_ELABORAZIONE) String dataElaborazione,
+                         @JacksonXmlProperty(localName = XMLField.DATA_DECORRENZA) String dataDecorrenza,
+                         @JacksonXmlProperty(localName = XMLField.CODICE_REMI) String codiceRemi,
+                         @JacksonXmlProperty(localName = XMLField.DESCRIZIONE_REMI) String descrizioneRemi,
+                         @JacksonXmlProperty(localName = XMLField.DESCRIZIONE_PUNTO) String descrizionePunto,
+                         @JacksonXmlProperty(localName = XMLField.TIPO_NOMINA) String tipoNomina,
+                         @JacksonXmlProperty(localName = XMLField.CICLO_NOMINA) String cicloNomina,
+                         @JacksonXmlProperty(localName = XMLField.TIPOLOGIA_PUNTO) String tipologiaPunto) {
 
         this.pcs = pcs;
         this.valoreEnergia = valoreEnergia;

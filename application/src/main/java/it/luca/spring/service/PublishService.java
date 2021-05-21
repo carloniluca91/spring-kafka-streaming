@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.validation.ValidationDto;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
 import it.luca.spring.jdbc.dto.ErrorRecord;
@@ -35,13 +36,20 @@ public class PublishService {
             if (!emptyOrBlank.test(input)) {
                 log.info("({}) Received call. Input:\n\n{}\n", dataSourceId, input);
                 T payload = readValue(input, specification);
-                producer.sendMessage(specification, new MsgWrapper<>(payload), dao);
-                return new DataSourceResponseDto(specification, null);
+                ValidationDto validationDto = specification.validate(payload);
+                if (validationDto.isValid()) {
+                    producer.sendMessage(specification, new MsgWrapper<>(payload), dao);
+                    return new DataSourceResponseDto(specification, null);
+                } else {
+                    throw new IllegalArgumentException(String.format("(%s) %s", dataSourceId, validationDto.getMessage()));
+                }
             } else {
                 throw new EmptyInputException(dataSourceId);
             }
         } catch (Exception exception) {
-            String errorMsg = ((exception instanceof JsonProcessingException) | (exception instanceof EmptyInputException)) ?
+            String errorMsg = ((exception instanceof JsonProcessingException) |
+                    (exception instanceof EmptyInputException) |
+                    (exception instanceof IllegalArgumentException)) ?
                     "({}) Caught exception while processing received data. Class: {}. Message: {}" :
                     "({}) Caught exception while sending data to Kafka. Class: {}. Message: {}";
             log.error(errorMsg, dataSourceId, exception.getClass().getName(), exception.getMessage());
