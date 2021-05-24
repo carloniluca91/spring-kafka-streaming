@@ -7,6 +7,12 @@ import lombok.AllArgsConstructor;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * Class defining a single validation rule for an attribute of a POJO
+ * @param <T> POJO type
+ * @param <R> attribute type
+ */
+
 @AllArgsConstructor
 public abstract class Rule<T, R> {
 
@@ -14,6 +20,12 @@ public abstract class Rule<T, R> {
     private final Predicate<R> predicate;
     private final String attributeName;
     private final ValidationType validationType;
+
+    /**
+     * Validates instance of T by applying given function and testing given predicate
+     * @param inputObject instance of T
+     * @return validation bean
+     */
 
     public ValidationDto validate(T inputObject) {
 

@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
+/**
+ * Validation bean
+ */
+
 @Getter
 @AllArgsConstructor
 public class ValidationDto {

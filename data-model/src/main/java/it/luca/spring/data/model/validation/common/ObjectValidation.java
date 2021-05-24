@@ -8,6 +8,11 @@ import java.util.List;
 import static it.luca.spring.data.utils.Utils.filter;
 import static it.luca.spring.data.utils.Utils.map;
 
+/**
+ * Class holding validation rule(s) for POJO of type T
+ * @param <T> POJO type
+ */
+
 public abstract class ObjectValidation<T> {
 
     private final List<Rule<T, ?>> rules;
@@ -17,6 +22,12 @@ public abstract class ObjectValidation<T> {
 
         this.rules = Arrays.asList(rules);
     }
+
+    /**
+     * Validates instance of type T
+     * @param input instance of T
+     * @return validation bean
+     */
 
     public ValidationDto validate(T input) {
 

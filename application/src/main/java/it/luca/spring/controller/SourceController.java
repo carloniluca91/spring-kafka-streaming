@@ -1,5 +1,6 @@
 package it.luca.spring.controller;
 
+import it.luca.spring.data.model.jarvis.JarvisSpecification;
 import it.luca.spring.data.model.webdisp.WebdispSpecification;
 import it.luca.spring.model.response.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
@@ -49,13 +50,11 @@ public class SourceController {
      * @return SourceResponse
      */
 
-    /*
 
     @PostMapping("/jarvis")
-    public SourceResponse jarvis(@RequestBody String input) {
-        return senderService.send(input, DataSourceId.JARVIS, JarvisPayload.class, JarvisDao.class);
+    public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
+
+        JarvisSpecification specification = new JarvisSpecification(jarvisTopic);
+        return new ResponseEntity<>(service.send(input, specification), HttpStatus.OK);
     }
-
-     */
-
 }

@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class JarvisWrapper {
+public class JarvisPayload {
 
      private final String ambitoFlusso;
      private final String nomeFlusso;
@@ -19,7 +19,7 @@ public class JarvisWrapper {
      private final List<JarvisCiclo> listaCicli;
 
      @JsonCreator
-     public JarvisWrapper(@JacksonXmlProperty(localName = "ambitoFlusso") String ambitoFlusso,
+     public JarvisPayload(@JacksonXmlProperty(localName = "ambitoFlusso") String ambitoFlusso,
                           @JacksonXmlProperty(localName = "nomeFlusso") String nomeFlusso,
                           @JacksonXmlProperty(localName = "impresaMittente") String impresaMittente,
                           @JacksonXmlProperty(localName = "dataDiCreazione") String dataDiCreazione,

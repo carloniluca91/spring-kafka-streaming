@@ -50,7 +50,7 @@ public class PublishService {
         } catch (Exception exception) {
             String errorMsg = ((exception instanceof JsonProcessingException) |
                     (exception instanceof EmptyInputException) |
-                    (exception instanceof IllegalArgumentException)) ?
+                    (exception instanceof InputValidationException)) ?
                     "({}) Caught exception while processing received data. Class: {}. Message: {}" :
                     "({}) Caught exception while sending data to Kafka. Class: {}. Message: {}";
             log.error(errorMsg, dataSourceId, exception.getClass().getName(), exception.getMessage());

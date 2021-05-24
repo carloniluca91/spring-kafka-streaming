@@ -7,6 +7,11 @@ import it.luca.spring.data.model.validation.common.ValidationDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Class holding dataSource specification
+ * @param <T> data type
+ */
+
 @Getter
 @AllArgsConstructor
 public abstract class SourceSpecification<T> {
@@ -16,6 +21,12 @@ public abstract class SourceSpecification<T> {
     protected final Class<T> inputDataClass;
     protected final ObjectValidation<T> objectValidation;
     protected final String topicName;
+
+    /**
+     * Validate instance of type T
+     * @param input instance of T
+     * @return validation bean
+     */
 
     public ValidationDto validate(T input) {
 

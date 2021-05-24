@@ -6,6 +6,11 @@ import lombok.Getter;
 
 import static it.luca.spring.data.utils.Utils.now;
 
+/**
+ * Wrapper class for data to be published
+ * @param <T> data type
+ */
+
 @Getter
 @AllArgsConstructor
 public class MsgWrapper<T> {
