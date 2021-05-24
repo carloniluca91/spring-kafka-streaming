@@ -70,6 +70,7 @@ public class ApplicationDao {
 
         String today = now(DatePattern.DEFAULT_DATE);
         try {
+            Thread.sleep(10000);
             log.info("Issuing INSERT OVERWRITE on ingestion log table (partition = {})", today);
             jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertOverwrite(today));
             log.info("Successfully issued INSERT OVERWRITE on ingestion log table (partition = {})", today);
