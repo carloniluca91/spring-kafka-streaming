@@ -10,6 +10,10 @@ import java.sql.Timestamp;
 
 import static it.luca.spring.data.utils.Utils.*;
 
+/**
+ * Dto representing record stored on log table
+ */
+
 @Data
 public abstract class IngestionRecord {
 

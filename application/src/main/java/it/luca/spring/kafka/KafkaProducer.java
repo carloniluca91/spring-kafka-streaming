@@ -22,6 +22,13 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, MsgWrapper<?>> template;
 
+    /**
+     * Publish data to Kafka according to given specifications
+     * @param specification dataSource specification
+     * @param msgWrapper wrapper object containing data to be sent
+     * @param dao dao interface to be used for logging
+     */
+
     public void sendMessage(SourceSpecification<?> specification, MsgWrapper<?> msgWrapper, ApplicationDao dao) {
 
         String topic = specification.getTopicName();

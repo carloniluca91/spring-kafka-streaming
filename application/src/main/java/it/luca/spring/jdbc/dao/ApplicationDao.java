@@ -42,6 +42,12 @@ public class ApplicationDao {
         log.info("Initialized {} and created ingestion log table", jdbiClass);
     }
 
+    /**
+     * Insert given ingestionRecord
+     * @param record record to be inserted
+     * @param <T> type of record to be inserted
+     */
+
     public <T extends IngestionRecord> void insertIngestionRecord(T record) {
 
         String recordClass = record.getClass().getSimpleName();
@@ -54,6 +60,10 @@ public class ApplicationDao {
             log.error("Caught exception while saving instance of {}. Class: {}. Message: {}", recordClass, e.getClass().getName(), e.getMessage());
         }
     }
+
+    /**
+     * Reduces the number of .parquet files on today's partition of log table
+     */
 
     @Scheduled(cron = "55 59 23 * * *")
     private void insertOverWrite() {

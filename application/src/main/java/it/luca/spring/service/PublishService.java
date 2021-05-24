@@ -29,6 +29,14 @@ public class PublishService {
     @Autowired
     private ApplicationDao dao;
 
+    /**
+     * Deserializes input data and publish them to a Kafka topic
+     * @param input string representing serialized input data
+     * @param specification dataSource specification
+     * @param <T> type to be used for deserialization
+     * @return dto to be sent back to dataSources
+     */
+
     public <T> DataSourceResponseDto send(String input, SourceSpecification<T> specification) {
 
         DataSourceId dataSourceId = specification.getDataSourceId();
