@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class NotNullRuleTest extends RuleTest<String> {
 
     public NotNullRuleTest() {
-        super(new NotNullRule<>(TestBean::getName, ATTRIBUTE_NAME));
+        super(new NotNullAttributeRule<>(TestBean::getName, ATTRIBUTE_NAME));
     }
 
     @Test

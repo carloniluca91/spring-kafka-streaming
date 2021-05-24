@@ -11,9 +11,9 @@ import java.util.function.Function;
  * @param <R> attribute type
  */
 
-public class NotNullRule<T, R> extends Rule<T, R> {
+public class NotNullAttributeRule<T, R> extends AttributeRule<T, R> {
 
-    public NotNullRule(Function<T, R> function, String attributeName) {
+    public NotNullAttributeRule(Function<T, R> function, String attributeName) {
 
         super(function, Utils::isPresent, attributeName, ValidationType.NULL_ATTRIBUTE);
     }

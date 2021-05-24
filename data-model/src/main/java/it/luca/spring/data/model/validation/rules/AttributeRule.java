@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  */
 
 @AllArgsConstructor
-public abstract class Rule<T, R> {
+public abstract class AttributeRule<T, R> {
 
     private final Function<T, R> function;
     private final Predicate<R> predicate;

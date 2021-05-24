@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.validation.common;
 
-import it.luca.spring.data.model.validation.rules.Rule;
+import it.luca.spring.data.model.validation.rules.AttributeRule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +15,10 @@ import static it.luca.spring.data.utils.Utils.map;
 
 public abstract class ObjectValidation<T> {
 
-    private final List<Rule<T, ?>> rules;
+    private final List<AttributeRule<T, ?>> rules;
 
     @SafeVarargs
-    public ObjectValidation(Rule<T, ?>... rules) {
+    public ObjectValidation(AttributeRule<T, ?>... rules) {
 
         this.rules = Arrays.asList(rules);
     }

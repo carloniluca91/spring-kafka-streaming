@@ -13,8 +13,10 @@ import it.luca.spring.kafka.KafkaProducer;
 import it.luca.spring.model.response.DataSourceResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import static it.luca.spring.data.utils.ObjectDeserializer.readValue;
@@ -41,6 +43,8 @@ public class PublishService {
 
         DataSourceId dataSourceId = specification.getDataSourceId();
         Predicate<String> emptyOrBlank = s -> s.isEmpty() | s.isBlank();
+        BiFunction<HttpStatus, Exception, DataSourceResponseDto> dtoFunction = (status, exception) ->
+                new DataSourceResponseDto(specification, status, exception);
         try {
             if (!emptyOrBlank.test(input)) {
                 log.info("({}) Received call. Input:\n\n{}\n", dataSourceId, input);
@@ -48,7 +52,7 @@ public class PublishService {
                 ValidationDto validationDto = specification.validate(payload);
                 if (validationDto.isValid()) {
                     producer.sendMessage(specification, new MsgWrapper<>(payload), dao);
-                    return new DataSourceResponseDto(specification, null);
+                    return dtoFunction.apply(HttpStatus.OK, null);
                 } else {
                     throw new InputValidationException(validationDto);
                 }
@@ -56,14 +60,23 @@ public class PublishService {
                 throw new EmptyInputException();
             }
         } catch (Exception exception) {
-            String errorMsg = ((exception instanceof JsonProcessingException) |
-                    (exception instanceof EmptyInputException) |
-                    (exception instanceof InputValidationException)) ?
-                    "({}) Caught exception while processing received data. Class: {}. Message: {}" :
-                    "({}) Caught exception while sending data to Kafka. Class: {}. Message: {}";
+
+            String errorMsg;
+            HttpStatus status;
+            if ((exception instanceof JsonProcessingException) ||
+                    (exception instanceof EmptyInputException) ||
+                    (exception instanceof InputValidationException)) {
+
+                errorMsg = "({}) Caught exception while processing received data. Class: {}. Message: {}";
+                status = HttpStatus.UNPROCESSABLE_ENTITY;
+            } else {
+
+                errorMsg = "({}) Caught exception while publishing data. Class: {}. Message: {}";
+                status = HttpStatus.INTERNAL_SERVER_ERROR;
+            }
             log.error(errorMsg, dataSourceId, exception.getClass().getName(), exception.getMessage());
             dao.insertIngestionRecord(new ErrorRecord(specification, exception));
-            return new DataSourceResponseDto(specification, exception);
+            return dtoFunction.apply(status, exception);
         }
     }
 }

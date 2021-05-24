@@ -7,7 +7,6 @@ import it.luca.spring.service.PublishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +40,8 @@ public class SourceController {
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
         WebdispSpecification specification = new WebdispSpecification(webdispTopic);
-        return new ResponseEntity<>(service.send(input, specification), HttpStatus.OK);
+        DataSourceResponseDto dto = service.send(input, specification);
+        return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
     /**
@@ -50,11 +50,11 @@ public class SourceController {
      * @return SourceResponse
      */
 
-
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
         JarvisSpecification specification = new JarvisSpecification(jarvisTopic);
-        return new ResponseEntity<>(service.send(input, specification), HttpStatus.OK);
+        DataSourceResponseDto dto = service.send(input, specification);
+        return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

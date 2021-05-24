@@ -12,7 +12,7 @@ import static it.luca.spring.data.utils.Utils.isPresent;
  * @param <T> POJO type
  */
 
-public class NotEmptyListRule<T> extends Rule<T, List<?>> {
+public class NotEmptyListRule<T> extends AttributeRule<T, List<?>> {
 
     public NotEmptyListRule(Function<T, List<?>> function, String attributeName) {
 
