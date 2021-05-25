@@ -13,7 +13,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class ObjectValidationDto {
+public class PojoValidationDto {
 
     @Accessors(fluent = true)
     private final boolean isValid;

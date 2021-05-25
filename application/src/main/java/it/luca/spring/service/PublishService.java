@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
-import it.luca.spring.data.model.validation.common.ObjectValidationDto;
+import it.luca.spring.data.model.validation.common.PojoValidationDto;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.exception.InputValidationException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
@@ -53,7 +53,7 @@ public class PublishService {
                 // Deserialize it and validate its content
                 log.info("({}) Received call. Input:\n\n{}\n", dataSourceId, input);
                 T payload = readValue(input, specification);
-                ObjectValidationDto objectValidtion = specification.validate(payload);
+                PojoValidationDto objectValidtion = specification.validate(payload);
 
                 // If validation successes, publish on Kafka
                 if (objectValidtion.isValid()) {

@@ -1,10 +1,10 @@
 package it.luca.spring.exception;
 
-import it.luca.spring.data.model.validation.common.ObjectValidationDto;
+import it.luca.spring.data.model.validation.common.PojoValidationDto;
 
 public class InputValidationException extends Exception {
 
-    public InputValidationException(ObjectValidationDto dto) {
+    public InputValidationException(PojoValidationDto dto) {
         super(String.join(", ", dto.getMessages()));
     }
 }

@@ -2,8 +2,8 @@ package it.luca.spring.data.model.common;
 
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.enumeration.DataSourceType;
-import it.luca.spring.data.model.validation.common.ObjectValidation;
-import it.luca.spring.data.model.validation.common.ObjectValidationDto;
+import it.luca.spring.data.model.validation.common.PojoValidation;
+import it.luca.spring.data.model.validation.common.PojoValidationDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -19,7 +19,7 @@ public abstract class SourceSpecification<T> {
     protected final DataSourceId dataSourceId;
     protected final DataSourceType dataSourceType;
     protected final Class<T> inputDataClass;
-    protected final ObjectValidation<T> objectValidation;
+    protected final PojoValidation<T> pojoValidation;
     protected final String topicName;
 
     /**
@@ -28,8 +28,8 @@ public abstract class SourceSpecification<T> {
      * @return validation bean
      */
 
-    public ObjectValidationDto validate(T input) {
+    public PojoValidationDto validate(T input) {
 
-        return objectValidation.validate(input);
+        return pojoValidation.validate(input);
     }
 }
