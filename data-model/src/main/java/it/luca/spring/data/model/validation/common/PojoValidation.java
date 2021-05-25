@@ -33,9 +33,8 @@ public abstract class PojoValidation<T> {
 
         List<AttributeValidationDto> attributeValidations = map(rules, x -> x.validate(input));
         boolean validInput = attributeValidations.stream().allMatch(AttributeValidationDto::isValid);
-        List<String> messages = validInput ?
-                null :
-                 map(filter(attributeValidations, x -> !x.isValid()), AttributeValidationDto::getMessage);
+        List<String> messages = validInput ? null :
+                map(filter(attributeValidations, x -> !x.isValid()), AttributeValidationDto::getMessage);
 
         return new PojoValidationDto(validInput, messages);
     }

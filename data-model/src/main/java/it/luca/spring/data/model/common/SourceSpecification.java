@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Bean storing sataSource specification
+ * Bean storing dataSource specification
  * @param <T> data type
  */
 
