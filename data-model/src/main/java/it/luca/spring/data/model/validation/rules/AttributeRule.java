@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.validation.rules;
 
-import it.luca.spring.data.model.validation.common.ValidationDto;
+import it.luca.spring.data.model.validation.common.AttributeValidationDto;
 import it.luca.spring.data.model.validation.common.ValidationType;
 import lombok.AllArgsConstructor;
 
@@ -27,7 +27,7 @@ public abstract class AttributeRule<T, R> {
      * @return validation bean
      */
 
-    public ValidationDto validate(T inputObject) {
+    public AttributeValidationDto validate(T inputObject) {
 
         boolean valid = predicate.test(function.apply(inputObject));
         String erroDescription;
@@ -37,6 +37,6 @@ public abstract class AttributeRule<T, R> {
             default: throw new IllegalArgumentException(String.format("Unrecognized validationType: %s", validationType));
         }
 
-        return new ValidationDto(valid, valid ? null : erroDescription);
+        return new AttributeValidationDto(valid, valid ? null : erroDescription);
     }
 }

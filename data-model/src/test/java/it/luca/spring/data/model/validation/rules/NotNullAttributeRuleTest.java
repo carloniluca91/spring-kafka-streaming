@@ -1,14 +1,14 @@
 package it.luca.spring.data.model.validation.rules;
 
 import it.luca.spring.data.model.validation.TestBean;
-import it.luca.spring.data.model.validation.common.ValidationDto;
+import it.luca.spring.data.model.validation.common.AttributeValidationDto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NotNullRuleTest extends RuleTest<String> {
+class NotNullAttributeRuleTest extends RuleTest<String> {
 
-    public NotNullRuleTest() {
+    public NotNullAttributeRuleTest() {
         super(new NotNullAttributeRule<>(TestBean::getName, ATTRIBUTE_NAME));
     }
 
@@ -17,7 +17,7 @@ class NotNullRuleTest extends RuleTest<String> {
     public void validateFailure() {
 
         TestBean emptyBean = new TestBean();
-        ValidationDto failedValidation = rule.validate(emptyBean);
+        AttributeValidationDto failedValidation = rule.validate(emptyBean);
         assertFalse(failedValidation.isValid());
         assertNotNull(failedValidation.getMessage());
     }
@@ -28,7 +28,7 @@ class NotNullRuleTest extends RuleTest<String> {
 
         TestBean nonEmptyBean = new TestBean();
         nonEmptyBean.setName("hello");
-        ValidationDto successfulValidation = rule.validate(nonEmptyBean);
+        AttributeValidationDto successfulValidation = rule.validate(nonEmptyBean);
         assertTrue(successfulValidation.isValid());
         assertNull(successfulValidation.getMessage());
     }

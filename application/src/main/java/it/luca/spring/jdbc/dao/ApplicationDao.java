@@ -43,7 +43,7 @@ public class ApplicationDao {
     }
 
     /**
-     * Insert given ingestionRecord
+     * Insert ingestionRecord
      * @param record record to be inserted
      * @param <T> type of record to be inserted
      */

@@ -9,7 +9,7 @@ import static it.luca.spring.data.utils.Utils.filter;
 import static it.luca.spring.data.utils.Utils.map;
 
 /**
- * Class holding validation rule(s) for POJO of type T
+ * Class representing a set of validation rule(s) for POJO of type T
  * @param <T> POJO type
  */
 
@@ -29,14 +29,14 @@ public abstract class ObjectValidation<T> {
      * @return validation bean
      */
 
-    public ValidationDto validate(T input) {
+    public ObjectValidationDto validate(T input) {
 
-        List<ValidationDto> attributeValidations = map(rules, x -> x.validate(input));
-        boolean validInput = attributeValidations.stream().allMatch(ValidationDto::isValid);
-        String message = validInput ?
+        List<AttributeValidationDto> attributeValidations = map(rules, x -> x.validate(input));
+        boolean validInput = attributeValidations.stream().allMatch(AttributeValidationDto::isValid);
+        List<String> messages = validInput ?
                 null :
-                String.join(", ", map(filter(attributeValidations, x -> !x.isValid()), ValidationDto::getMessage));
+                 map(filter(attributeValidations, x -> !x.isValid()), AttributeValidationDto::getMessage);
 
-        return new ValidationDto(validInput, message);
+        return new ObjectValidationDto(validInput, messages);
     }
 }

@@ -54,27 +54,6 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    public static String gasDay(String date, String pattern) {
-
-        LocalDateTime localDateTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(pattern));
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DatePattern.DEFAULT_DATE);
-        return localDateTime.getHour() < 6 ?
-                localDateTime.minusDays(1).format(dateTimeFormatter) :
-                localDateTime.format(dateTimeFormatter);
-    }
-
-    /**
-     * Checks wheter given input is null
-     * @param input input object
-     * @param <T> type of input object
-     * @return Returns true if given input is null, false otherwise
-     */
-
-    public static <T> boolean isNotPresent(T input) {
-
-        return !isPresent(input);
-    }
-
     /**
      * Checks wheter given input is not null
      * @param input input object
@@ -115,21 +94,6 @@ public class Utils {
         return tList.stream()
                 .map(function)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * Joins given list of object using given separator
-     * @param separator string to be used for separating list's objects
-     * @param values list of objects
-     * @param <T> type of list's objects
-     * @return input list's objects joined using given separator
-     */
-
-    public static <T> String mkString(String separator, List<T> values) {
-
-        return values.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(separator));
     }
 
     public static LocalDateTime now() {

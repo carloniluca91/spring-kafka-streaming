@@ -1,10 +1,15 @@
 package it.luca.spring.data.model.webdisp;
 
 import it.luca.spring.data.model.common.SourceSpecificationTest;
-import it.luca.spring.data.model.validation.ExpectedValidation;
+import it.luca.spring.data.utils.DatePattern;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
+
+import static it.luca.spring.data.utils.Utils.now;
 
 class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
@@ -12,14 +17,24 @@ class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
         super("webdisp", new WebdispSpecification("topic"));
     }
 
+    @Test
     @Override
-    protected List<ExpectedValidation> getExpectedValidations() {
+    public void testSamples() {
 
-        return Arrays.asList(
-                new ExpectedValidation("webdisp_empty.xml", false, 2),
-                new ExpectedValidation("webdisp_empty_nomine.xml", false, 1),
-                new ExpectedValidation("webdisp_no_dataOraInvio.xml", false, 1),
-                new ExpectedValidation("webdisp_no_nomine.xml", false, 1),
-                new ExpectedValidation("webdisp_valid.xml", true, 0));
+        List<WebdispNomina> emptyNominas = new ArrayList<>();
+        String dataOraInvio = now(DatePattern.DEFAULT_TIMESTAMP);
+        WebdispNomina webdispNomina = new WebdispNomina(1d, 1d, "unitaMisuraEnergia", 1d,
+                "unitaMisuraVolume", "dataElaborazione", "dataDecorrenza", "codiceRemi",
+                "descrizioneRemi", "descrizionePunto", "tipoNomina", "cicloNomina",
+                "tipologiaPunto");
+
+        List<WebdispNomina> singletonNomina = Collections.singletonList(webdispNomina);
+        BiFunction<String, List<WebdispNomina>, WebdispPayload> biFunction = WebdispPayload::new;
+
+        testSample(biFunction.apply(null, null), false, 2);
+        testSample(biFunction.apply(null, singletonNomina), false, 1);
+        testSample(biFunction.apply(dataOraInvio, null), false, 1);
+        testSample(biFunction.apply(dataOraInvio, emptyNominas), false, 1);
+        testSample(biFunction.apply(dataOraInvio, Collections.singletonList(webdispNomina)), true, 1);
     }
 }

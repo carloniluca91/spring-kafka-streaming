@@ -3,12 +3,12 @@ package it.luca.spring.data.model.common;
 import it.luca.spring.data.enumeration.DataSourceId;
 import it.luca.spring.data.enumeration.DataSourceType;
 import it.luca.spring.data.model.validation.common.ObjectValidation;
-import it.luca.spring.data.model.validation.common.ValidationDto;
+import it.luca.spring.data.model.validation.common.ObjectValidationDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Class holding dataSource specification
+ * Bean storing sataSource specification
  * @param <T> data type
  */
 
@@ -28,7 +28,7 @@ public abstract class SourceSpecification<T> {
      * @return validation bean
      */
 
-    public ValidationDto validate(T input) {
+    public ObjectValidationDto validate(T input) {
 
         return objectValidation.validate(input);
     }

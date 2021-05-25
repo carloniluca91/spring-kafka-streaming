@@ -1,7 +1,7 @@
 package it.luca.spring.data.model.validation.rules;
 
 import it.luca.spring.data.model.validation.TestBean;
-import it.luca.spring.data.model.validation.common.ValidationDto;
+import it.luca.spring.data.model.validation.common.AttributeValidationDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -30,9 +30,9 @@ class NotEmptyListRuleTest extends RuleTest<List<?>> {
         secondBean.setList(new ArrayList<>());
         Stream.of(firstBean, secondBean).forEach(x -> {
 
-            ValidationDto validationDto = rule.validate(x);
-            assertFalse(validationDto.isValid());
-            assertNotNull(validationDto.getMessage());
+            AttributeValidationDto attributeValidationDto = rule.validate(x);
+            assertFalse(attributeValidationDto.isValid());
+            assertNotNull(attributeValidationDto.getMessage());
         });
     }
 
@@ -42,7 +42,7 @@ class NotEmptyListRuleTest extends RuleTest<List<?>> {
 
         TestBean emptyBean = new TestBean();
         emptyBean.setList(Arrays.asList("hello", "world"));
-        ValidationDto failedValidation = rule.validate(emptyBean);
+        AttributeValidationDto failedValidation = rule.validate(emptyBean);
         assertTrue(failedValidation.isValid());
         assertNull(failedValidation.getMessage());
     }
