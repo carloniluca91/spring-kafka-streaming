@@ -4,7 +4,7 @@ import it.luca.spring.data.utils.DatePattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.utils.time.TimeUtils.now;
 
 /**
  * Wrapper class for data to be published

@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.utils.time.TimeUtils.now;
+
 
 @Slf4j
 @Component

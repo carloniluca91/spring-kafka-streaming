@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.utils.time.TimeUtils.now;
 
 class Int002SpecificationTest extends SourceSpecificationTest<Int002Payload> {
 

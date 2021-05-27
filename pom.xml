@@ -44,6 +44,8 @@
 
         <jdbi.version>3.16.0</jdbi.version>
         <impala.driver.version>2.6.15</impala.driver.version>
+        <java.utils.version>0.1.0</java.utils.version>
+
         <impala.db.name>${application.name}</impala.db.name>
         <impala.table.ingestionLog>t_kafka_ingestion_log</impala.table.ingestionLog>
     </properties>
@@ -67,6 +69,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>it.luca.utils</groupId>
+            <artifactId>java-utils</artifactId>
+            <version>${java.utils.version}</version>
         </dependency>
     </dependencies>
 </project>

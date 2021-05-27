@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.utils.time.TimeUtils.now;
 
 class JarvisSpecificationTest extends SourceSpecificationTest<JarvisPayload> {
 

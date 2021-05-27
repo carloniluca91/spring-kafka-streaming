@@ -5,7 +5,8 @@ import it.luca.spring.data.model.validation.common.ValidationType;
 import java.util.List;
 import java.util.function.Function;
 
-import static it.luca.spring.data.utils.Utils.isPresent;
+import static it.luca.utils.functional.FunctionalUtils.isPresent;
+
 
 /**
  * Validation rule for a not-null and non-empty list of a POJO

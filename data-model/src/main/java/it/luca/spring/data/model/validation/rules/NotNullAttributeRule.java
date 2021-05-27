@@ -1,7 +1,7 @@
 package it.luca.spring.data.model.validation.rules;
 
 import it.luca.spring.data.model.validation.common.ValidationType;
-import it.luca.spring.data.utils.Utils;
+import it.luca.utils.functional.FunctionalUtils;
 
 import java.util.function.Function;
 
@@ -15,6 +15,6 @@ public class NotNullAttributeRule<T, R> extends AttributeRule<T, R> {
 
     public NotNullAttributeRule(Function<T, R> function, String attributeName) {
 
-        super(function, Utils::isPresent, attributeName, ValidationType.NULL_ATTRIBUTE);
+        super(function, FunctionalUtils::isPresent, attributeName, ValidationType.NULL_ATTRIBUTE);
     }
 }

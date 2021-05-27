@@ -6,8 +6,8 @@ import it.luca.spring.data.utils.DatePattern;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-import static it.luca.spring.data.utils.Utils.now;
-import static it.luca.spring.data.utils.Utils.orElse;
+import static it.luca.utils.functional.FunctionalUtils.orElse;
+import static it.luca.utils.time.TimeUtils.now;
 
 /**
  * Dto representing response to send back to dataSources

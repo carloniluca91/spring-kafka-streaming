@@ -2,7 +2,7 @@ package it.luca.spring.exception;
 
 import it.luca.spring.data.utils.DatePattern;
 
-import static it.luca.spring.data.utils.Utils.now;
+import static it.luca.utils.time.TimeUtils.now;
 
 public class EmptyInputException extends Exception {
 
