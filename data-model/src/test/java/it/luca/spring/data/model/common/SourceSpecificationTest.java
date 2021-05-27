@@ -2,14 +2,18 @@ package it.luca.spring.data.model.common;
 
 import it.luca.spring.data.model.validation.common.PojoValidationDto;
 import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
+import static it.luca.spring.data.utils.ObjectDeserializer.readValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @AllArgsConstructor
 public abstract class SourceSpecificationTest<T> {
 
-    protected final String sampleFolder;
+    protected final String sampleFileName;
     protected final SourceSpecification<T> specification;
 
     protected void testSample(T sample, boolean expectedValidation, Integer expectedValidationFailures) {
@@ -21,6 +25,13 @@ public abstract class SourceSpecificationTest<T> {
         } else {
             assertEquals(expectedValidationFailures, actual.getMessages().size());
         }
+    }
+
+    @Test
+    public void testDeserialization() throws IOException {
+
+        T instance = readValue(getClass().getClassLoader().getResourceAsStream(sampleFileName), specification);
+        testSample(instance, true, 0);
     }
 
     public abstract void testSamples();

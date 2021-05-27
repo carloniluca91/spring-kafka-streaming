@@ -1,5 +1,6 @@
 package it.luca.spring.controller;
 
+import it.luca.spring.data.model.int002.Int002Specification;
 import it.luca.spring.data.model.jarvis.JarvisSpecification;
 import it.luca.spring.data.model.webdisp.WebdispSpecification;
 import it.luca.spring.model.response.DataSourceResponseDto;
@@ -33,7 +34,7 @@ public class SourceController {
     /**
      * POST method for datasource WEBDISP
      * @param input: request body
-     * @return SourceResponse
+     * @return response entity with dataSource response POJO
      */
 
     @PostMapping("/webdisp")
@@ -47,13 +48,27 @@ public class SourceController {
     /**
      * POST method for datasource JARVIS
      * @param input: request body
-     * @return SourceResponse
+     * @return response entity with dataSource response POJO
      */
 
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
         JarvisSpecification specification = new JarvisSpecification(jarvisTopic);
+        DataSourceResponseDto dto = service.send(input, specification);
+        return new ResponseEntity<>(dto, dto.getHttpStatus());
+    }
+
+    /**
+     * POST method for datasource INT002
+     * @param input: request body
+     * @return response entity with dataSource response POJO
+     */
+
+    @PostMapping("/int002")
+    public ResponseEntity<DataSourceResponseDto> int002(@RequestBody String input) {
+
+        Int002Specification specification = new Int002Specification(int002Topic);
         DataSourceResponseDto dto = service.send(input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }

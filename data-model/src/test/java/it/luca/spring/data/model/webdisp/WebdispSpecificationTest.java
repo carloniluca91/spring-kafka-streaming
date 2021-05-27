@@ -14,7 +14,7 @@ import static it.luca.spring.data.utils.Utils.now;
 class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
     public WebdispSpecificationTest() {
-        super("webdisp", new WebdispSpecification("topic"));
+        super("webdisp.xml", new WebdispSpecification("topic"));
     }
 
     @Test
