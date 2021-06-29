@@ -49,7 +49,7 @@
 
         <jdbi.version>3.16.0</jdbi.version>
         <impala.driver.version>2.6.15</impala.driver.version>
-        <java.utils.version>0.1.0</java.utils.version>
+        <java.utils.version>0.3.0</java.utils.version>
 
         <impala.db.name>${application.name}</impala.db.name>
         <impala.table.ingestionLog>t_kafka_ingestion_log</impala.table.ingestionLog>
@@ -107,10 +107,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -118,7 +120,7 @@
         </dependency>
 
         <dependency>
-            <groupId>it.luca.utils</groupId>
+            <groupId>it.luca</groupId>
             <artifactId>java-utils</artifactId>
             <version>${java.utils.version}</version>
         </dependency>
