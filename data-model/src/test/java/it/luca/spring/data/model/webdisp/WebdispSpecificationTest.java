@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.BiFunction;
 
-import static it.luca.utils.time.TimeUtils.now;
+import static it.luca.utils.time.Supplier.now;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
@@ -17,9 +17,30 @@ class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
         super("webdisp.xml", new WebdispSpecification("topic"));
     }
 
+    @Override
+    protected void testSampleFileInstance(WebdispPayload instance) {
+
+        instance.getNomine().forEach(webdispNomina -> {
+
+            assertNotNull(webdispNomina.getPcs());
+            assertNotNull(webdispNomina.getValoreEnergia());
+            assertNotNull(webdispNomina.getUnitaMisuraEnergia());
+            assertNotNull(webdispNomina.getValoreVolume());
+            assertNotNull(webdispNomina.getUnitaMisuraVolume());
+            assertNotNull(webdispNomina.getDataElaborazione());
+            assertNotNull(webdispNomina.getDataDecorrenza());
+            assertNotNull(webdispNomina.getCodiceRemi());
+            assertNotNull(webdispNomina.getDescrizioneRemi());
+            assertNotNull(webdispNomina.getDescrizionePunto());
+            assertNotNull(webdispNomina.getTipoNomina());
+            assertNotNull(webdispNomina.getCicloNomina());
+            assertNotNull(webdispNomina.getTipologiaPunto());
+        });
+    }
+
     @Test
     @Override
-    public void testSamples() {
+    public void testValidation() {
 
         List<WebdispNomina> emptyNominas = new ArrayList<>();
         String dataOraInvio = now(DatePattern.DEFAULT_TIMESTAMP);
@@ -29,12 +50,11 @@ class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
                 "tipologiaPunto");
 
         List<WebdispNomina> singletonNomina = Collections.singletonList(webdispNomina);
-        BiFunction<String, List<WebdispNomina>, WebdispPayload> biFunction = WebdispPayload::new;
 
-        testSample(biFunction.apply(null, null), false, 2);
-        testSample(biFunction.apply(null, singletonNomina), false, 1);
-        testSample(biFunction.apply(dataOraInvio, null), false, 1);
-        testSample(biFunction.apply(dataOraInvio, emptyNominas), false, 1);
-        testSample(biFunction.apply(dataOraInvio, Collections.singletonList(webdispNomina)), true, 1);
+        testInstanceValidation(new WebdispPayload(null, null), false, 2);
+        testInstanceValidation(new WebdispPayload(null, singletonNomina), false, 1);
+        testInstanceValidation(new WebdispPayload(dataOraInvio, null), false, 1);
+        testInstanceValidation(new WebdispPayload(dataOraInvio, emptyNominas), false, 1);
+        testInstanceValidation(new WebdispPayload(dataOraInvio, Collections.singletonList(webdispNomina)), true, 0);
     }
 }

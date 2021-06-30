@@ -34,7 +34,7 @@ public class KafkaProducer {
         String topic = specification.getTopicName();
         DataSourceId dataSourceId = specification.getDataSourceId();
         ListenableFuture<SendResult<String, MsgWrapper<?>>> future = template.send(topic, msgWrapper);
-        future.addCallback(new ListenableFutureCallback<>() {
+        future.addCallback(new ListenableFutureCallback<SendResult<String, MsgWrapper<?>>>() {
 
             @Override
             @SuppressWarnings("NullableProblems")

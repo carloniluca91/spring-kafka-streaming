@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-import static it.luca.utils.time.TimeUtils.now;
-
+import static it.luca.utils.time.Supplier.now;
 
 @Slf4j
 @Component
@@ -52,7 +51,7 @@ public class ApplicationDao {
     public <T extends IngestionRecord> void insertIngestionRecord(T record) {
 
         String recordClass = record.getClass().getSimpleName();
-        String daoClassName = IngestionRecordDao.class.getName();
+        String daoClassName = IngestionRecordDao.class.getSimpleName();
         log.info("Saving instance of {} using {}", recordClass, daoClassName);
         try {
             jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertRecord(record));

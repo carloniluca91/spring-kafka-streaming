@@ -49,5 +49,7 @@ public class WebdispNomina {
         this.tipoNomina = tipoNomina;
         this.cicloNomina = cicloNomina;
         this.tipologiaPunto = tipologiaPunto;
+
+
     }
 }

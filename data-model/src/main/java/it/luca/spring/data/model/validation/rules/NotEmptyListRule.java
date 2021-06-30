@@ -5,7 +5,7 @@ import it.luca.spring.data.model.validation.common.ValidationType;
 import java.util.List;
 import java.util.function.Function;
 
-import static it.luca.utils.functional.FunctionalUtils.isPresent;
+import static it.luca.utils.functional.Optional.isPresent;
 
 
 /**

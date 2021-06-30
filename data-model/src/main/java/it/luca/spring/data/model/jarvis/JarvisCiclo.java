@@ -7,29 +7,29 @@ import lombok.Getter;
 @Getter
 public class JarvisCiclo {
 
-     private final String cicloDiRiferimento;
-     private final Double rinominaEnergia;
-     private final String unitaDiMisuraEnergiaRinomina;
-     private final Double limiteMinimoEnergia;
-     private final String unitaDiMisuraEnergiaLimiteMinimo;
-     private final Double limiteMassimoEnergia;
-     private final String unitaDiMisuraEnergiaLimiteMassimo;
+    private final String cicloDiRiferimento;
+    private final Double rinominaEnergia;
+    private final String unitaDiMisuraRinominaEnergia;
+    private final Double limiteMinimoEnergia;
+    private final String unitaDiMisuraLimiteMinimoEnergia;
+    private final Double limiteMassimoEnergia;
+    private final String unitaDiMisuraLimiteMassimoEnergia;
 
      @JsonCreator
      public JarvisCiclo(@JacksonXmlProperty(localName = "cicloDiRiferimento") String cicloDiRiferimento,
                         @JacksonXmlProperty(localName = "rinominaEnergia") Double rinominaEnergia,
-                        @JacksonXmlProperty(localName = "unitaDiMisuraEnergiaRinomina") String unitaDiMisuraEnergiaRinomina,
+                        @JacksonXmlProperty(localName = "unitaDiMisuraRinominaEnergia") String unitaDiMisuraEnergiaRinomina,
                         @JacksonXmlProperty(localName = "limiteMinimoEnergia") Double limiteMinimoEnergia,
-                        @JacksonXmlProperty(localName = "unitaDiMisuraEnergiaLimiteMinimo") String unitaDiMisuraEnergiaLimiteMinimo,
+                        @JacksonXmlProperty(localName = "unitaDiMisuraLimiteMinimoEnergia") String unitaDiMisuraLimiteMinimoEnergia,
                         @JacksonXmlProperty(localName = "limiteMassimoEnergia") Double limiteMassimoEnergia,
-                        @JacksonXmlProperty(localName = "unitaDiMisuraEnergiaLimiteMassimo") String unitaDiMisuraEnergiaLimiteMassimo) {
+                        @JacksonXmlProperty(localName = "unitaDiMisuraLimiteMassimoEnergia") String unitaDiMisuraLimiteMassimoEnergia) {
 
          this.cicloDiRiferimento = cicloDiRiferimento;
          this.rinominaEnergia = rinominaEnergia;
-         this.unitaDiMisuraEnergiaRinomina = unitaDiMisuraEnergiaRinomina;
+         this.unitaDiMisuraRinominaEnergia = unitaDiMisuraEnergiaRinomina;
          this.limiteMinimoEnergia = limiteMinimoEnergia;
-         this.unitaDiMisuraEnergiaLimiteMinimo = unitaDiMisuraEnergiaLimiteMinimo;
+         this.unitaDiMisuraLimiteMinimoEnergia = unitaDiMisuraLimiteMinimoEnergia;
          this.limiteMassimoEnergia = limiteMassimoEnergia;
-         this.unitaDiMisuraEnergiaLimiteMassimo = unitaDiMisuraEnergiaLimiteMassimo;
+         this.unitaDiMisuraLimiteMassimoEnergia = unitaDiMisuraLimiteMassimoEnergia;
      }
 }

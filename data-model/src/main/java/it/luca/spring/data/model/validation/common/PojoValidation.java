@@ -5,8 +5,8 @@ import it.luca.spring.data.model.validation.rules.AttributeRule;
 import java.util.Arrays;
 import java.util.List;
 
-import static it.luca.utils.functional.FunctionalUtils.filter;
-import static it.luca.utils.functional.FunctionalUtils.map;
+import static it.luca.utils.functional.Stream.map;
+import static it.luca.utils.functional.Stream.filter;
 
 /**
  * Class representing a set of validation rule(s) for POJO T

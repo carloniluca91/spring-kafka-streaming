@@ -8,8 +8,8 @@ import lombok.Data;
 
 import java.sql.Timestamp;
 
-import static it.luca.utils.functional.FunctionalUtils.*;
-import static it.luca.utils.time.TimeUtils.now;
+import static it.luca.utils.functional.Optional.*;
+import static it.luca.utils.time.Supplier.now;
 
 /**
  * Dto representing record stored on log table

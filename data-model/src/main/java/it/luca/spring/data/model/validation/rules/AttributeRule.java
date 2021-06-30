@@ -30,13 +30,13 @@ public abstract class AttributeRule<T, R> {
     public AttributeValidationDto validate(T inputObject) {
 
         boolean valid = predicate.test(function.apply(inputObject));
-        String erroDescription;
+        String errorDescription;
         switch (validationType) {
-            case EMPTY_LIST: erroDescription = String.format("'%s' list is null or empty", attributeName); break;
-            case NULL_ATTRIBUTE: erroDescription = String.format("'%s' attribute is null", attributeName); break;
+            case EMPTY_LIST: errorDescription = String.format("'%s' list is null or empty", attributeName); break;
+            case NULL_ATTRIBUTE: errorDescription = String.format("'%s' attribute is null", attributeName); break;
             default: throw new IllegalArgumentException(String.format("Unrecognized validationType: %s", validationType));
         }
 
-        return new AttributeValidationDto(valid, valid ? null : erroDescription);
+        return new AttributeValidationDto(valid, valid ? null : errorDescription);
     }
 }

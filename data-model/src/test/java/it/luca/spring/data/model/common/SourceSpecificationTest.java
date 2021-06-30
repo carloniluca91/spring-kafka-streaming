@@ -16,9 +16,9 @@ public abstract class SourceSpecificationTest<T> {
     protected final String sampleFileName;
     protected final SourceSpecification<T> specification;
 
-    protected void testSample(T sample, boolean expectedValidation, Integer expectedValidationFailures) {
+    protected void testInstanceValidation(T instance, boolean expectedValidation, Integer expectedValidationFailures) {
 
-        PojoValidationDto actual = specification.getPojoValidation().validate(sample);
+        PojoValidationDto actual = specification.getPojoValidation().validate(instance);
         assertEquals(expectedValidation, actual.isValid());
         if (expectedValidation) {
             assertNull(actual.getMessages());
@@ -28,11 +28,16 @@ public abstract class SourceSpecificationTest<T> {
     }
 
     @Test
-    public void testDeserialization() throws IOException {
+    public void testSampleFile() throws IOException {
 
         T instance = readValue(getClass().getClassLoader().getResourceAsStream(sampleFileName), specification);
-        testSample(instance, true, 0);
+        testInstanceValidation(instance, true, 0);
+        testSampleFileInstance(instance);
+
     }
 
-    public abstract void testSamples();
+    protected abstract void testSampleFileInstance(T instance);
+
+    @Test
+    public abstract void testValidation();
 }
