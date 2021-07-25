@@ -28,15 +28,17 @@
         <profile>
             <id>dev</id>
             <properties>
-                <application.name>1357_disp_dev</application.name>
                 <spring.profiles.active>dev</spring.profiles.active>
+                <jdbc.user>1357_disp_dev</jdbc.user>
+                <jdbc.password>1357_disp_dev</jdbc.password>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <application.name>1357_disp_prod</application.name>
                 <spring.profiles.active>prod</spring.profiles.active>
+                <jdbc.user>1357_disp_prod</jdbc.user>
+                <jdbc.password>1357_disp_prod</jdbc.password>
             </properties>
         </profile>
     </profiles>
@@ -48,11 +50,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <jdbi.version>3.16.0</jdbi.version>
-        <impala.driver.version>2.6.15</impala.driver.version>
         <java.utils.version>0.3.0</java.utils.version>
-
-        <impala.db.name>${application.name}</impala.db.name>
-        <impala.table.ingestionLog>t_kafka_ingestion_log</impala.table.ingestionLog>
+        <jdbc.url>jdbc:postgresql://localhost:5432/${jdbc.user}?currentSchema=log</jdbc.url>
+        <jdbc.log.table>t_kafka_ingestion_log</jdbc.log.table>
     </properties>
 
     <build>
@@ -92,12 +92,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Impala JDBC driver -->
-            <dependency>
-                <groupId>com.cloudera.impala</groupId>
-                <artifactId>impala-jdbc-42</artifactId>
-                <version>${impala.driver.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

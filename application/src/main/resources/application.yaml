@@ -1,7 +1,9 @@
 spring:
   datasource:
-    driverClassName: com.cloudera.impala.jdbc.Driver
-    url: jdbc:impala://quickstart-bigdata:21050/@impala.db.name@
+    driver-class-name: org.postgresql.Driver
+    username: @jdbc.user@
+    password: @jdbc.password@
+    url: @jdbc.url@
   kafka:
     producer:
       bootstrap-servers: quickstart-bigdata:9092

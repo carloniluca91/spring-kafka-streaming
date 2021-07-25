@@ -2,10 +2,10 @@ package it.luca.spring.jdbc.dto;
 
 import it.luca.spring.data.enumeration.IngestionOperationCode;
 import it.luca.spring.data.model.common.SourceSpecification;
-import it.luca.spring.data.utils.DatePattern;
-import it.luca.spring.model.dto.SentMessageDto;
 import lombok.Data;
+import org.apache.kafka.clients.producer.RecordMetadata;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import static it.luca.utils.functional.Optional.*;
@@ -18,8 +18,8 @@ import static it.luca.utils.time.Supplier.now;
 @Data
 public abstract class IngestionRecord {
 
-    protected final Timestamp messageTs = Timestamp.valueOf(now());
-    protected final String messageDt = now(DatePattern.DEFAULT_DATE);
+    protected final Timestamp messageTs;
+    protected final Date messageDt;
     protected final String dataSourceId;
     protected final String dataSourceType;
     protected final String inputDataClass;
@@ -30,19 +30,21 @@ public abstract class IngestionRecord {
     protected final String exceptionClass;
     protected final String exceptionMessage;
     protected final Timestamp insertTs = Timestamp.valueOf(now());
-    protected final String insertDt = now(DatePattern.DEFAULT_DATE);
+    protected final Date insertDt = Date.valueOf(now().toLocalDate());
 
     public IngestionRecord(SourceSpecification<?> specification,
-                           SentMessageDto sentMessageDto,
+                           RecordMetadata recordMetadata,
                            Exception exception) {
 
+        messageTs = orElse(recordMetadata, x -> new Timestamp(x.timestamp()), Timestamp.valueOf(now()));
+        messageDt = orElse(recordMetadata, x -> new Date(x.timestamp()), Date.valueOf(now().toLocalDate()));
         dataSourceId = specification.getDataSourceId().name();
         dataSourceType = specification.getDataSourceType().name();
         inputDataClass = specification.getInputDataClass().getName();
         topicName = specification.getTopicName();
-        topicPartition = orElse(sentMessageDto, SentMessageDto::getTopicPartition, -1);
+        topicPartition = orNull(recordMetadata, RecordMetadata::partition);
         ingestionOperationCode = (isPresent(exception) ? IngestionOperationCode.KO : IngestionOperationCode.OK).name();
-        messageOffset = orElse(sentMessageDto, SentMessageDto::getMessageOffset, -1L);
+        messageOffset = orNull(recordMetadata, RecordMetadata::offset);
         exceptionClass = orNull(exception, x -> x.getClass().getName());
         exceptionMessage = orNull(exception, Throwable::getMessage);
     }

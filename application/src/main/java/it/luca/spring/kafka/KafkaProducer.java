@@ -6,8 +6,8 @@ import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.jdbc.dao.ApplicationDao;
 import it.luca.spring.jdbc.dto.ErrorRecord;
 import it.luca.spring.jdbc.dto.SuccessRecord;
-import it.luca.spring.model.dto.SentMessageDto;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -48,10 +48,10 @@ public class KafkaProducer {
             @Override
             public void onSuccess(SendResult<String, MsgWrapper<?>> sendResult) {
 
-                int topicPartition = sendResult.getRecordMetadata().partition();
-                long messageOffset = sendResult.getRecordMetadata().offset();
-                log.info("({}) Sent message with offset {} to topic partition [{}, {}]", dataSourceId, messageOffset, topic, topicPartition);
-                dao.insertIngestionRecord(new SuccessRecord(specification, new SentMessageDto(topicPartition, messageOffset)));
+                RecordMetadata recordMetadata = sendResult.getRecordMetadata();
+                log.info("({}) Sent message with offset {} to topic partition [{}, {}]",
+                        dataSourceId, recordMetadata.offset(), topic, recordMetadata.partition());
+                dao.insertIngestionRecord(new SuccessRecord(specification, recordMetadata));
             }});
     }
 }
