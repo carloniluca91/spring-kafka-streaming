@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.rules;
+package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.common.ValidationType;
 
@@ -13,9 +13,9 @@ import static it.luca.utils.functional.Optional.isPresent;
  * @param <T> POJO type
  */
 
-public class NotEmptyListRule<T> extends AttributeRule<T, List<?>> {
+public class NotEmptyListCheck<T> extends AttributeCheck<T, List<?>> {
 
-    public NotEmptyListRule(Function<T, List<?>> function, String attributeName) {
+    public NotEmptyListCheck(Function<T, List<?>> function, String attributeName) {
 
         super(function, x -> isPresent(x) && !x.isEmpty(), attributeName, ValidationType.EMPTY_LIST);
     }

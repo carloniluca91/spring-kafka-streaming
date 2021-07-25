@@ -3,7 +3,7 @@ package it.luca.spring.controller;
 import it.luca.spring.data.model.int002.Int002Specification;
 import it.luca.spring.data.model.jarvis.JarvisSpecification;
 import it.luca.spring.data.model.webdisp.WebdispSpecification;
-import it.luca.spring.model.response.DataSourceResponseDto;
+import it.luca.spring.model.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +40,8 @@ public class SourceController {
     @PostMapping("/webdisp")
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
-        WebdispSpecification specification = new WebdispSpecification(webdispTopic);
-        DataSourceResponseDto dto = service.send(input, specification);
+        WebdispSpecification specification = new WebdispSpecification();
+        DataSourceResponseDto dto = service.send(webdispTopic, input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -54,8 +54,8 @@ public class SourceController {
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
-        JarvisSpecification specification = new JarvisSpecification(jarvisTopic);
-        DataSourceResponseDto dto = service.send(input, specification);
+        JarvisSpecification specification = new JarvisSpecification();
+        DataSourceResponseDto dto = service.send(jarvisTopic, input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -68,8 +68,8 @@ public class SourceController {
     @PostMapping("/int002")
     public ResponseEntity<DataSourceResponseDto> int002(@RequestBody String input) {
 
-        Int002Specification specification = new Int002Specification(int002Topic);
-        DataSourceResponseDto dto = service.send(input, specification);
+        Int002Specification specification = new Int002Specification();
+        DataSourceResponseDto dto = service.send(int002Topic, input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.rules;
+package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.TestBean;
 import it.luca.spring.data.model.validation.common.AttributeValidationDto;
@@ -15,7 +15,7 @@ class NotEmptyListRuleTest extends RuleTest<List<?>> {
 
     public NotEmptyListRuleTest() {
 
-        super(new NotEmptyListRule<>(TestBean::getList, ATTRIBUTE_NAME));
+        super(new NotEmptyListCheck<>(TestBean::getList, ATTRIBUTE_NAME));
     }
 
     @Test

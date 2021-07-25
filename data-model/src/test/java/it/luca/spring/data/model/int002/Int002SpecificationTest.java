@@ -16,7 +16,7 @@ class Int002SpecificationTest extends SourceSpecificationTest<Int002Payload> {
 
     public Int002SpecificationTest() {
 
-        super("int002.json", new Int002Specification("int002"));
+        super("int002.json", new Int002Specification());
     }
 
     @Override

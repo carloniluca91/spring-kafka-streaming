@@ -12,7 +12,7 @@
 
     <groupId>it.luca.spring</groupId>
     <artifactId>spring-kafka-streaming</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>pom</packaging>
     <description>Spring Boot Application with Kafka Producer</description>
     <organization>
@@ -91,15 +91,15 @@
                 <version>${jdbi.version}</version>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

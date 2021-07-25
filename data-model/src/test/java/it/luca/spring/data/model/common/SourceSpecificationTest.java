@@ -18,7 +18,7 @@ public abstract class SourceSpecificationTest<T> {
 
     protected void testInstanceValidation(T instance, boolean expectedValidation, Integer expectedValidationFailures) {
 
-        PojoValidationDto actual = specification.getPojoValidation().validate(instance);
+        PojoValidationDto actual = specification.validate(instance);
         assertEquals(expectedValidation, actual.isValid());
         if (expectedValidation) {
             assertNull(actual.getMessages());

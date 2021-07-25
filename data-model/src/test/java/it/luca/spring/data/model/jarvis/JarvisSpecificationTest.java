@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class JarvisSpecificationTest extends SourceSpecificationTest<JarvisPayload> {
 
-    public JarvisSpecificationTest() { super("jarvis.xml", new JarvisSpecification("jarvis")); }
+    public JarvisSpecificationTest() { super("jarvis.xml", new JarvisSpecification()); }
 
     @Override
     protected void testSampleFileInstance(JarvisPayload instance) {

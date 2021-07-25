@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.validation.common;
 
-import it.luca.spring.data.model.validation.rules.AttributeRule;
+import it.luca.spring.data.model.validation.check.AttributeCheck;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,12 +15,12 @@ import static it.luca.utils.functional.Stream.filter;
 
 public abstract class PojoValidation<T> {
 
-    private final List<AttributeRule<T, ?>> rules;
+    private final List<AttributeCheck<T, ?>> attributeChecks;
 
     @SafeVarargs
-    public PojoValidation(AttributeRule<T, ?>... rules) {
+    public PojoValidation(AttributeCheck<T, ?>... attributeChecks) {
 
-        this.rules = Arrays.asList(rules);
+        this.attributeChecks = Arrays.asList(attributeChecks);
     }
 
     /**
@@ -31,7 +31,7 @@ public abstract class PojoValidation<T> {
 
     public PojoValidationDto validate(T input) {
 
-        List<AttributeValidationDto> attributeValidations = map(rules, x -> x.validate(input));
+        List<AttributeValidationDto> attributeValidations = map(attributeChecks, x -> x.validate(input));
         boolean validInput = attributeValidations.stream().allMatch(AttributeValidationDto::isValid);
         List<String> messages = validInput ? null :
                 map(filter(attributeValidations, x -> !x.isValid()), AttributeValidationDto::getMessage);

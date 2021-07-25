@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.rules;
+package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.common.AttributeValidationDto;
 import it.luca.spring.data.model.validation.common.ValidationType;
@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  */
 
 @AllArgsConstructor
-public abstract class AttributeRule<T, R> {
+public abstract class AttributeCheck<T, R> {
 
     private final Function<T, R> function;
     private final Predicate<R> predicate;

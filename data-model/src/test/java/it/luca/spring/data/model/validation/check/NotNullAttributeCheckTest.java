@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.rules;
+package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.TestBean;
 import it.luca.spring.data.model.validation.common.AttributeValidationDto;
@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NotNullAttributeRuleTest extends RuleTest<String> {
+class NotNullAttributeCheckTest extends RuleTest<String> {
 
-    public NotNullAttributeRuleTest() {
-        super(new NotNullAttributeRule<>(TestBean::getName, ATTRIBUTE_NAME));
+    public NotNullAttributeCheckTest() {
+        super(new NotNullAttributeCheck<>(TestBean::getName, ATTRIBUTE_NAME));
     }
 
     @Test

@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.rules;
+package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.common.ValidationType;
 import it.luca.utils.functional.Optional;
@@ -11,9 +11,9 @@ import java.util.function.Function;
  * @param <R> attribute type
  */
 
-public class NotNullAttributeRule<T, R> extends AttributeRule<T, R> {
+public class NotNullAttributeCheck<T, R> extends AttributeCheck<T, R> {
 
-    public NotNullAttributeRule(Function<T, R> function, String attributeName) {
+    public NotNullAttributeCheck(Function<T, R> function, String attributeName) {
 
         super(function, Optional::isPresent, attributeName, ValidationType.NULL_ATTRIBUTE);
     }

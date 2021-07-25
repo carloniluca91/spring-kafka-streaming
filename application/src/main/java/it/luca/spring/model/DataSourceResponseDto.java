@@ -1,4 +1,4 @@
-package it.luca.spring.model.response;
+package it.luca.spring.model;
 
 import it.luca.spring.data.enumeration.IngestionOperationCode;
 import it.luca.spring.data.model.common.SourceSpecification;
@@ -29,7 +29,7 @@ public class DataSourceResponseDto {
 
         messageTs = now(DatePattern.DEFAULT_TIMESTAMP);
         messageDt = now(DatePattern.DEFAULT_DATE);
-        this.dataSourceId = specification.getDataSourceId().name();
+        this.dataSourceId = specification.getDataSourceId();
         this.dataSourceType = specification.getDataSourceType().name();
         ingestionOperationCode = orElse(exception, e -> IngestionOperationCode.KO, IngestionOperationCode.OK);
         ingestionOperationMessage = orElse(exception, Exception::getMessage, "Message received");
