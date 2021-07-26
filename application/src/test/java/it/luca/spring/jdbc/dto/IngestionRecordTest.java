@@ -22,7 +22,7 @@ class IngestionRecordTest {
     private final static long EXPECTED_OFFSET = 123;
 
     private final static Class<TestBean> EXPECTED_DATA_CLASS = TestBean.class;
-    private final static String EXPECTED_DATASOURCE_ID = EXPECTED_DATA_CLASS.getSimpleName().toUpperCase();
+    private final static String EXPECTED_DATASOURCE_ID = "DATASOURCE_ID";
     private final static DataSourceType EXPECTED_DATASOURCE_TYPE = DataSourceType.XML;
 
     @BeforeAll
@@ -49,8 +49,8 @@ class IngestionRecordTest {
         Exception exception = new IllegalArgumentException(EXCEPTION_MESSAGE);
         ErrorRecord record = new ErrorRecord(sourceSpecification, exception);
 
-        assertNotNull(record.getMessageTs());
-        assertNotNull(record.getMessageDt());
+        assertNotNull(record.getEventTs());
+        assertNotNull(record.getEventDt());
         assertEquals(EXPECTED_DATASOURCE_ID, record.getDataSourceId());
         assertEquals(EXPECTED_DATASOURCE_TYPE.name(), record.getDataSourceType());
         assertEquals(EXPECTED_DATA_CLASS.getName(), record.getInputDataClass());
@@ -67,8 +67,8 @@ class IngestionRecordTest {
 
         SuccessRecord record = new SuccessRecord(sourceSpecification, recordMetadata);
 
-        assertNotNull(record.getMessageTs());
-        assertNotNull(record.getMessageDt());
+        assertNotNull(record.getEventTs());
+        assertNotNull(record.getEventDt());
         assertEquals(EXPECTED_DATASOURCE_ID, record.getDataSourceId());
         assertEquals(EXPECTED_DATASOURCE_TYPE.name(), record.getDataSourceType());
         assertEquals(EXPECTED_DATA_CLASS.getName(), record.getInputDataClass());

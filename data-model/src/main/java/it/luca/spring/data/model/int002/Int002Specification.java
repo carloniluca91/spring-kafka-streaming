@@ -7,6 +7,6 @@ public class Int002Specification extends SourceSpecification<Int002Payload> {
 
     public Int002Specification() {
 
-        super(Int002Payload.class, DataSourceType.JSON, new Int002Validation());
+        super("INT002", Int002Payload.class, DataSourceType.JSON, new Int002Validation());
     }
 }

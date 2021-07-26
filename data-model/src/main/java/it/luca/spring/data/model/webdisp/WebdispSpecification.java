@@ -7,6 +7,6 @@ public class WebdispSpecification extends SourceSpecification<WebdispPayload> {
 
     public WebdispSpecification() {
 
-        super(WebdispPayload.class, DataSourceType.XML, new WebdispValidation());
+        super("WEBDISP", WebdispPayload.class, DataSourceType.XML, new WebdispValidation());
     }
 }

@@ -7,6 +7,6 @@ public class JarvisSpecification extends SourceSpecification<JarvisPayload> {
 
     public JarvisSpecification() {
 
-        super(JarvisPayload.class, DataSourceType.XML, new JarvisValidation());
+        super("JARVIS", JarvisPayload.class, DataSourceType.XML, new JarvisValidation());
     }
 }

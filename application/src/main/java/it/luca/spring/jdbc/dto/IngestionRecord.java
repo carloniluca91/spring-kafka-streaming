@@ -18,8 +18,8 @@ import static it.luca.utils.time.Supplier.now;
 @Getter
 public abstract class IngestionRecord {
 
-    protected final Timestamp messageTs;
-    protected final Date messageDt;
+    protected final Timestamp eventTs;
+    protected final Date eventDt;
     protected final String dataSourceId;
     protected final String dataSourceType;
     protected final String inputDataClass;
@@ -36,8 +36,8 @@ public abstract class IngestionRecord {
                            RecordMetadata recordMetadata,
                            Exception exception) {
 
-        messageTs = orElse(recordMetadata, x -> new Timestamp(x.timestamp()), Timestamp.valueOf(now()));
-        messageDt = orElse(recordMetadata, x -> new Date(x.timestamp()), Date.valueOf(now().toLocalDate()));
+        eventTs = orElse(recordMetadata, x -> new Timestamp(x.timestamp()), Timestamp.valueOf(now()));
+        eventDt = orElse(recordMetadata, x -> new Date(x.timestamp()), Date.valueOf(now().toLocalDate()));
         dataSourceId = specification.getDataSourceId();
         dataSourceType = specification.getDataSourceType().name();
         inputDataClass = specification.getInputDataClass().getName();

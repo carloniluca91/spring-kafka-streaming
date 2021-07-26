@@ -15,6 +15,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public abstract class SourceSpecification<T> {
 
+    private final String dataSourceId;
     private final Class<T> inputDataClass;
     private final DataSourceType dataSourceType;
     private final PojoValidation<T> pojoValidation;
@@ -28,10 +29,5 @@ public abstract class SourceSpecification<T> {
     public PojoValidationDto validate(T input) {
 
         return getPojoValidation().validate(input);
-    }
-
-    public String getDataSourceId() {
-
-        return getInputDataClass().getSimpleName().toUpperCase();
     }
 }
