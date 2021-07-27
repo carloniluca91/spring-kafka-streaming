@@ -1,8 +1,8 @@
 package it.luca.spring.controller;
 
-import it.luca.spring.data.model.int002.Int002Specification;
-import it.luca.spring.data.model.jarvis.JarvisSpecification;
-import it.luca.spring.data.model.webdisp.WebdispSpecification;
+import it.luca.spring.data.model.int002.Int002SpecificationFactory;
+import it.luca.spring.data.model.jarvis.JarvisSpecificationFactory;
+import it.luca.spring.data.model.webdisp.WebdispSpecificationFactory;
 import it.luca.spring.model.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +22,20 @@ public class SourceController {
     @Value("${topic.webdisp}")
     private String webdispTopic;
 
+    @Autowired
+    private WebdispSpecificationFactory webdispSpecificationFactory;
+
     @Value("${topic.jarvis}")
     private String jarvisTopic;
 
+    @Autowired
+    private JarvisSpecificationFactory jarvisSpecificationFactory;
+
     @Value("${topic.int002}")
     private String int002Topic;
+
+    @Autowired
+    private Int002SpecificationFactory int002SpecificationFactory;
 
     @Autowired
     private PublishService service;
@@ -40,8 +49,7 @@ public class SourceController {
     @PostMapping("/webdisp")
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
-        WebdispSpecification specification = new WebdispSpecification();
-        DataSourceResponseDto dto = service.send(webdispTopic, input, specification);
+        DataSourceResponseDto dto = service.send(webdispTopic, input, webdispSpecificationFactory.getInstance());
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -54,8 +62,7 @@ public class SourceController {
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
-        JarvisSpecification specification = new JarvisSpecification();
-        DataSourceResponseDto dto = service.send(jarvisTopic, input, specification);
+        DataSourceResponseDto dto = service.send(jarvisTopic, input, jarvisSpecificationFactory.getInstance());
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -68,8 +75,7 @@ public class SourceController {
     @PostMapping("/int002")
     public ResponseEntity<DataSourceResponseDto> int002(@RequestBody String input) {
 
-        Int002Specification specification = new Int002Specification();
-        DataSourceResponseDto dto = service.send(int002Topic, input, specification);
+        DataSourceResponseDto dto = service.send(int002Topic, input, int002SpecificationFactory.getInstance());
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

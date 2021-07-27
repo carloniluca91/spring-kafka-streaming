@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.common;
 
-import it.luca.spring.data.model.validation.common.PojoValidationDto;
+import it.luca.spring.data.model.validation.dto.PojoValidationDto;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +19,11 @@ public abstract class SourceSpecificationTest<T> {
     protected void testInstanceValidation(T instance, boolean expectedValidation, Integer expectedValidationFailures) {
 
         PojoValidationDto actual = specification.validate(instance);
-        assertEquals(expectedValidation, actual.isValid());
+        assertEquals(expectedValidation, actual.isPojoInstanceValid());
         if (expectedValidation) {
-            assertNull(actual.getMessages());
+            assertNull(actual.getAttributeValidationMessages());
         } else {
-            assertEquals(expectedValidationFailures, actual.getMessages().size());
+            assertEquals(expectedValidationFailures, actual.getAttributeValidationMessages().size());
         }
     }
 

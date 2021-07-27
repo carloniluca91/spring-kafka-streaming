@@ -1,4 +1,4 @@
-package it.luca.spring.data.model.validation.common;
+package it.luca.spring.data.model.validation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.List;
 public class PojoValidationDto {
 
     @Accessors(fluent = true)
-    private final boolean isValid;
+    private final boolean isPojoInstanceValid;
 
-    private final List<String> messages;
+    private final List<String> attributeValidationMessages;
 }

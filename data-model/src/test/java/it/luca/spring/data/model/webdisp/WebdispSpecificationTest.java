@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
     public WebdispSpecificationTest() {
-        super("webdisp.xml", new WebdispSpecification());
+        super("webdisp.xml", new WebdispSpecificationFactory().createInstance());
     }
 
     @Override

@@ -4,7 +4,7 @@ import it.luca.spring.data.model.validation.TestBean;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public abstract class RuleTest<R> {
+public abstract class AttributeCheckTest<R> {
 
     protected final static String ATTRIBUTE_NAME = "attribute";
     protected final AttributeCheck<TestBean, R> rule;

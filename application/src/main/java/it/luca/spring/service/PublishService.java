@@ -3,7 +3,7 @@ package it.luca.spring.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.model.common.MsgWrapper;
 import it.luca.spring.data.model.common.SourceSpecification;
-import it.luca.spring.data.model.validation.common.PojoValidationDto;
+import it.luca.spring.data.model.validation.dto.PojoValidationDto;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.exception.InputValidationException;
 import it.luca.spring.jdbc.dao.ApplicationDao;
@@ -54,7 +54,7 @@ public class PublishService {
                 PojoValidationDto pojoValidationDto = specification.validate(payload);
 
                 // If validation successes, publish on Kafka
-                if (pojoValidationDto.isValid()) {
+                if (pojoValidationDto.isPojoInstanceValid()) {
                     producer.sendMessage(topic, new MsgWrapper<>(payload), specification, dao);
                     return new DataSourceResponseDto(specification, HttpStatus.OK, null);
                 } else {

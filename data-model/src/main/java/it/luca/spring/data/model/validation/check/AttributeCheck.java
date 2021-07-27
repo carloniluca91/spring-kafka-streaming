@@ -1,8 +1,8 @@
 package it.luca.spring.data.model.validation.check;
 
-import it.luca.spring.data.model.validation.common.AttributeValidationDto;
-import it.luca.spring.data.model.validation.common.ValidationType;
+import it.luca.spring.data.model.validation.dto.AttributeValidationDto;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -13,13 +13,13 @@ import java.util.function.Predicate;
  * @param <R> attribute type
  */
 
+@Getter
 @AllArgsConstructor
 public abstract class AttributeCheck<T, R> {
 
-    private final Function<T, R> function;
-    private final Predicate<R> predicate;
-    private final String attributeName;
-    private final ValidationType validationType;
+    protected final String attributeName;
+    protected final Function<T, R> function;
+    protected final Predicate<R> predicate;
 
     /**
      * Validates instance of T by applying given function and testing given predicate
@@ -30,13 +30,8 @@ public abstract class AttributeCheck<T, R> {
     public AttributeValidationDto validate(T inputObject) {
 
         boolean valid = predicate.test(function.apply(inputObject));
-        String errorDescription;
-        switch (validationType) {
-            case EMPTY_LIST: errorDescription = String.format("'%s' list is null or empty", attributeName); break;
-            case NULL_ATTRIBUTE: errorDescription = String.format("'%s' attribute is null", attributeName); break;
-            default: throw new IllegalArgumentException(String.format("Unrecognized validationType: %s", validationType));
-        }
-
-        return new AttributeValidationDto(valid, valid ? null : errorDescription);
+        return new AttributeValidationDto(valid, valid ? null : getErrorDescription());
     }
+
+    protected abstract String getErrorDescription();
 }

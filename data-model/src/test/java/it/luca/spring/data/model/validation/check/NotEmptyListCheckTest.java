@@ -1,7 +1,7 @@
 package it.luca.spring.data.model.validation.check;
 
 import it.luca.spring.data.model.validation.TestBean;
-import it.luca.spring.data.model.validation.common.AttributeValidationDto;
+import it.luca.spring.data.model.validation.dto.AttributeValidationDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NotEmptyListRuleTest extends RuleTest<List<?>> {
+class NotEmptyListCheckTest extends AttributeCheckTest<List<?>> {
 
-    public NotEmptyListRuleTest() {
+    public NotEmptyListCheckTest() {
 
-        super(new NotEmptyListCheck<>(TestBean::getList, ATTRIBUTE_NAME));
+        super(new NotEmptyListCheck<>(ATTRIBUTE_NAME, TestBean::getList));
     }
 
     @Test
