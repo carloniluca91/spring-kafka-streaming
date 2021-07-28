@@ -2,6 +2,7 @@ package it.luca.spring.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.model.common.MsgWrapper;
+import it.luca.spring.data.model.common.PojoValidation;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.data.model.validation.dto.PojoValidationDto;
 import it.luca.spring.exception.EmptyInputException;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.Predicate;
 
-import static it.luca.spring.data.utils.ObjectDeserializer.readValue;
+import static it.luca.spring.data.utils.ObjectDeserializer.deserialize;
 import static it.luca.utils.functional.Optional.isPresent;
 
 @Slf4j
@@ -44,13 +45,12 @@ public class PublishService {
         String dataSourceId = specification.getDataSourceId();
         Predicate<String> emptyOrBlank = s -> !isPresent(s) || s.isEmpty() || s.trim().isEmpty();
         try {
-
             // If input string is not empty or blank
             if (emptyOrBlank.negate().test(input)) {
 
                 // Deserialize it and validate its content
                 log.info("({}) Received call. Input:\n\n{}\n", dataSourceId, input);
-                T payload = readValue(input, specification);
+                T payload = deserialize(input, specification);
                 PojoValidationDto pojoValidationDto = specification.validate(payload);
 
                 // If validation successes, publish on Kafka
@@ -84,15 +84,15 @@ public class PublishService {
                 (exception instanceof EmptyInputException) ||
                 (exception instanceof InputValidationException)) {
 
-            errorMsg = "({}) Caught exception while processing received data. Class: {}. Message: {}";
+            errorMsg = "Caught exception while processing received data";
             status = HttpStatus.UNPROCESSABLE_ENTITY;
         } else {
 
-            errorMsg = "({}) Caught exception while delivering data. Class: {}. Message: {}";
+            errorMsg = "Caught exception while delivering data";
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
-        log.error(errorMsg, specification.getDataSourceId(), exception.getClass().getName(), exception.getMessage());
+        log.error("({}) {}. Class: {}, message: {}", specification.getDataSourceId(), errorMsg, exception.getClass().getName(), exception.getMessage());
         dao.insertIngestionRecord(new ErrorRecord(specification, exception));
         return new DataSourceResponseDto(specification, status, exception);
     }

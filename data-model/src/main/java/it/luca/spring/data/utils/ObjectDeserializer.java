@@ -28,15 +28,15 @@ public class ObjectDeserializer {
      * @throws IOException if deserialization fails
      */
 
-    public static <T> T readValue(InputStream inputStream, SourceSpecification<T> specification) throws IOException {
+    public static <T> T deserialize(InputStream inputStream, SourceSpecification<T> specification) throws IOException {
 
-        Class<T> valueType = specification.getInputDataClass();
-        String className = specification.getInputDataClass().getSimpleName();
+        Class<T> inputDataClass = specification.getInputDataClass();
+        String className = inputDataClass.getSimpleName();
         DataSourceType dataSourceType = specification.getDataSourceType();
         log.info("Deserializing input {} content as instance of {}", dataSourceType, className);
         T payload = (dataSourceType == DataSourceType.JSON) ?
-                jsonMapper.readValue(inputStream, valueType) :
-                xmlMapper.readValue(inputStream, valueType);
+                jsonMapper.readValue(inputStream, inputDataClass) :
+                xmlMapper.readValue(inputStream, inputDataClass);
 
         log.info("Deserialized input {} content as instance of {}", dataSourceType, className);
         return payload;
@@ -51,15 +51,15 @@ public class ObjectDeserializer {
      * @throws IOException if deserialization fails
      */
 
-    public static <T> T readValue(String content, SourceSpecification<T> specification) throws IOException {
+    public static <T> T deserialize(String content, SourceSpecification<T> specification) throws IOException {
 
-        Class<T> valueType = specification.getInputDataClass();
-        String className = specification.getInputDataClass().getSimpleName();
+        Class<T> inputDataClass = specification.getInputDataClass();
+        String className = inputDataClass.getSimpleName();
         DataSourceType dataSourceType = specification.getDataSourceType();
         log.info("Deserializing input {} content as instance of {}", dataSourceType, className);
         T payload = (dataSourceType == DataSourceType.JSON) ?
-                jsonMapper.readValue(content, valueType) :
-                xmlMapper.readValue(content, valueType);
+                jsonMapper.readValue(content, inputDataClass) :
+                xmlMapper.readValue(content, inputDataClass);
 
         log.info("Deserialized input {} content as instance of {}", dataSourceType, className);
         return payload;

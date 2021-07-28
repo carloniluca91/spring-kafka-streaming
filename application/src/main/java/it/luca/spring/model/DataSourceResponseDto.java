@@ -6,6 +6,7 @@ import it.luca.spring.data.utils.DatePattern;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+import static it.luca.utils.functional.Optional.isPresent;
 import static it.luca.utils.functional.Optional.orElse;
 import static it.luca.utils.time.Supplier.now;
 
@@ -31,7 +32,7 @@ public class DataSourceResponseDto {
         messageDt = now(DatePattern.DEFAULT_DATE);
         this.dataSourceId = specification.getDataSourceId();
         this.dataSourceType = specification.getDataSourceType().name();
-        ingestionOperationCode = orElse(exception, e -> IngestionOperationCode.KO, IngestionOperationCode.OK);
+        ingestionOperationCode = isPresent(exception) ? IngestionOperationCode.KO : IngestionOperationCode.OK;
         ingestionOperationMessage = orElse(exception, Exception::getMessage, "Message received");
         this.httpStatus = httpStatus;
         this.httpStatusDescription = httpStatus.getReasonPhrase();

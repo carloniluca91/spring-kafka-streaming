@@ -1,12 +1,13 @@
 package it.luca.spring.data.model.common;
 
 import it.luca.spring.data.model.validation.dto.PojoValidationDto;
+import it.luca.spring.data.utils.ObjectDeserializer;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static it.luca.spring.data.utils.ObjectDeserializer.readValue;
+import static it.luca.spring.data.utils.ObjectDeserializer.deserialize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -30,7 +31,7 @@ public abstract class SourceSpecificationTest<T> {
     @Test
     public void testSampleFile() throws IOException {
 
-        T instance = readValue(getClass().getClassLoader().getResourceAsStream(sampleFileName), specification);
+        T instance = ObjectDeserializer.deserialize(getClass().getClassLoader().getResourceAsStream(sampleFileName), specification);
         testInstanceValidation(instance, true, 0);
         testSampleFileInstance(instance);
 

@@ -49,7 +49,7 @@ public class KafkaProducer {
 
                 RecordMetadata recordMetadata = sendResult.getRecordMetadata();
                 log.info("({}) Sent message with offset {} to topic partition [{}, {}]",
-                        dataSourceId, recordMetadata.offset(), topic, recordMetadata.partition());
+                        dataSourceId, recordMetadata.offset(), recordMetadata.topic(), recordMetadata.partition());
                 dao.insertIngestionRecord(new SuccessRecord(specification, recordMetadata));
             }});
     }
