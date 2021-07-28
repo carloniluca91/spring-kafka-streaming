@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 public abstract class AttributeCheckTest<R> {
 
     protected final static String ATTRIBUTE_NAME = "attribute";
-    protected final AttributeCheck<TestBean, R> rule;
+    protected final AttributeCheck<TestBean, R> attributeCheck;
 
     public abstract void validateFailure();
 

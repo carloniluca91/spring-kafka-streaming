@@ -12,7 +12,7 @@ public class WebdispSpecificationFactory extends SourceSpecificationFactory<Webd
     @Override
     protected SourceSpecification<WebdispPayload> createInstance() {
 
-        PojoValidation<WebdispPayload> validation2 = PojoValidation.<WebdispPayload>builder()
+        PojoValidation<WebdispPayload> validation = PojoValidation.<WebdispPayload>builder()
                 .withNotNullAttributeCheck("dataOraInvio", WebdispPayload::getDataOraInvio)
                 .withNotNullOrEmptyListCheck("nomine", WebdispPayload::getNomine)
                 .build();
@@ -21,7 +21,7 @@ public class WebdispSpecificationFactory extends SourceSpecificationFactory<Webd
                 .dataSourceId("WEBDISP")
                 .dataSourceType(DataSourceType.XML)
                 .inputDataClass(WebdispPayload.class)
-                .pojoValidation(validation2)
+                .pojoValidation(validation)
                 .build();
     }
 }

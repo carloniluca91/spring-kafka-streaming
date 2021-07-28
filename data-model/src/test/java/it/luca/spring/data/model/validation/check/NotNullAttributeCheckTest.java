@@ -17,7 +17,7 @@ class NotNullAttributeCheckTest extends AttributeCheckTest<String> {
     public void validateFailure() {
 
         TestBean emptyBean = new TestBean();
-        AttributeValidationDto failedValidation = rule.validate(emptyBean);
+        AttributeValidationDto failedValidation = attributeCheck.validate(emptyBean);
         assertFalse(failedValidation.isValid());
         assertNotNull(failedValidation.getMessage());
     }
@@ -28,7 +28,7 @@ class NotNullAttributeCheckTest extends AttributeCheckTest<String> {
 
         TestBean nonEmptyBean = new TestBean();
         nonEmptyBean.setName("hello");
-        AttributeValidationDto successfulValidation = rule.validate(nonEmptyBean);
+        AttributeValidationDto successfulValidation = attributeCheck.validate(nonEmptyBean);
         assertTrue(successfulValidation.isValid());
         assertNull(successfulValidation.getMessage());
     }

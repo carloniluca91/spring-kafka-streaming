@@ -30,7 +30,7 @@ class NotEmptyListCheckTest extends AttributeCheckTest<List<?>> {
         secondBean.setList(new ArrayList<>());
         Stream.of(firstBean, secondBean).forEach(x -> {
 
-            AttributeValidationDto attributeValidationDto = rule.validate(x);
+            AttributeValidationDto attributeValidationDto = attributeCheck.validate(x);
             assertFalse(attributeValidationDto.isValid());
             assertNotNull(attributeValidationDto.getMessage());
         });
@@ -42,7 +42,7 @@ class NotEmptyListCheckTest extends AttributeCheckTest<List<?>> {
 
         TestBean emptyBean = new TestBean();
         emptyBean.setList(Arrays.asList("hello", "world"));
-        AttributeValidationDto failedValidation = rule.validate(emptyBean);
+        AttributeValidationDto failedValidation = attributeCheck.validate(emptyBean);
         assertTrue(failedValidation.isValid());
         assertNull(failedValidation.getMessage());
     }
