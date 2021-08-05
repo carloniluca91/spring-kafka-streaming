@@ -1,5 +1,6 @@
 package it.luca.spring.controller;
 
+import it.luca.spring.data.model.conduzione.ConduzioneSpecificationFactory;
 import it.luca.spring.data.model.int002.Int002SpecificationFactory;
 import it.luca.spring.data.model.jarvis.JarvisSpecificationFactory;
 import it.luca.spring.data.model.webdisp.WebdispSpecificationFactory;
@@ -36,6 +37,12 @@ public class SourceController {
 
     @Autowired
     private Int002SpecificationFactory int002SpecificationFactory;
+
+    @Value("${topic.conduzione}")
+    private String conduzioneTopic;
+
+    @Autowired
+    private ConduzioneSpecificationFactory conduzioneSpecificationFactory;
 
     @Autowired
     private PublishService service;
@@ -76,6 +83,19 @@ public class SourceController {
     public ResponseEntity<DataSourceResponseDto> int002(@RequestBody String input) {
 
         DataSourceResponseDto dto = service.send(int002Topic, input, int002SpecificationFactory.getInstance());
+        return new ResponseEntity<>(dto, dto.getHttpStatus());
+    }
+
+    /**
+     * POST method for datasource CONDUZIONE
+     * @param input: request body
+     * @return response entity with dataSource response POJO
+     */
+
+    @PostMapping("/conduzione")
+    public ResponseEntity<DataSourceResponseDto> conduzione(@RequestBody String input) {
+
+        DataSourceResponseDto dto = service.send(conduzioneTopic, input, conduzioneSpecificationFactory.getInstance());
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

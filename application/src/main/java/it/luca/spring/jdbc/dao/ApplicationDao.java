@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
+import static it.luca.utils.functional.Optional.isPresent;
+
 @Slf4j
 @Component
 @EnableScheduling
@@ -25,11 +27,16 @@ public class ApplicationDao {
     @PostConstruct
     private void initJdbi() {
 
-        jdbi = Jdbi.create(dataSource)
-                .installPlugin(new SqlObjectPlugin())
-                .installPlugin(new PostgresPlugin());
-
-        log.info("Successfully initialized {} instance", jdbi.getClass().getSimpleName());
+        String jdbiClass = Jdbi.class.getSimpleName();
+        try {
+            jdbi = Jdbi.create(dataSource)
+                    .installPlugin(new SqlObjectPlugin())
+                    .installPlugin(new PostgresPlugin());
+            log.info("Successfully initialized {} instance", jdbiClass);
+        } catch (Exception e) {
+            log.warn("Caught exception while initializing {} instance. Therefore, {}(s) will not be saved on application database. Stack trace: ",
+                    jdbiClass, IngestionRecord.class.getSimpleName(), e);
+        }
     }
 
     /**
@@ -42,12 +49,17 @@ public class ApplicationDao {
 
         String recordClass = record.getClass().getSimpleName();
         String daoClassName = IngestionRecordDao.class.getSimpleName();
-        log.info("Saving instance of {} using {}", recordClass, daoClassName);
-        try {
-            jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertRecord(record));
-            log.info("Saved instance of {} using {}", recordClass, daoClassName);
-        } catch (Exception e) {
-            log.error("Caught exception while saving instance of {}. Class: {}. Message: {}", recordClass, e.getClass().getName(), e.getMessage());
+        if (isPresent(jdbi)) {
+            log.info("Saving current instance of {} using {}", recordClass, daoClassName);
+            try {
+                jdbi.useHandle(handle -> handle.attach(IngestionRecordDao.class).insertRecord(record));
+                log.info("Saved current instance of {} using {}", recordClass, daoClassName);
+            } catch (Exception e) {
+                log.error("Caught exception while saving instance of {}. Class: {}. Message: {}", recordClass, e.getClass().getName(), e.getMessage());
+            }
+        } else {
+            log.warn("Current instance of {} will not be saved due to a previous exception occurred while initializing database connection",
+                    recordClass);
         }
     }
 }

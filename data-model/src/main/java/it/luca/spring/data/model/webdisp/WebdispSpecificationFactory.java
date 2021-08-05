@@ -1,9 +1,9 @@
 package it.luca.spring.data.model.webdisp;
 
 import it.luca.spring.data.enumeration.DataSourceType;
+import it.luca.spring.data.model.common.PojoValidation;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.data.model.common.SourceSpecificationFactory;
-import it.luca.spring.data.model.common.PojoValidation;
 import org.springframework.stereotype.Component;
 
 @Component

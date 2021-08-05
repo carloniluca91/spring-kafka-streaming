@@ -22,3 +22,4 @@ topic:
   webdisp: 1357-disp-webdisp-@spring.profiles.active@
   jarvis: 1357-disp-jarvis-@spring.profiles.active@
   int002: 1357-disp-int002-@spring.profiles.active@
+  conduzione: 1357-disp-conduzione-@spring.profiles.active@

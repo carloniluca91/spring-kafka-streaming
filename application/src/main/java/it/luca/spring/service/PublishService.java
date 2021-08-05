@@ -2,7 +2,6 @@ package it.luca.spring.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.model.common.MsgWrapper;
-import it.luca.spring.data.model.common.PojoValidation;
 import it.luca.spring.data.model.common.SourceSpecification;
 import it.luca.spring.data.model.validation.dto.PojoValidationDto;
 import it.luca.spring.exception.EmptyInputException;
