@@ -26,6 +26,6 @@ COMMENT ON COLUMN @jdbc.log.table@.topic_name IS 'Topic where message has been p
 COMMENT ON COLUMN @jdbc.log.table@.topic_partition IS 'Partition where message has been published (null if KO)';
 COMMENT ON COLUMN @jdbc.log.table@.message_offset IS 'Offset of published message (null if KO)';
 COMMENT ON COLUMN @jdbc.log.table@.exception_class IS 'FQ name of exception class (null if OK)';
-COMMENT ON COLUMN @jdbc.log.table@.exception_message IS 'Message of exception raised by sample generation process (null if OK)';
+COMMENT ON COLUMN @jdbc.log.table@.exception_message IS 'Message of exception raised by ingestion process (null if OK)';
 COMMENT ON COLUMN @jdbc.log.table@.insert_ts IS 'Timestamp of table record';
 COMMENT ON COLUMN @jdbc.log.table@.insert_dt IS 'Date of table record';
