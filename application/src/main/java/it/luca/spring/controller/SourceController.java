@@ -1,8 +1,11 @@
 package it.luca.spring.controller;
 
+import it.luca.spring.configuration.ApplicationDatasources;
+import it.luca.spring.data.model.common.SourceSpecification2;
 import it.luca.spring.data.model.conduzione.ConduzioneSpecificationFactory;
 import it.luca.spring.data.model.int002.Int002SpecificationFactory;
 import it.luca.spring.data.model.jarvis.JarvisSpecificationFactory;
+import it.luca.spring.data.model.webdisp.WebdispPayload;
 import it.luca.spring.data.model.webdisp.WebdispSpecificationFactory;
 import it.luca.spring.model.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
@@ -19,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/source")
 public class SourceController {
+
+    @Autowired
+    private ApplicationDatasources datasources;
 
     @Value("${topic.webdisp}")
     private String webdispTopic;
@@ -56,9 +62,11 @@ public class SourceController {
     @PostMapping("/webdisp")
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
+        SourceSpecification2<WebdispPayload> specification2 = datasources.getSpecificationForDataClass(WebdispPayload.class);
         DataSourceResponseDto dto = service.send(webdispTopic, input, webdispSpecificationFactory.getInstance());
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
+
 
     /**
      * POST method for datasource JARVIS

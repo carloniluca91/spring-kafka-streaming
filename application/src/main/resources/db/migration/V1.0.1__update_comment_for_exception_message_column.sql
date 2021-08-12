@@ -1,0 +1,1 @@
+COMMENT ON COLUMN @jdbc.log.table@.exception_message IS 'Message of exception raised by ingestion process (null if OK)';

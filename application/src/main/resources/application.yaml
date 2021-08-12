@@ -18,8 +18,19 @@ spring:
         reconnect.backoff.ms: 10000
         retry.backoff.ms: 10000
         linger.ms: 5000
+
+application:
+  datasources:
+    -
+      id: WEBDISP
+      type: xml
+      dataClass: it.luca.spring.data.model.webdisp.WebdispPayload
+      validationFactoryClass: it.luca.spring.data.model.webdisp.WebdispValidationFactory
+      topic: 1357-disp-webdisp-@spring.profiles.active@
+
 topic:
   webdisp: 1357-disp-webdisp-@spring.profiles.active@
   jarvis: 1357-disp-jarvis-@spring.profiles.active@
   int002: 1357-disp-int002-@spring.profiles.active@
   conduzione: 1357-disp-conduzione-@spring.profiles.active@
+
