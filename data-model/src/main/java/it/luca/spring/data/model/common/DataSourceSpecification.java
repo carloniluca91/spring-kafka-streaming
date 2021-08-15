@@ -2,24 +2,15 @@ package it.luca.spring.data.model.common;
 
 import it.luca.spring.data.enumeration.DataSourceType;
 import it.luca.spring.data.model.validation.dto.PojoValidationDto;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-@NoArgsConstructor
+@Data
 public class DataSourceSpecification<T> {
 
-    @Getter
     private String id;
-
-    @Getter
     private DataSourceType type;
-
-    @Getter
     private Class<T> dataClass;
-
     private Class<? extends SampleValidator<T>> validatorClass;
-
-    @Getter
     private String topic;
 
     public void setType(String type) {
