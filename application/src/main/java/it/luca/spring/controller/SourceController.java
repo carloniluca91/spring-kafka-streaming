@@ -36,8 +36,8 @@ public class SourceController {
     @PostMapping("/webdisp")
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
-        DataSourceSpecification<WebdispPayload> specification2 = datasources.getSpecificationForDataClass(WebdispPayload.class);
-        DataSourceResponseDto dto = service.send(input, specification2);
+        DataSourceSpecification<WebdispPayload> specification = datasources.getSpecificationForDataClass(WebdispPayload.class);
+        DataSourceResponseDto dto = service.send(input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -51,8 +51,8 @@ public class SourceController {
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
-        DataSourceSpecification<JarvisPayload> specification2 = datasources.getSpecificationForDataClass(JarvisPayload.class);
-        DataSourceResponseDto dto = service.send(input, specification2);
+        DataSourceSpecification<JarvisPayload> specification = datasources.getSpecificationForDataClass(JarvisPayload.class);
+        DataSourceResponseDto dto = service.send(input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -79,8 +79,8 @@ public class SourceController {
     @PostMapping("/conduzione")
     public ResponseEntity<DataSourceResponseDto> conduzione(@RequestBody String input) {
 
-        DataSourceSpecification<ConduzionePayload> specification2 = datasources.getSpecificationForDataClass(ConduzionePayload.class);
-        DataSourceResponseDto dto = service.send(input, specification2);
+        DataSourceSpecification<ConduzionePayload> specification = datasources.getSpecificationForDataClass(ConduzionePayload.class);
+        DataSourceResponseDto dto = service.send(input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

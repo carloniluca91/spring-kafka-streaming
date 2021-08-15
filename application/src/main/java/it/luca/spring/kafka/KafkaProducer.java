@@ -40,7 +40,6 @@ public class KafkaProducer {
 
                 log.error("({}) Unable to send message due to: {}", dataSourceId, throwable.getMessage());
                 dao.insertIngestionRecord(new ErrorRecord(specification, (Exception) throwable));
-
             }
 
             @Override
