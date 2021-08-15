@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.int002;
 
-import it.luca.spring.data.model.common.SourceSpecificationTest;
+import it.luca.spring.data.model.common.DataSourceSpecificationTest;
 import it.luca.spring.data.utils.DatePattern;
 
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import static it.luca.utils.time.Supplier.now;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class Int002SpecificationTest extends SourceSpecificationTest<Int002Payload> {
+class Int002SpecificationTest extends DataSourceSpecificationTest<Int002Payload> {
 
-    public Int002SpecificationTest() {
+    public Int002SpecificationTest() throws ClassNotFoundException {
 
-        super("int002.json", new Int002SpecificationFactory().createInstance());
+        super("int002.json", Int002Payload.class, Int002SampleValidator.class);
     }
 
     @Override
@@ -50,7 +50,7 @@ class Int002SpecificationTest extends SourceSpecificationTest<Int002Payload> {
     }
 
     @Override
-    public void testValidation() {
+    public void testValidation() throws InstantiationException, IllegalAccessException {
 
         List<Int002Ciclo> emptyList = new ArrayList<>();
         Int002Ciclo int002Ciclo = new Int002Ciclo(now(DatePattern.DEFAULT_TIMESTAMP), "uDM1", "uDM2",

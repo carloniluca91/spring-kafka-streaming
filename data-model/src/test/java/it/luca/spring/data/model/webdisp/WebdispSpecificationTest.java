@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.webdisp;
 
-import it.luca.spring.data.model.common.SourceSpecificationTest;
+import it.luca.spring.data.model.common.DataSourceSpecificationTest;
 import it.luca.spring.data.utils.DatePattern;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +11,11 @@ import java.util.List;
 import static it.luca.utils.time.Supplier.now;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
+class WebdispSpecificationTest extends DataSourceSpecificationTest<WebdispPayload> {
 
-    public WebdispSpecificationTest() {
-        super("webdisp.xml", new WebdispSpecificationFactory().createInstance());
+    public WebdispSpecificationTest() throws ClassNotFoundException {
+
+        super("webdisp.xml", WebdispPayload.class, WebdispSampleValidator.class);
     }
 
     @Override
@@ -40,7 +41,7 @@ class WebdispSpecificationTest extends SourceSpecificationTest<WebdispPayload> {
 
     @Test
     @Override
-    public void testValidation() {
+    public void testValidation() throws InstantiationException, IllegalAccessException {
 
         List<WebdispNomina> emptyNominas = new ArrayList<>();
         String dataOraInvio = now(DatePattern.DEFAULT_TIMESTAMP);

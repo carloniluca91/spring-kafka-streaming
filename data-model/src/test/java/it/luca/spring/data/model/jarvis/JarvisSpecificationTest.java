@@ -1,6 +1,6 @@
 package it.luca.spring.data.model.jarvis;
 
-import it.luca.spring.data.model.common.SourceSpecificationTest;
+import it.luca.spring.data.model.common.DataSourceSpecificationTest;
 import it.luca.spring.data.utils.DatePattern;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +13,12 @@ import static it.luca.utils.time.Supplier.now;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class JarvisSpecificationTest extends SourceSpecificationTest<JarvisPayload> {
+class JarvisSpecificationTest extends DataSourceSpecificationTest<JarvisPayload> {
 
-    public JarvisSpecificationTest() { super("jarvis.xml", new JarvisSpecificationFactory().createInstance()); }
+    public JarvisSpecificationTest() throws ClassNotFoundException {
+
+        super("jarvis.xml", JarvisPayload.class, JarvisSampleValidator.class);
+    }
 
     @Override
     protected void testSampleFileInstance(JarvisPayload instance) {
@@ -43,7 +46,7 @@ class JarvisSpecificationTest extends SourceSpecificationTest<JarvisPayload> {
 
     @Test
     @Override
-    public void testValidation() {
+    public void testValidation() throws InstantiationException, IllegalAccessException {
 
         List<JarvisCiclo> emptyCicli = new ArrayList<>();
         String giornoGas = now(DatePattern.DEFAULT_DATE);

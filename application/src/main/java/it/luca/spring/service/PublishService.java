@@ -2,8 +2,7 @@ package it.luca.spring.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.luca.spring.data.model.common.MsgWrapper;
-import it.luca.spring.data.model.common.SourceSpecification;
-import it.luca.spring.data.model.common.SourceSpecification2;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import it.luca.spring.data.model.validation.dto.PojoValidationDto;
 import it.luca.spring.exception.EmptyInputException;
 import it.luca.spring.exception.InputValidationException;
@@ -33,16 +32,15 @@ public class PublishService {
 
     /**
      * Deserializes input data and publish them to a Kafka topic
-     * @param topic name of the Kafka topic
      * @param input string representing serialized input data
      * @param specification dataSource specification
      * @param <T> type to be used for deserialization
      * @return dto to be sent back to dataSources
      */
 
-    public <T> DataSourceResponseDto send(String topic, String input, SourceSpecification<T> specification) {
+    public <T> DataSourceResponseDto send(String input, DataSourceSpecification<T> specification) {
 
-        String dataSourceId = specification.getDataSourceId();
+        String dataSourceId = specification.getId();
         Predicate<String> emptyOrBlank = s -> !isPresent(s) || s.isEmpty() || s.trim().isEmpty();
         try {
             // If input string is not empty or blank
@@ -54,8 +52,8 @@ public class PublishService {
                 PojoValidationDto pojoValidationDto = specification.validate(payload);
 
                 // If validation successes, publish on Kafka
-                if (pojoValidationDto.isPojoInstanceValid()) {
-                    producer.sendMessage(topic, new MsgWrapper<>(payload), specification, dao);
+                if (pojoValidationDto.isValid()) {{}
+                    producer.sendMessage(new MsgWrapper<>(payload), specification, dao);
                     return new DataSourceResponseDto(specification, HttpStatus.OK, null);
                 } else {
                     throw new InputValidationException(pojoValidationDto);
@@ -76,7 +74,7 @@ public class PublishService {
      * @return dto to be sent back to dataSources
      */
 
-    private DataSourceResponseDto handleException(SourceSpecification<?> specification, Exception exception) {
+    private DataSourceResponseDto handleException(DataSourceSpecification<?> specification, Exception exception) {
 
         // Set HttpStatus and error message according to exception type
         String errorMsg;
@@ -93,7 +91,7 @@ public class PublishService {
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
-        log.error("({}) {}. Class: {}, message: {}", specification.getDataSourceId(), errorMsg, exception.getClass().getName(), exception.getMessage());
+        log.error("({}) {}. Class: {}, message: {}", specification.getId(), errorMsg, exception.getClass().getName(), exception.getMessage());
         dao.insertIngestionRecord(new ErrorRecord(specification, exception));
         return new DataSourceResponseDto(specification, status, exception);
     }

@@ -1,6 +1,6 @@
 package it.luca.spring.jdbc.dto;
 
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 /**
@@ -9,7 +9,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 public class SuccessRecord extends IngestionRecord {
 
-    public SuccessRecord(SourceSpecification<?> specification, RecordMetadata recordMetadata) {
+    public SuccessRecord(DataSourceSpecification<?> specification, RecordMetadata recordMetadata) {
 
         super(specification, recordMetadata, null);
     }

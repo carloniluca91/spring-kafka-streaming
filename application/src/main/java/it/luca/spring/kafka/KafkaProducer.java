@@ -1,7 +1,7 @@
 package it.luca.spring.kafka;
 
 import it.luca.spring.data.model.common.MsgWrapper;
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import it.luca.spring.jdbc.dao.ApplicationDao;
 import it.luca.spring.jdbc.dto.ErrorRecord;
 import it.luca.spring.jdbc.dto.SuccessRecord;
@@ -23,16 +23,15 @@ public class KafkaProducer {
 
     /**
      * Publish data to Kafka topic
-     * @param topic name of Kafka topic
      * @param msgWrapper wrapper object containing data to be sent
      * @param specification dataSource specification
      * @param dao dao interface to be used for logging
      */
 
-    public void sendMessage(String topic, MsgWrapper<?> msgWrapper, SourceSpecification<?> specification, ApplicationDao dao) {
+    public void sendMessage(MsgWrapper<?> msgWrapper, DataSourceSpecification<?> specification, ApplicationDao dao) {
 
-        String dataSourceId = specification.getDataSourceId();
-        ListenableFuture<SendResult<String, MsgWrapper<?>>> future = template.send(topic, msgWrapper);
+        String dataSourceId = specification.getId();
+        ListenableFuture<SendResult<String, MsgWrapper<?>>> future = template.send(specification.getTopic(), msgWrapper);
         future.addCallback(new ListenableFutureCallback<SendResult<String, MsgWrapper<?>>>() {
 
             @Override

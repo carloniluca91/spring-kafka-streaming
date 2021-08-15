@@ -16,7 +16,7 @@ import java.util.List;
 public class PojoValidationDto {
 
     @Accessors(fluent = true)
-    private final boolean isPojoInstanceValid;
+    private final boolean isValid;
 
     private final List<String> attributeValidationMessages;
 }

@@ -1,7 +1,7 @@
 package it.luca.spring.model;
 
 import it.luca.spring.data.enumeration.IngestionOperationCode;
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import it.luca.spring.data.utils.DatePattern;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,12 @@ public class DataSourceResponseDto {
     private final HttpStatus httpStatus;
     private final String httpStatusDescription;
 
-    public DataSourceResponseDto(SourceSpecification<?> specification, HttpStatus httpStatus, Exception exception) {
+    public DataSourceResponseDto(DataSourceSpecification<?> specification, HttpStatus httpStatus, Exception exception) {
 
         messageTs = now(DatePattern.DEFAULT_TIMESTAMP);
         messageDt = now(DatePattern.DEFAULT_DATE);
-        this.dataSourceId = specification.getDataSourceId();
-        this.dataSourceType = specification.getDataSourceType().name();
+        this.dataSourceId = specification.getId();
+        this.dataSourceType = specification.getType().name();
         ingestionOperationCode = isPresent(exception) ? IngestionOperationCode.KO : IngestionOperationCode.OK;
         ingestionOperationMessage = orElse(exception, Exception::getMessage, "Message received");
         this.httpStatus = httpStatus;

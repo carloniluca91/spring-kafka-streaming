@@ -1,6 +1,6 @@
 package it.luca.spring.jdbc.dto;
 
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 
 /**
  * Dto representing error records stored on log table
@@ -8,7 +8,7 @@ import it.luca.spring.data.model.common.SourceSpecification;
 
 public class ErrorRecord extends IngestionRecord {
 
-    public ErrorRecord(SourceSpecification<?> specification, Exception exception) {
+    public ErrorRecord(DataSourceSpecification<?> specification, Exception exception) {
 
         super(specification, null, exception);
     }

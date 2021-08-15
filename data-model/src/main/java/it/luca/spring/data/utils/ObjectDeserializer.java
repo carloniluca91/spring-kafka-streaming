@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import it.luca.spring.data.enumeration.DataSourceType;
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -28,11 +28,11 @@ public class ObjectDeserializer {
      * @throws IOException if deserialization fails
      */
 
-    public static <T> T deserialize(InputStream inputStream, SourceSpecification<T> specification) throws IOException {
+    public static <T> T deserialize(InputStream inputStream, DataSourceSpecification<T> specification) throws IOException {
 
-        Class<T> inputDataClass = specification.getInputDataClass();
+        Class<T> inputDataClass = specification.getDataClass();
         String className = inputDataClass.getSimpleName();
-        DataSourceType dataSourceType = specification.getDataSourceType();
+        DataSourceType dataSourceType = specification.getType();
         log.info("Deserializing input {} content as instance of {}", dataSourceType, className);
         T payload = (dataSourceType == DataSourceType.JSON) ?
                 jsonMapper.readValue(inputStream, inputDataClass) :
@@ -51,11 +51,11 @@ public class ObjectDeserializer {
      * @throws IOException if deserialization fails
      */
 
-    public static <T> T deserialize(String content, SourceSpecification<T> specification) throws IOException {
+    public static <T> T deserialize(String content, DataSourceSpecification<T> specification) throws IOException {
 
-        Class<T> inputDataClass = specification.getInputDataClass();
+        Class<T> inputDataClass = specification.getDataClass();
         String className = inputDataClass.getSimpleName();
-        DataSourceType dataSourceType = specification.getDataSourceType();
+        DataSourceType dataSourceType = specification.getType();
         log.info("Deserializing input {} content as instance of {}", dataSourceType, className);
         T payload = (dataSourceType == DataSourceType.JSON) ?
                 jsonMapper.readValue(content, inputDataClass) :

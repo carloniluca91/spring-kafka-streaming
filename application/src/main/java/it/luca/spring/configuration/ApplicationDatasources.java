@@ -1,6 +1,6 @@
 package it.luca.spring.configuration;
 
-import it.luca.spring.data.model.common.SourceSpecification2;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import it.luca.spring.exception.DuplicateDatasourceException;
 import it.luca.spring.exception.UnexistingDatasourceException;
 import lombok.Data;
@@ -16,18 +16,18 @@ import static it.luca.utils.functional.Stream.filter;
 @ConfigurationProperties(prefix = "application")
 public class ApplicationDatasources {
 
-    private List<SourceSpecification2<?>> dataSources;
+    private List<DataSourceSpecification<?>> dataSources;
 
-    public <T> SourceSpecification2<T> getSpecificationForDataClass(Class<T> dataClass) {
+    public <T> DataSourceSpecification<T> getSpecificationForDataClass(Class<T> dataClass) {
 
-        List<SourceSpecification2<?>> matchingSourceSpecification2s = filter(dataSources, x -> x.getDataClass().equals(dataClass));
+        List<DataSourceSpecification<?>> matchingSourceSpecification2s = filter(dataSources, x -> x.getDataClass().equals(dataClass));
         if (matchingSourceSpecification2s.isEmpty()) {
             throw new UnexistingDatasourceException(dataClass);
         } else if (matchingSourceSpecification2s.size() > 1) {
             throw new DuplicateDatasourceException(matchingSourceSpecification2s.size(), dataClass);
         } else {
             //noinspection unchecked
-            return (SourceSpecification2<T>) matchingSourceSpecification2s.get(0);
+            return (DataSourceSpecification<T>) matchingSourceSpecification2s.get(0);
         }
     }
 }

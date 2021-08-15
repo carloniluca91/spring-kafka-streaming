@@ -25,12 +25,23 @@ application:
       id: WEBDISP
       type: xml
       dataClass: it.luca.spring.data.model.webdisp.WebdispPayload
-      validationFactoryClass: it.luca.spring.data.model.webdisp.WebdispValidationFactory
+      validatorClass: it.luca.spring.data.model.webdisp.WebdispSampleValidator
       topic: 1357-disp-webdisp-@spring.profiles.active@
-
-topic:
-  webdisp: 1357-disp-webdisp-@spring.profiles.active@
-  jarvis: 1357-disp-jarvis-@spring.profiles.active@
-  int002: 1357-disp-int002-@spring.profiles.active@
-  conduzione: 1357-disp-conduzione-@spring.profiles.active@
-
+    -
+      id: JARVIS
+      type: xml
+      dataClass: it.luca.spring.data.model.jarvis.JarvisPayload
+      validatorClass: it.luca.spring.data.model.jarvis.JarvisSampleValidator
+      topic: 1357-disp-jarvis-@spring.profiles.active@
+    -
+      id: INT002
+      type: json
+      dataClass: it.luca.spring.data.model.int002.Int002Payload
+      validatorClass: it.luca.spring.data.model.int002.Int002SampleValidator
+      topic: 1357-disp-int002-@spring.profiles.active@
+    -
+      id: CONDUZIONE
+      type: json
+      dataClass: it.luca.spring.data.model.conduzione.ConduzionePayload
+      validatorClass: it.luca.spring.data.model.conduzione.ConduzioneSampleValidator
+      topic: 1357-disp-conduzione-@spring.profiles.active@

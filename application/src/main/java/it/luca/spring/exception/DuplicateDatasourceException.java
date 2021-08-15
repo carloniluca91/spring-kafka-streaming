@@ -1,6 +1,6 @@
 package it.luca.spring.exception;
 
-import it.luca.spring.data.model.common.SourceSpecification2;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 
 public class DuplicateDatasourceException extends RuntimeException {
 
@@ -8,7 +8,7 @@ public class DuplicateDatasourceException extends RuntimeException {
 
         super(String.format("Found %s instances of %s for dataClass %s",
                 duplicates,
-                SourceSpecification2.class.getName(),
+                DataSourceSpecification.class.getName(),
                 dataClass.getName()));
     }
 }

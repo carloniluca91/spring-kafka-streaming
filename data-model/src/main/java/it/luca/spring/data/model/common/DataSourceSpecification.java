@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class SourceSpecification2<T> {
+public class DataSourceSpecification<T> {
 
     @Getter
     private String id;
@@ -17,7 +17,7 @@ public class SourceSpecification2<T> {
     @Getter
     private Class<T> dataClass;
 
-    private Class<? extends SourceValidationFactory<T>> validationFactoryClass;
+    private Class<? extends SampleValidator<T>> validatorClass;
 
     @Getter
     private String topic;
@@ -32,8 +32,8 @@ public class SourceSpecification2<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public void setValidationFactoryClass(String validationFactoryClass) throws ClassNotFoundException {
-        this.validationFactoryClass = (Class<? extends SourceValidationFactory<T>>) Class.forName(validationFactoryClass);
+    public void setValidatorClass(String validatorClass) throws ClassNotFoundException {
+        this.validatorClass = (Class<? extends SampleValidator<T>>) Class.forName(validatorClass);
     }
 
     /**
@@ -44,9 +44,8 @@ public class SourceSpecification2<T> {
 
     public PojoValidationDto validate(T input) throws InstantiationException, IllegalAccessException {
 
-        return validationFactoryClass
+        return validatorClass
                 .newInstance()
-                .create()
                 .validate(input);
     }
 }

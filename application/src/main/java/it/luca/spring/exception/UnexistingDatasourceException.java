@@ -1,13 +1,13 @@
 package it.luca.spring.exception;
 
-import it.luca.spring.data.model.common.SourceSpecification2;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 
 public class UnexistingDatasourceException extends RuntimeException {
 
     public UnexistingDatasourceException(Class<?> dataClass) {
 
         super(String.format("Unable to find an instance of %s for dataClass %s",
-                SourceSpecification2.class.getName(),
+                DataSourceSpecification.class.getName(),
                 dataClass.getName()));
     }
 }

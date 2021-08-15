@@ -1,17 +1,15 @@
 package it.luca.spring.controller;
 
 import it.luca.spring.configuration.ApplicationDatasources;
-import it.luca.spring.data.model.common.SourceSpecification2;
-import it.luca.spring.data.model.conduzione.ConduzioneSpecificationFactory;
-import it.luca.spring.data.model.int002.Int002SpecificationFactory;
-import it.luca.spring.data.model.jarvis.JarvisSpecificationFactory;
+import it.luca.spring.data.model.common.DataSourceSpecification;
+import it.luca.spring.data.model.conduzione.ConduzionePayload;
+import it.luca.spring.data.model.int002.Int002Payload;
+import it.luca.spring.data.model.jarvis.JarvisPayload;
 import it.luca.spring.data.model.webdisp.WebdispPayload;
-import it.luca.spring.data.model.webdisp.WebdispSpecificationFactory;
 import it.luca.spring.model.DataSourceResponseDto;
 import it.luca.spring.service.PublishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,30 +24,6 @@ public class SourceController {
     @Autowired
     private ApplicationDatasources datasources;
 
-    @Value("${topic.webdisp}")
-    private String webdispTopic;
-
-    @Autowired
-    private WebdispSpecificationFactory webdispSpecificationFactory;
-
-    @Value("${topic.jarvis}")
-    private String jarvisTopic;
-
-    @Autowired
-    private JarvisSpecificationFactory jarvisSpecificationFactory;
-
-    @Value("${topic.int002}")
-    private String int002Topic;
-
-    @Autowired
-    private Int002SpecificationFactory int002SpecificationFactory;
-
-    @Value("${topic.conduzione}")
-    private String conduzioneTopic;
-
-    @Autowired
-    private ConduzioneSpecificationFactory conduzioneSpecificationFactory;
-
     @Autowired
     private PublishService service;
 
@@ -62,8 +36,8 @@ public class SourceController {
     @PostMapping("/webdisp")
     public ResponseEntity<DataSourceResponseDto> webdisp(@RequestBody String input) {
 
-        SourceSpecification2<WebdispPayload> specification2 = datasources.getSpecificationForDataClass(WebdispPayload.class);
-        DataSourceResponseDto dto = service.send(webdispTopic, input, webdispSpecificationFactory.getInstance());
+        DataSourceSpecification<WebdispPayload> specification2 = datasources.getSpecificationForDataClass(WebdispPayload.class);
+        DataSourceResponseDto dto = service.send(input, specification2);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -77,7 +51,8 @@ public class SourceController {
     @PostMapping("/jarvis")
     public ResponseEntity<DataSourceResponseDto> jarvis(@RequestBody String input) {
 
-        DataSourceResponseDto dto = service.send(jarvisTopic, input, jarvisSpecificationFactory.getInstance());
+        DataSourceSpecification<JarvisPayload> specification2 = datasources.getSpecificationForDataClass(JarvisPayload.class);
+        DataSourceResponseDto dto = service.send(input, specification2);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -90,7 +65,8 @@ public class SourceController {
     @PostMapping("/int002")
     public ResponseEntity<DataSourceResponseDto> int002(@RequestBody String input) {
 
-        DataSourceResponseDto dto = service.send(int002Topic, input, int002SpecificationFactory.getInstance());
+        DataSourceSpecification<Int002Payload> specification = datasources.getSpecificationForDataClass(Int002Payload.class);
+        DataSourceResponseDto dto = service.send(input, specification);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 
@@ -103,7 +79,8 @@ public class SourceController {
     @PostMapping("/conduzione")
     public ResponseEntity<DataSourceResponseDto> conduzione(@RequestBody String input) {
 
-        DataSourceResponseDto dto = service.send(conduzioneTopic, input, conduzioneSpecificationFactory.getInstance());
+        DataSourceSpecification<ConduzionePayload> specification2 = datasources.getSpecificationForDataClass(ConduzionePayload.class);
+        DataSourceResponseDto dto = service.send(input, specification2);
         return new ResponseEntity<>(dto, dto.getHttpStatus());
     }
 }

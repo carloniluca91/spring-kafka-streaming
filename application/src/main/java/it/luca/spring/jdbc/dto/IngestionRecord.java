@@ -1,7 +1,7 @@
 package it.luca.spring.jdbc.dto;
 
 import it.luca.spring.data.enumeration.IngestionOperationCode;
-import it.luca.spring.data.model.common.SourceSpecification;
+import it.luca.spring.data.model.common.DataSourceSpecification;
 import lombok.Getter;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
@@ -32,15 +32,15 @@ public abstract class IngestionRecord {
     protected final Timestamp insertTs = Timestamp.valueOf(now());
     protected final Date insertDt = Date.valueOf(now().toLocalDate());
 
-    public IngestionRecord(SourceSpecification<?> specification,
+    public IngestionRecord(DataSourceSpecification<?> specification,
                            RecordMetadata recordMetadata,
                            Exception exception) {
 
         eventTs = orElse(recordMetadata, x -> new Timestamp(x.timestamp()), Timestamp.valueOf(now()));
         eventDt = orElse(recordMetadata, x -> new Date(x.timestamp()), Date.valueOf(now().toLocalDate()));
-        dataSourceId = specification.getDataSourceId();
-        dataSourceType = specification.getDataSourceType().name();
-        inputDataClass = specification.getInputDataClass().getName();
+        dataSourceId = specification.getId();
+        dataSourceType = specification.getType().name();
+        inputDataClass = specification.getDataClass().getName();
         ingestionOperationCode = (isPresent(exception) ? IngestionOperationCode.KO : IngestionOperationCode.OK).name();
         topicName = orNull(recordMetadata, RecordMetadata::topic);
         topicPartition = orNull(recordMetadata, RecordMetadata::partition);

@@ -1,9 +1,9 @@
 package it.luca.spring.data.model.webdisp;
 
 import it.luca.spring.data.model.common.PojoValidation;
-import it.luca.spring.data.model.common.SourceValidationFactory;
+import it.luca.spring.data.model.common.SampleValidator;
 
-public class WebdispValidationFactory implements SourceValidationFactory<WebdispPayload> {
+public class WebdispSampleValidator implements SampleValidator<WebdispPayload> {
 
     @Override
     public PojoValidation<WebdispPayload> create() {
