@@ -50,7 +50,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <jdbi.version>3.16.0</jdbi.version>
-        <java.utils.version>0.3.0</java.utils.version>
+        <java.utils.version>0.3.2</java.utils.version>
         <jdbc.url>jdbc:postgresql://localhost:5432/${jdbc.user}?currentSchema=log</jdbc.url>
         <jdbc.log.table>t_kafka_ingestion_log</jdbc.log.table>
     </properties>
